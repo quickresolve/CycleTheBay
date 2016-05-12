@@ -1,6 +1,23 @@
 # Outline
 
-## Database
+## Controller
+
+## Hosting
+- Firebase
+- AWS
+- Digital Ocean
+- Google Cloud Platform
+- Openshift
+- Cloud Foundry
+
+## Database Options
+- Firebase
+- AWS / DynamoDB
+- Rails + Postgres
+- Mongo
+- CouchDB
+- Couchbase
+- Redis
 
 ### Locations
 - title
