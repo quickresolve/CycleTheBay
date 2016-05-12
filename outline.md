@@ -10,12 +10,10 @@
 
 ## Database Options
 - Firebase
-- AWS / DynamoDB
-- Rails + Postgres
-- Mongo
+- AWS DynamoDB
+- MongoDB
 - CouchDB
 - Couchbase
-- Redis
 
 ### Locations
 - title
