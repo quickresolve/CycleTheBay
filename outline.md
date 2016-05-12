@@ -12,7 +12,6 @@
 - Firebase
 - AWS DynamoDB
 - MongoDB
-- CouchDB
 - Couchbase
 
 ### Locations
