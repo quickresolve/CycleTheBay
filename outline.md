@@ -7,8 +7,6 @@
 - AWS
 - Digital Ocean
 - Google Cloud Platform
-- Openshift
-- Cloud Foundry
 
 ## Database Options
 - Firebase
