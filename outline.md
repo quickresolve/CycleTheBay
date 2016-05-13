@@ -1,18 +1,13 @@
 # Outline
 
-## Controller
-
 ## Hosting
-- Firebase
-- AWS
 - Digital Ocean
-- Google Cloud Platform
+
+## Backend
+- Rails API Server + DB or DynamoDB / Firebase
 
 ## Database Options
-- Firebase
-- AWS DynamoDB
-- MongoDB
-- Couchbase
+- MongoDB or Couchbase
 
 ### Locations
 - title
