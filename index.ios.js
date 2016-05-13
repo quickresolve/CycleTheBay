@@ -16,8 +16,8 @@ import {
   View
 } from 'react-native';
 
-import fetchWeather from "./app/api/api"
-import weatherIcon from "./app/utils/icons"
+import fetchWeather from "./App/Api/weatherapi"
+import weatherIcon from "./App/Utils/icons"
 
 var Main = require('./App/Components/Main');
 

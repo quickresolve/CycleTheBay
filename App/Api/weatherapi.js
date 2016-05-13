@@ -1,4 +1,5 @@
-var WEATHER_API_KEY = ‘db8f12a8be0e1eb5’
+
+var WEATHER_API_KEY = "db8f12a8be0e1eb5"
 
 
 export default function fetchWeather(city, state) {
