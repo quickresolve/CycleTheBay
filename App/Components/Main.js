@@ -4,21 +4,40 @@ var {
   View,
   Text,
   TouchableHighlight,
+  navigator,
   StyleSheet
 } = React;
 
+
+var Weather = require("./App/Components/Weather");
+
 class Main extends React.Component{
-  render(){
+  render() {
     return(
       <View style ={styles.mainContainer}>
+        <Text style={styles.title}>Cycle the Bay</Text>
         <TouchableHighlight
-          onPress={this._onPressButton}
+          onPress={this._onCycleButton.bind(this)}
           style={styles.button}
-          underlayColor="white">
-            <Text style={styles.title}>Cycle the Bay</Text>
+          underlayColor="gray">
+            <Text style={styles.buttonText}>Trails</Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          onPress={this._onWeatherButton.bind(this)}
+          style={styles.button}
+          underlayColor="gray">
+            <Text style={styles.buttonText}>Weather</Text>
         </TouchableHighlight>
       </View>
     )
+  }
+  _onCycleButton(){
+
+  }
+  _onWeatherButton(){
+    this.props.navigator.push({
+      component: Weather
+    });
   }
 };
 
@@ -35,7 +54,7 @@ var styles = StyleSheet.create({
     marginBottom: 10,
     fontSize: 25,
     textAlign: 'center',
-    color: '#658D9F'
+    color: 'white'
   },
   button: {
     height: 45,
