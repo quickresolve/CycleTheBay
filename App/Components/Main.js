@@ -34,7 +34,8 @@ class Main extends React.Component{
   }
   _onCycleButton(){
     this.props.navigator.push({
-      component: Trail
+      component: Trail,
+      title: "SF North Waterfront"
     });
   }
   // _onWeatherButton(){
