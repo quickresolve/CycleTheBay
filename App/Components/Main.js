@@ -8,9 +8,13 @@ var {
   StyleSheet
 } = React;
 
+// import Weather from './Weather'
+
 
 // var Weather = require("Weather");
 import Weather from "./Weather"
+import Trail from './Trail'
+
 
 class Main extends React.Component{
   render() {
@@ -33,13 +37,15 @@ class Main extends React.Component{
     )
   }
   _onCycleButton(){
-
+    this.props.navigator.push({
+      component: Trail
+    });
   }
-  // _onWeatherButton(){
-  //   this.props.navigator.push({
-  //     component: Weather
-  //   });
-  // }
+  _onWeatherButton(){
+    this.props.navigator.push({
+      component: Weather
+    });
+  }
 };
 
 var styles = StyleSheet.create({
