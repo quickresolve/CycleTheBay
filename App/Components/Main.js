@@ -43,6 +43,7 @@ class Main extends React.Component{
     this.props.navigator.push({
       component: Weather
     })
+  }
 };
 
 var styles = StyleSheet.create({
