@@ -8,8 +8,9 @@ var {
   StyleSheet
 } = React;
 
-import Weather from './Weather'
+import Weather from "./Weather"
 import Trail from './Trail'
+
 
 class Main extends React.Component{
   render() {
@@ -23,7 +24,7 @@ class Main extends React.Component{
             <Text style={styles.buttonText}>Trails</Text>
         </TouchableHighlight>
         <TouchableHighlight
-          // onPress={this._onWeatherButton.bind(this)}
+          onPress={this._onWeatherButton.bind(this)}
           style={styles.button}
           underlayColor="gray">
             <Text style={styles.buttonText}>Weather</Text>
@@ -42,7 +43,6 @@ class Main extends React.Component{
     this.props.navigator.push({
       component: Weather
     })
-  }
 };
 
 var styles = StyleSheet.create({
