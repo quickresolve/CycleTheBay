@@ -1,28 +1,22 @@
 # Outline
 
-## Hosting
-- Digital Ocean
-
 ## Backend
-- Rails API Server + DB or DynamoDB / Firebase
-
-## Database Options
-- MongoDB or Couchbase
+- Rails API Server + PostgreSQL
 
 ### Locations
-- title
-- desc
-- url
-- start
-- end
-- distance
-- elevation
-- terrain
+- title:string
+- desc:text
+- url:string
+- start:float
+- end:float
+- distance:float
+- elevation:float
+- terrain:string
 
 ### Landmarks
-- title
-- desc
-- location id
+- title:string
+- desc:text
+- location:int
 
 ## API
 - maps
