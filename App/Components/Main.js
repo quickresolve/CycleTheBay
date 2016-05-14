@@ -9,7 +9,8 @@ var {
 } = React;
 
 
-var Weather = require("./App/Components/Weather");
+// var Weather = require("Weather");
+import Weather from "./Weather"
 
 class Main extends React.Component{
   render() {
@@ -17,13 +18,13 @@ class Main extends React.Component{
       <View style ={styles.mainContainer}>
         <Text style={styles.title}>Cycle the Bay</Text>
         <TouchableHighlight
-          onPress={this._onCycleButton.bind(this)}
+          // onPress={this._onCycleButton.bind(this)}
           style={styles.button}
           underlayColor="gray">
             <Text style={styles.buttonText}>Trails</Text>
         </TouchableHighlight>
         <TouchableHighlight
-          onPress={this._onWeatherButton.bind(this)}
+          // onPress={this._onWeatherButton.bind(this)}
           style={styles.button}
           underlayColor="gray">
             <Text style={styles.buttonText}>Weather</Text>
@@ -34,11 +35,11 @@ class Main extends React.Component{
   _onCycleButton(){
 
   }
-  _onWeatherButton(){
-    this.props.navigator.push({
-      component: Weather
-    });
-  }
+  // _onWeatherButton(){
+  //   this.props.navigator.push({
+  //     component: Weather
+  //   });
+  // }
 };
 
 var styles = StyleSheet.create({

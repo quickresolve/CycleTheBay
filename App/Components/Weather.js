@@ -8,9 +8,9 @@ var {
   StyleSheet
 } = React;
 
-import fetchWeather from "./App/Api/weatherapi"
+import fetchWeather from "./Api/weatherapi"
 import weatherIcon from "././utils/icons"
-import currentWeather from "./App/Api/weatherapi"
+import currentWeather from "./Api/weatherapi"
 
 
 class Weather extends React.Component {
@@ -19,33 +19,32 @@ class Weather extends React.Component {
       pin: {
         latitude: 0,
         longitude: 0
-      }
-      icon: weatherIcon()
+      },
+      city: '',
+      temperature: '',
+      description: ''
     };
-  },
+  }
   render() {
     return <MapView
     annotations={[this.state.pin]}
     onRegionChangeComplete={this.onRegionChangeComplete}
-    style={styles.map}></Map>
-  },
+    style={styles.map}></MapView>
+  }
   onRegionChangeComplete(region) {
     this.setState({
       pin: {
         longitude: region.longitude,
         latitude: region.latitude
       }
-      city: '',
-      temperature: '',
-      description: ''
     });
 
-  currentWeather(region.latitude, region.longitude) {
-    .then((data) => {
-      console.log(data);
-      this.setState(data);
-    })
-  }
+  // currentWeather(region.latitude, region.longitude) {
+  //   .then((data) => {
+  //     console.log(data);
+  //     this.setState(data);
+  //   })
+  // }
   }
 
 
