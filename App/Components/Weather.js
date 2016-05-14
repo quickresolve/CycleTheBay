@@ -2,9 +2,7 @@ var React = require('react-native');
 
 var {
   View,
-  MapView,
   Text,
-  ListView,
   StyleSheet
 } = React;
 
@@ -14,47 +12,35 @@ var {
 
 
 class Weather extends React.Component {
-  getInitialState() {
-    return {
-      pin: {
-        latitude: 0,
-        longitude: 0
-      },
-      city: '',
-      temperature: '',
-      description: ''
-    };
-  }
   render() {
-    return <MapView
-    annotations={[this.state.pin]}
-    onRegionChangeComplete={this.onRegionChangeComplete}
-    style={styles.map}></MapView>
-  }
-  onRegionChangeComplete(region) {
-    this.setState({
-      pin: {
-        longitude: region.longitude,
-        latitude: region.latitude
-      }
-    });
-
-  // currentWeather(region.latitude, region.longitude) {
-  //   .then((data) => {
-  //     console.log(data);
-  //     this.setState(data);
-  //   })
-  // }
-  }
-
-
-  // Render weather hourly forecast
-
+    return (
+    <View style={styles.container}>
+      <View style={styles.currentWrapper}>
+        <Text>Current Weather</Text>
+      </View>
+      <View style={styles.forecastWrapper}>
+        <Text> Hourly Forecast </Text>
+      </View>
+    </View>
+  )
+ }
 };
 
+
+
+
 var styles = StyleSheet.create({
-  map: {
-    flex: 1
+  container: {
+    flex: 1,
+    alignItems: 'stretch'
+  },
+  currentWrapper: {
+    flex: 3,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  forecastWrapper: {
+    flex: 5
   }
 });
 

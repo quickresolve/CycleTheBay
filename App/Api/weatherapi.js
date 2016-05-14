@@ -15,7 +15,7 @@ var weatherapi = {
   baseUrl: 'http://api.openweathermap.org/data/2.5/',
   hourlyUrl: 'forecast',
   currentWeatherUrl: 'weather',
-  API_KEY = '?APPID=4a55512194ca2751c9dec4fd1fa57028'
+  API_KEY: '?APPID=4a55512194ca2751c9dec4fd1fa57028'
 }
 
 var kelvinToF = (kelvin) => {
@@ -48,7 +48,7 @@ export default function forecast(latitude, longitude) {
   return fetch(url).then((response) => response.json())
     .then((response) => {
       return {
-        city: json.name
+        city: json.name,
         temperature: kelvinToF(json.list.main.temp),
         description: json.weather[0].description,
         icon: json.weather[0].icon,
