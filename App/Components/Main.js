@@ -8,8 +8,7 @@ var {
   StyleSheet
 } = React;
 
-// import Weather from './Weather'
-
+import Weather from './Weather'
 import Trail from './Trail'
 
 class Main extends React.Component{
@@ -38,11 +37,12 @@ class Main extends React.Component{
       title: "SF North Waterfront"
     });
   }
-  // _onWeatherButton(){
-  //   this.props.navigator.push({
-  //     component: Weather
-  //   });
-  // }
+
+  _onWeatherButton() {
+    this.props.navigator.push({
+      component: Weather
+    })
+  }
 };
 
 var styles = StyleSheet.create({

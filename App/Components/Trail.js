@@ -5,6 +5,7 @@ import {
   Text,
   TouchableHighlight,
   MapView,
+  ScrollView,
   Image,
   View
 } from 'react-native';
@@ -16,11 +17,9 @@ const styles = StyleSheet.create({
 	},
 	header: {
 		flex: 1,
-		backgroundColor: 'red'
 	},
 	map: {
 		flex: 2,
-		backgroundColor: 'blue',
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
@@ -38,9 +37,14 @@ const styles = StyleSheet.create({
 	},
 	navButton: {
 		flex: 1,
-		backgroundColor: 'blue',
+		flexDirection: 'row',
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		backgroundColor: '#9f6565'
+	},
+	navText: {
+		fontSize: 20,
+		color: 'white'
 	},
 	description: {
 		flex: 3,
@@ -54,12 +58,20 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		color: 'white'
 	},
+	measurementContainer: {
+		alignItems: 'center'
+	},
 	measurements: {
 		fontSize: 12,
 	}
 });
 
 class Trail extends Component {
+
+	onLinkPressed() {
+		console.log('pressed');
+	}
+
 	render() {
 		return(
 			<View style={styles.container}>
@@ -72,7 +84,7 @@ class Trail extends Component {
 				<View style={styles.header}>
 
 					<View style={styles.infoWrapper}>
-						<View style={{alignItems: 'center'}}>							
+						<View style={styles.measurementContainer}>							
 							<Text style={styles.labels}>
 								5 feet
 							</Text>
@@ -81,7 +93,7 @@ class Trail extends Component {
 							</Text>
 						</View>
 
-						<View style={{alignItems: 'center'}}>
+						<View style={styles.measurementContainer}>
 							<Text style={styles.labels}>
 								20 miles
 							</Text>
@@ -91,15 +103,15 @@ class Trail extends Component {
 						</View>
 					</View>
 
-					<View style={styles.navButton}>
-						<Text>
-							View Directions
+					<TouchableHighlight style={styles.navButton} underlayColor='#99d9f4' onPress={this.onLinkPressed.bind(this)}>
+						<Text style={styles.navText}>
+							Click for Navigation
 						</Text>
-					</View>
+					</TouchableHighlight>
 
 					<View style={styles.description}>
 						<Text>
-							"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+							"Lorem ipsum dolor sit amet, detraxit inimicus ut usu, utamur ponderum ex mea, vel soleat consequuntur ad. Usu omnis quodsi ad, vix te error mundi philosophia, cu utamur deserunt aliquando eos. Homero scaevola praesent an has. No timeam nonumes qualisque vim, qui denique senserit scriptorem cu. Eu pro sonet liberavisse, mea debet dolorum ne. In regione liberavisse reprehendunt eam, in aperiri euripidis mei. Iriure appareat mea in, vidit causae hendrerit eam ne. Aperiri malorum ne ius, ipsum prodesset ex eos, sit id ipsum habemus democritum. Ea vix omittam indoctum, ut mel nibh mazim qualisque, at his possit scaevola. Ex vis electram omittantur appellantur, id sit dicta scaevola lobortis. Sea ex habemus docendi."
 						</Text>
 					</View>
 					
