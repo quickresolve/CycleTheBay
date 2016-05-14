@@ -9,22 +9,63 @@ var {
 
 import currentWeather from "../Api/weatherapi"
 import forecast from "../Api/weatherapi"
+import weatherIcon from "../Utils/icons"
+//constants used for background colors
+
+var BG_HOT ="#FB9F4D";
+var BG_WARM ="#FBD84D";
+var BG_COLD ="#00ABE6";
 
 
 var Weather = React.createClass ({
    getInitialState: function() {
     return {
-      weatherData: null,
-      backgorundColor: "#FFFFFF"
-      // latitude: '37',
-      // longitude: '-122'
+      // weatherData: null,
+      backgorundColor: "#FFFFFF",
+      latitude: '37',
+      longitude: '-122',
+      city: '',
+      temperature: '0 ˚F',
+      temp_min: '0 ˚F',
+      temp_max: '0 ˚F',
+      description: '',
+      humidity: null,
+      icon: weatherIcon(),
+      rain: null,
+      wind: null,
+      wind_speed: null,
+      wind_direction: null
     };
+  },
+  getWeather() {
+    currentWeather(this.state.latitude, this.state.longitude).then((data) => {
+      let weatherList = response
+      this.setState(data);
+    });
   },
   render() {
     return (
     <View style={[styles.container, {backgorundColor: this.state.backgorundColor}]}>
       <View style={styles.currentWrapper}>
         <Text>Current Weather</Text>
+        <Text>
+          {this.state.city}
+        </Text>
+        <View style={styles.horContainer1}>
+          <Text style={styles.icon}>
+            {this.state.icon}
+          </Text>
+          <View style={styles.vertContainer}>
+            <View style={styles.horContainer2}>
+              <Text>Max: {this.state.temp_max}</Text>
+            </View>
+            <View style={styles.horContainer2}>
+              <Text>Min: {this.state.temp_min}</Text>
+            </View>
+            <Text>Humidity: {this.state.humidity}</Text>
+            <Text>Rain: {this.state.rain}</Text>
+            <Text>Wind: {this.state.wind}</Text>
+          </View>
       </View>
       <View style={styles.forecastWrapper}>
         <Text> Hourly Forecast </Text>
@@ -47,6 +88,10 @@ var styles = StyleSheet.create({
   },
   forecastWrapper: {
     flex: 5
+  },
+  icon: {
+    // fontFamily: 'WeatherIcons-Regular',
+    padding: 0
   }
 });
 
