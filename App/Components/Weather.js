@@ -8,9 +8,9 @@ var {
   StyleSheet
 } = React;
 
-import fetchWeather from "./Api/weatherapi"
-import weatherIcon from "././utils/icons"
-import currentWeather from "./Api/weatherapi"
+// import fetchWeather from "./Api/weatherapi"
+// import weatherIcon from "././utils/icons"
+// import currentWeather from "./Api/weatherapi"
 
 
 class Weather extends React.Component {

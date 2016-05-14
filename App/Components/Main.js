@@ -22,13 +22,13 @@ class Main extends React.Component{
       <View style ={styles.mainContainer}>
         <Text style={styles.title}>Cycle the Bay</Text>
         <TouchableHighlight
-          // onPress={this._onCycleButton.bind(this)}
+          onPress={this._onCycleButton.bind(this)}
           style={styles.button}
           underlayColor="gray">
             <Text style={styles.buttonText}>Trails</Text>
         </TouchableHighlight>
         <TouchableHighlight
-          // onPress={this._onWeatherButton.bind(this)}
+          onPress={this._onWeatherButton.bind(this)}
           style={styles.button}
           underlayColor="gray">
             <Text style={styles.buttonText}>Weather</Text>
