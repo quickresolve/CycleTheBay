@@ -8,7 +8,7 @@
 //   return fetch(url).then((response) => response.json())
 // }
 
-
+import weatherIcon from "../Utils/icons"
 
 // Open Weather Map 5 day / 3 hour
 var weatherapi = {
@@ -35,7 +35,7 @@ export default function currentWeather(latitude, longitude) {
         temp_max: kelvinToF(json.main.temp_max),
         description: json.weather[0].description,
         humidity: json.main.humidity,
-        icon: json.weather[0].icon,
+        icon: weatherIcon(json.weather[0].icon),
         rain: json.rain,
         wind: json.wind.speed
       }
