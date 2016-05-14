@@ -2,60 +2,51 @@ var React = require('react-native');
 
 var {
   View,
-  MapView,
   Text,
-  ListView,
   StyleSheet
 } = React;
 
-import fetchWeather from "./App/Api/weatherapi"
-import weatherIcon from "././utils/icons"
-import currentWeather from "./App/Api/weatherapi"
+
+import currentWeather from "../Api/weatherapi"
+import forecast from "../Api/weatherapi"
 
 
-class Weather extends React.Component {
-  getInitialState() {
+var Weather = React.createClass ({
+   getInitialState: function() {
     return {
-      pin: {
-        latitude: 0,
-        longitude: 0
-      }
-      icon: weatherIcon()
+      weatherData: null,
+      backgorundColor: "#FFFFFF"
+      // latitude: '37',
+      // longitude: '-122'
     };
   },
   render() {
-    return <MapView
-    annotations={[this.state.pin]}
-    onRegionChangeComplete={this.onRegionChangeComplete}
-    style={styles.map}></Map>
-  },
-  onRegionChangeComplete(region) {
-    this.setState({
-      pin: {
-        longitude: region.longitude,
-        latitude: region.latitude
-      }
-      city: '',
-      temperature: '',
-      description: ''
-    });
+    return (
+    <View style={[styles.container, {backgorundColor: this.state.backgorundColor}]}>
+      <View style={styles.currentWrapper}>
+        <Text>Current Weather</Text>
+      </View>
+      <View style={styles.forecastWrapper}>
+        <Text> Hourly Forecast </Text>
+      </View>
+    </View>
+  );
+ }
+});
 
-  currentWeather(region.latitude, region.longitude) {
-    .then((data) => {
-      console.log(data);
-      this.setState(data);
-    })
-  }
-  }
-
-
-  // Render weather hourly forecast
-
-};
 
 var styles = StyleSheet.create({
-  map: {
-    flex: 1
+  container: {
+    flex: 1,
+    alignItems: 'stretch'
+  },
+  currentWrapper: {
+    flex: 3,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  forecastWrapper: {
+    flex: 5
   }
 });
 
