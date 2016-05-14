@@ -6,15 +6,23 @@ var {
   StyleSheet
 } = React;
 
-// import fetchWeather from "./Api/weatherapi"
-// import weatherIcon from "././utils/icons"
-// import currentWeather from "./Api/weatherapi"
+
+import currentWeather from "../Api/weatherapi"
+import forecast from "../Api/weatherapi"
 
 
-class Weather extends React.Component {
+var Weather = React.createClass ({
+   getInitialState: function() {
+    return {
+      weatherData: null,
+      backgorundColor: "#FFFFFF"
+      // latitude: '37',
+      // longitude: '-122'
+    };
+  },
   render() {
     return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgorundColor: this.state.backgorundColor}]}>
       <View style={styles.currentWrapper}>
         <Text>Current Weather</Text>
       </View>
@@ -22,11 +30,9 @@ class Weather extends React.Component {
         <Text> Hourly Forecast </Text>
       </View>
     </View>
-  )
+  );
  }
-};
-
-
+});
 
 
 var styles = StyleSheet.create({
