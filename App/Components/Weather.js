@@ -24,17 +24,17 @@ var Weather = React.createClass ({
       backgorundColor: "#FFFFFF",
       latitude: '37',
       longitude: '-122',
-      city: '',
+      city: 'city',
       temperature: '0 ˚F',
       temp_min: '0 ˚F',
       temp_max: '0 ˚F',
-      description: '',
-      humidity: null,
+      description: 'description',
+      humidity: 0,
       icon: weatherIcon(),
-      rain: null,
-      wind: null,
-      wind_speed: null,
-      wind_direction: null
+      rain: 0,
+      wind: 0,
+      wind_speed: 0,
+      wind_direction: 0
     };
   },
   getWeather() {
