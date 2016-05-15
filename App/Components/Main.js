@@ -8,10 +8,6 @@ var {
   StyleSheet
 } = React;
 
-// import Weather from './Weather'
-
-
-// var Weather = require("Weather");
 import Weather from "./Weather"
 import Trail from './Trail'
 
@@ -38,13 +34,15 @@ class Main extends React.Component{
   }
   _onCycleButton(){
     this.props.navigator.push({
-      component: Trail
+      component: Trail,
+      title: "Trail Listing"
     });
   }
-  _onWeatherButton(){
+
+  _onWeatherButton() {
     this.props.navigator.push({
       component: Weather
-    });
+    })
   }
 };
 

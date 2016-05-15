@@ -4,8 +4,13 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
+  MapView,
+  ScrollView,
+  Image,
   View
 } from 'react-native';
+
+import getSpecificTrail from '../Api/railsapi'
 
 const styles = StyleSheet.create({
 	container: {
@@ -14,11 +19,9 @@ const styles = StyleSheet.create({
 	},
 	header: {
 		flex: 1,
-		backgroundColor: 'red'
 	},
 	map: {
 		flex: 2,
-		backgroundColor: 'blue',
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
@@ -26,41 +29,118 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'space-around',
-		alignItems: 'center'
+		alignItems: 'center',
+		backgroundColor: '#658D9F'
 	},
-	titleWrapper : {
-		flex: 2,
+	titleWrapper: {
+		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: 'yellow'
+	},
+	navButton: {
+		flex: 1,
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: '#9f6565'
+	},
+	navText: {
+		fontSize: 20,
+		color: 'white'
+	},
+	description: {
+		flex: 3,
+		backgroundColor: 'white'
+	},
+	image: {
+		width: 420,
+		height: 350
+	},
+	labels: {
+		fontSize: 20,
+		color: 'white'
+	},
+	measurementContainer: {
+		alignItems: 'center'
+	},
+	measurements: {
+		fontSize: 12,
 	}
 });
 
 class Trail extends Component {
+
+	getInitialState: function() {
+		return: {
+      title: '',
+      description: '',
+      image_url: '',
+      start_lat: 0,
+      start_long: 0,
+      end_lat: 0,
+      end_long: 0,
+      distance: 0,
+      elevation_up: 0,
+      elevation_down: 0,
+      terrain: ''
+		}
+	}
+
+	getTrail() {
+		getSpecificTrail(1)
+			.then((data) => {
+				console.log(data)
+				this.setState(data);
+			});
+	}
+
+	onLinkPressed() {
+		console.log('pressed');
+	}
+
 	render() {
 		return(
 			<View style={styles.container}>
+				
+				<View style={styles.titleWrapper}>
+					<Image
+						source={require('../../bayTrail.png')}
+						style={styles.image} />
+				</View>
 				<View style={styles.header}>
 
-					<View style={styles.titleWrapper}>
+					<View style={styles.infoWrapper}>
+						<View style={styles.measurementContainer}>							
+							<Text style={styles.labels}>
+								{this.state.elevation_up} feet
+							</Text>
+							<Text style={styles.measurements}>
+								Elevation
+							</Text>
+						</View>
+
+						<View style={styles.measurementContainer}>
+							<Text style={styles.labels}>
+								{this.state.distance} 
+							</Text>
+							<Text style={styles.measurements}>
+								Distance
+							</Text>
+						</View>
+					</View>
+
+					<TouchableHighlight style={styles.navButton} underlayColor='#99d9f4' onPress={this.onLinkPressed.bind(this)}>
+						<Text style={styles.navText}>
+							Click for Navigation
+						</Text>
+					</TouchableHighlight>
+
+					<View style={styles.description}>
 						<Text>
-							Trail Name
+							{this.state.description}
 						</Text>
 					</View>
 					
-					<View style={styles.infoWrapper}>
-						<Text>
-							Elevation
-						</Text>
-						<Text>
-							Distance
-						</Text>
-					</View>
-				
-				</View>
-
-				<View style={styles.map}>
-					<Text>Map</Text>
 				</View>
 			</View>
 		);

@@ -1,8 +1,6 @@
-var railsApi= {
-  baseUrl: 'http://pacific-meadow-80820.herokuapp.com/api',
-  trails: '/locations',
-  landmarks: '/landmarks'
-}
+var baseUrl = 'http://pacific-meadow-80820.herokuapp.com/api';
+var trails = '/locations';
+var landmarks = '/landmarks';
 
 export default function getTrails() {
   var url = `${baseUrl}&${trails}`
