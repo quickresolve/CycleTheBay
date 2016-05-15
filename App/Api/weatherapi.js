@@ -13,9 +13,9 @@ import weatherIcon from "../Utils/icons"
 // Open Weather Map 5 day / 3 hour
 
   var baseUrl = 'http://api.openweathermap.org/data/2.5/';
-  var hourlyUrl = 'forecast';
+  var hourlyUrl = 'forecast?';
   var currentWeatherUrl = 'weather';
-  var API_KEY = '?APPID=4a55512194ca2751c9dec4fd1fa57028';
+  var API_KEY = 'APPID=4a55512194ca2751c9dec4fd1fa57028';
 
 
 var kelvinToF = (kelvin) => {
@@ -43,18 +43,26 @@ export default function currentWeather(latitude, longitude) {
 }
 
 export default function forecast(latitude, longitude) {
-  var url = `${baseUrl}&${hourlyUrl}&lat=${latitude}&lon=${longitude}&${API_KEY}`
-
-  return fetch(url).then((response) => response.json())
+  var url = `${baseUrl}${hourlyUrl}&lat=${latitude}&lon=${longitude}&${API_KEY}`
+   console.log(url);
+   return fetch(url).then((response) => response.json())
     .then((response) => {
-      return {
-        city: json.name,
-        temperature: kelvinToF(json.list.main.temp),
-        description: json.weather[0].description,
-        icon: json.weather[0].icon,
-        wind_speed: json.list.wind.speed,
-        wind_direction: json.list.wind.deg,
-        rain: json.list.rain
-      }
-    });
+      console.log(response)
+      return (response)
+
+      // return {
+      //   city: json.name,
+      //   temperature: kelvinToF(json.list.main.temp),
+      //   description: json.weather[0].description,
+      //   icon: json.weather[0].icon,
+      //   wind_speed: json.list.wind.speed,
+      //   wind_direction: json.list.wind.deg,
+      //   rain: json.list.rain
+      // }
+    //     .catch ((error)=> {
+    //     console.warn(error);
+    //   });
+    // })
+
+  })
 }
