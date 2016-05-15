@@ -11,12 +11,12 @@
 import weatherIcon from "../Utils/icons"
 
 // Open Weather Map 5 day / 3 hour
-var weatherapi = {
-  baseUrl: 'http://api.openweathermap.org/data/2.5/',
-  hourlyUrl: 'forecast',
-  currentWeatherUrl: 'weather',
-  API_KEY: '?APPID=4a55512194ca2751c9dec4fd1fa57028'
-}
+
+  var baseUrl = 'http://api.openweathermap.org/data/2.5/';
+  var hourlyUrl = 'forecast';
+  var currentWeatherUrl = 'weather';
+  var API_KEY = '?APPID=4a55512194ca2751c9dec4fd1fa57028';
+
 
 var kelvinToF = (kelvin) => {
   return Math.round((kelvin - 273.15) * 1.8 + 32) + " ˚F"
@@ -56,5 +56,5 @@ export default function forecast(latitude, longitude) {
         wind_direction: json.list.wind.deg,
         rain: json.list.rain
       }
-    })
+    });
 }

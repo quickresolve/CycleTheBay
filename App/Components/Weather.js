@@ -3,6 +3,7 @@ var React = require('react-native');
 var {
   View,
   Text,
+  ListView,
   StyleSheet
 } = React;
 
@@ -12,37 +13,73 @@ import forecast from "../Api/weatherapi"
 import weatherIcon from "../Utils/icons"
 //constants used for background colors
 
-var BG_HOT ="#FB9F4D";
-var BG_WARM ="#FBD84D";
-var BG_COLD ="#00ABE6";
-
-
-var Weather = React.createClass ({
-   getInitialState: function() {
-    return {
-      // weatherData: null,
+class Weather extends React.Component ({
+  constructor(props){
+    super(props),
+    this.state = {
+      isLoading: false,
       backgorundColor: "#FFFFFF",
       latitude: '37',
       longitude: '-122',
-      city: '',
-      temperature: '0 ˚F',
-      temp_min: '0 ˚F',
-      temp_max: '0 ˚F',
-      description: '',
-      humidity: null,
-      icon: weatherIcon(),
-      rain: null,
-      wind: null,
-      wind_speed: null,
-      wind_direction: null
+      var dataSource = new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1.dt !== r2.dt
+      })
+      // getWeather(latitude, longitude);
+      // getForecast(latitude, longitude);
     };
   },
+  //  getInitialState: function() {
+  //   return {
+   //
+  //     // city: 'city',
+  //     // temperature: '0 ˚F',
+  //     // temp_min: '0 ˚F',
+  //     // temp_max: '0 ˚F',
+  //     // description: 'description',
+  //     // humidity: 0,
+  //     // icon: weatherIcon(),
+  //     // rain: 0,
+  //     // wind: 0,
+  //     // wind_speed: 0,
+  //     // wind_direction: 0,
+  //   };
+
+  // },
   getWeather() {
     currentWeather(this.state.latitude, this.state.longitude).then((data) => {
-      let weatherList = response
       this.setState(data);
     });
   },
+
+  getForecast() {
+    forecast(this.state.latitude, this.state.longitude).then((data) => {
+      this.setState(data);
+      dataSource: this.state.dataSource.cloneWithRows(data)
+    });
+  },
+  renderRow(rowData, sectionId, rowId) {
+    // var formattedTime = this.formatDateTime(rowData.dt);
+    return (
+      <View>
+        <View style={styles.container}>
+          // <View style={styles.timeContainer}>
+          //   <Text style={styles.darkText}>{formattedTime.time}</Text>
+          // </View>
+          <Text style={styles.icon}>
+            {this.state.icon}
+          </Text>
+          <View style={styles.tempContainer}>
+            <Text style={styles.darkText}>{rowData.temperature}</Text>
+          </View>
+          <Text style={styles.lightText}>Forecast: {rowData.description}</Text>
+          <Text style={styles.lightText}>Rain: {rowData.rain}</Text>
+          <Text style={styles.lightText}>Wind Speed: {rowData.wind_speed}</Text>
+          <Text style={styles.lightText}>Wind Direction: {rowData.wind_direction}</Text>
+      </View>
+      <View style={styles.seperator}/>
+    </View>
+  );
+},
   render() {
     return (
     <View style={[styles.container, {backgorundColor: this.state.backgorundColor}]}>
@@ -74,6 +111,7 @@ var Weather = React.createClass ({
       </View>
       <View style={styles.forecastWrapper}>
         <Text> Hourly Forecast </Text>
+        <ListView style={styles.listContainer} dataSource={this.state.dataSource} renderRow={this.renderRow}/>
       </View>
     </View>
   );
@@ -85,6 +123,28 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'stretch'
+  },
+  listContainer: {
+    backgroundColor: '#F2F2F2'
+  },
+  timeContainer: {
+    alignItems: 'center',
+    marginRight: 20
+  },
+  seperator: {
+    height: 1,
+    backgroundColor: '#DDDDDD'
+  },
+  tempContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end'
+  },
+  darkText: {
+    fontSize: 18
+  },
+  lightText: {
+    color: '#9A9A9A'
   },
   horContainer1: {
     flexDirection: 'row',
@@ -112,7 +172,10 @@ var styles = StyleSheet.create({
   },
   icon: {
     // fontFamily: 'WeatherIcons-Regular',
-    padding: 0
+    padding: 0,
+    width: 75,
+    height: 75,
+    marginRight: 20
   }
 });
 
