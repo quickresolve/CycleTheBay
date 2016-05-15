@@ -15,24 +15,13 @@ import weatherIcon from "../Utils/icons"
 
 var Weather = React.createClass ({
    getInitialState: function() {
-      var dataSource = new ListView.DataSource({
-        rowHasChanged: (r1, r2) => r1.city !== r2.city});
     return {
-      latitude: '37',
-      longitude: '-122',
-      city: 'city',
-      temperature: '0 ˚F',
-      temp_min: '0 ˚F',
-      temp_max: '0 ˚F',
-      description: 'description',
-      humidity: 0,
-      icon: weatherIcon(),
-      rain: 0,
-      wind: 0,
-      wind_speed: 0,
-      wind_direction: 0,
-      dataSource: dataSource.cloneWithRows([this.state.temperature, this.state.wind_speed, this.state.rain])
+      dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
     };
+  },
+  componentDidMount: function(){
+    // this.getWeather();
+    this.getForecast();
   },
   getWeather() {
     currentWeather(this.state.latitude, this.state.longitude).then((data) => {
@@ -41,32 +30,17 @@ var Weather = React.createClass ({
   },
 
   getForecast() {
-    forecast(this.state.latitude, this.state.longitude).then((data) => {
-      this.setState(data);
-
-    });
+    forecast(37, -122).then((data) => {
+      console.log(data);
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(data.list)
+      })
+    })
   },
-  renderRow(rowData, sectionId, rowId) {
-    // var formattedTime = this.formatDateTime(rowData.dt);
+
+renderRow(rowData) {
     return (
-      <View>
-        <View style={styles.container}>
-          // <View style={styles.timeContainer}>
-          //   <Text style={styles.darkText}>{formattedTime.time}</Text>
-          // </View>
-          <Text style={styles.icon}>
-            {this.state.icon}
-          </Text>
-          <View style={styles.tempContainer}>
-            <Text style={styles.darkText}>{rowData.temperature}</Text>
-          </View>
-          <Text style={styles.lightText}>Forecast: {rowData.description}</Text>
-          <Text style={styles.lightText}>Rain: {rowData.rain}</Text>
-          <Text style={styles.lightText}>Wind Speed: {rowData.wind_speed}</Text>
-          <Text style={styles.lightText}>Wind Direction: {rowData.wind_direction}</Text>
-      </View>
-      <View style={styles.seperator}/>
-    </View>
+      <WeatherCell weather={rowData}/>
   );
 },
   render() {
@@ -105,6 +79,31 @@ var Weather = React.createClass ({
     </View>
   );
  }
+});
+
+var WeatherCell = React.createClass({
+  render() {
+    return (
+      <View>
+          <View style={styles.WeatherCell}>
+            // <View style={styles.timeContainer}>
+            //   <Text style={styles.darkText}>{formattedTime.time}</Text>
+            // </View>
+            <Text style={styles.icon}>
+              {this.state.icon}
+            </Text>
+            <View style={styles.tempContainer}>
+              <Text style={styles.darkText}>{rowData.temperature}</Text>
+            </View>
+            <Text style={styles.lightText}>Forecast: {rowData.description}</Text>
+            <Text style={styles.lightText}>Rain: {rowData.rain}</Text>
+            <Text style={styles.lightText}>Wind Speed: {rowData.wind_speed}</Text>
+            <Text style={styles.lightText}>Wind Direction: {rowData.wind_direction}</Text>
+        </View>
+        <View style={styles.seperator}/>
+      </View>
+    );
+  }
 });
 
 
@@ -165,6 +164,16 @@ var styles = StyleSheet.create({
     width: 75,
     height: 75,
     marginRight: 20
+  },
+  WeatherCell: {
+    flex:1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginLeft: 4,
+    marginRight: 4,
+    padding: 4,
+    borderBottomWidth: .5,
+    borderColor: 'lightgray'
   }
 });
 
