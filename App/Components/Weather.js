@@ -67,6 +67,11 @@ var Weather = React.createClass ({
             <Text>Wind: {this.state.wind}</Text>
           </View>
       </View>
+        <View style={styles.horContainer2}>
+          <Text>{this.state.temperature}</Text>
+          <Text>{this.state.description}</Text>
+        </View>
+      </View>
       <View style={styles.forecastWrapper}>
         <Text> Hourly Forecast </Text>
       </View>
@@ -81,10 +86,26 @@ var styles = StyleSheet.create({
     flex: 1,
     alignItems: 'stretch'
   },
+  horContainer1: {
+    flexDirection: 'row',
+    marginBottom: 20
+  },
+  horContainer2: {
+    flexDirection: 'row',
+    alignItems: 'flex-start'
+  },
+  vertContainer: {
+    flex: 1,
+    marginBottom: 10,
+    marginTop: 10,
+    backgroundColor: '#CCCCCC',
+    padding: 15
+  },
   currentWrapper: {
     flex: 3,
-    justifyContent: 'center',
-    alignItems: 'center'
+    padding: 20,
+    marginTop: 65,
+    backgroundColor: '#F2F2F2'
   },
   forecastWrapper: {
     flex: 5
