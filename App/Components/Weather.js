@@ -13,27 +13,38 @@ import forecast from "../Api/weatherapi"
 import weatherIcon from "../Utils/icons"
 //constants used for background colors
 
-var Weather = React.createClass ({
-   getInitialState: function() {
-    var dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.dt != r2.dt});
-    return {
+class Weather extends React.Component ({
+  constructor(props){
+    super(props),
+    this.state = {
+      isLoading: false,
       backgorundColor: "#FFFFFF",
       latitude: '37',
       longitude: '-122',
-      city: 'city',
-      temperature: '0 ˚F',
-      temp_min: '0 ˚F',
-      temp_max: '0 ˚F',
-      description: 'description',
-      humidity: 0,
-      icon: weatherIcon(),
-      rain: 0,
-      wind: 0,
-      wind_speed: 0,
-      wind_direction: 0,
-      dataSource: dataSource.cloneWithRows(this.props.data)
+      var dataSource = new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1.dt !== r2.dt
+      })
+      // getWeather(latitude, longitude);
+      // getForecast(latitude, longitude);
     };
   },
+  //  getInitialState: function() {
+  //   return {
+   //
+  //     // city: 'city',
+  //     // temperature: '0 ˚F',
+  //     // temp_min: '0 ˚F',
+  //     // temp_max: '0 ˚F',
+  //     // description: 'description',
+  //     // humidity: 0,
+  //     // icon: weatherIcon(),
+  //     // rain: 0,
+  //     // wind: 0,
+  //     // wind_speed: 0,
+  //     // wind_direction: 0,
+  //   };
+
+  // },
   getWeather() {
     currentWeather(this.state.latitude, this.state.longitude).then((data) => {
       this.setState(data);
@@ -43,16 +54,17 @@ var Weather = React.createClass ({
   getForecast() {
     forecast(this.state.latitude, this.state.longitude).then((data) => {
       this.setState(data);
+      dataSource: this.state.dataSource.cloneWithRows(data)
     });
   },
-  renderRow(rowData, sectionId, rowID) {
-    var formattedTime = this.formatDateTime(rowData.dt);
+  renderRow(rowData, sectionId, rowId) {
+    // var formattedTime = this.formatDateTime(rowData.dt);
     return (
       <View>
         <View style={styles.container}>
-          <View style={styles.timeContainer}>
-            <Text style={styles.darkText}>{formattedTime.time}</Text>
-          </View>
+          // <View style={styles.timeContainer}>
+          //   <Text style={styles.darkText}>{formattedTime.time}</Text>
+          // </View>
           <Text style={styles.icon}>
             {this.state.icon}
           </Text>

@@ -56,5 +56,5 @@ export default function forecast(latitude, longitude) {
         wind_direction: json.list.wind.deg,
         rain: json.list.rain
       }
-    })
+    });
 }
