@@ -13,38 +13,27 @@ import forecast from "../Api/weatherapi"
 import weatherIcon from "../Utils/icons"
 //constants used for background colors
 
-class Weather extends React.Component ({
-  constructor(props){
-    super(props),
-    this.state = {
-      isLoading: false,
-      backgorundColor: "#FFFFFF",
+var Weather = React.createClass ({
+   getInitialState: function() {
+      var dataSource = new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1.city !== r2.city});
+    return {
       latitude: '37',
       longitude: '-122',
-      var dataSource = new ListView.DataSource({
-        rowHasChanged: (r1, r2) => r1.dt !== r2.dt
-      })
-      // getWeather(latitude, longitude);
-      // getForecast(latitude, longitude);
+      city: 'city',
+      temperature: '0 ˚F',
+      temp_min: '0 ˚F',
+      temp_max: '0 ˚F',
+      description: 'description',
+      humidity: 0,
+      icon: weatherIcon(),
+      rain: 0,
+      wind: 0,
+      wind_speed: 0,
+      wind_direction: 0,
+      dataSource: dataSource.cloneWithRows([this.state.temperature, this.state.wind_speed, this.state.rain])
     };
   },
-  //  getInitialState: function() {
-  //   return {
-   //
-  //     // city: 'city',
-  //     // temperature: '0 ˚F',
-  //     // temp_min: '0 ˚F',
-  //     // temp_max: '0 ˚F',
-  //     // description: 'description',
-  //     // humidity: 0,
-  //     // icon: weatherIcon(),
-  //     // rain: 0,
-  //     // wind: 0,
-  //     // wind_speed: 0,
-  //     // wind_direction: 0,
-  //   };
-
-  // },
   getWeather() {
     currentWeather(this.state.latitude, this.state.longitude).then((data) => {
       this.setState(data);
@@ -54,7 +43,7 @@ class Weather extends React.Component ({
   getForecast() {
     forecast(this.state.latitude, this.state.longitude).then((data) => {
       this.setState(data);
-      dataSource: this.state.dataSource.cloneWithRows(data)
+
     });
   },
   renderRow(rowData, sectionId, rowId) {
