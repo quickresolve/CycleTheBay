@@ -10,7 +10,7 @@ var {
 
 import Weather from "./Weather"
 import Trail from './Trail'
-
+import Tabs from './Tabs'
 
 class Main extends React.Component{
   render() {
@@ -34,7 +34,7 @@ class Main extends React.Component{
   }
   _onCycleButton(){
     this.props.navigator.push({
-      component: Trail,
+      component: Tabs,
       title: "Trail Listing"
     });
   }
