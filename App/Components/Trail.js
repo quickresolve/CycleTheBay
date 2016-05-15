@@ -7,6 +7,7 @@ import {
   MapView,
   ScrollView,
   Image,
+  TabBarIOS,
   View
 } from 'react-native';
 
@@ -68,10 +69,11 @@ const styles = StyleSheet.create({
 	}
 });
 
-class Trail extends Component {
+var Trail = React.createClass ({
 
 	getInitialState: function() {
-		return: {
+		return {
+			id: 0,
       title: '',
       description: '',
       image_url: '',
@@ -83,28 +85,28 @@ class Trail extends Component {
       elevation_up: 0,
       elevation_down: 0,
       terrain: ''
-		}
-	}
+		};
+	},
 
-	getTrail() {
-		getSpecificTrail(1)
+	getTrail: function() {
+		getSpecificTrail(this.state.id)
 			.then((data) => {
 				console.log(data)
 				this.setState(data);
 			});
-	}
+	},
 
 	onLinkPressed() {
 		console.log('pressed');
-	}
+	},
 
 	render() {
 		return(
 			<View style={styles.container}>
-				
+			
 				<View style={styles.titleWrapper}>
 					<Image
-						source={require('../../bayTrail.png')}
+						source={this.state.map_url}
 						style={styles.image} />
 				</View>
 				<View style={styles.header}>
@@ -145,6 +147,6 @@ class Trail extends Component {
 			</View>
 		);
 	}
-}
+});
 
 module.exports = Trail;
