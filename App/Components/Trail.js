@@ -103,7 +103,7 @@ var Trail = React.createClass ({
 	render() {
 		return(
 			<View style={styles.container}>
-			
+
 				<View style={styles.titleWrapper}>
 					<Image
 						source={this.state.map_url}
@@ -112,7 +112,7 @@ var Trail = React.createClass ({
 				<View style={styles.header}>
 
 					<View style={styles.infoWrapper}>
-						<View style={styles.measurementContainer}>							
+						<View style={styles.measurementContainer}>
 							<Text style={styles.labels}>
 								{this.state.elevation_up} feet
 							</Text>
@@ -123,7 +123,7 @@ var Trail = React.createClass ({
 
 						<View style={styles.measurementContainer}>
 							<Text style={styles.labels}>
-								{this.state.distance} 
+								{this.state.distance}
 							</Text>
 							<Text style={styles.measurements}>
 								Distance
@@ -131,7 +131,7 @@ var Trail = React.createClass ({
 						</View>
 					</View>
 
-					<TouchableHighlight style={styles.navButton} underlayColor='#99d9f4' onPress={this.onLinkPressed.bind(this)}>
+					<TouchableHighlight style={styles.navButton} underlayColor='#99d9f4' onPress={this.onLinkPressed}>
 						<Text style={styles.navText}>
 							Click for Navigation
 						</Text>
@@ -142,7 +142,7 @@ var Trail = React.createClass ({
 							{this.state.description}
 						</Text>
 					</View>
-					
+
 				</View>
 			</View>
 		);
