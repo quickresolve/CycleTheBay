@@ -14,20 +14,20 @@ import weatherIcon from "../Utils/icons"
 //constants used for background colors
 
 class Weather extends React.Component ({
-  constructor(props){
-    super(props),
-    this.state = {
-      isLoading: false,
-      backgorundColor: "#FFFFFF",
-      latitude: '37',
-      longitude: '-122',
-      var dataSource = new ListView.DataSource({
-        rowHasChanged: (r1, r2) => r1.dt !== r2.dt
-      })
+  // constructor(props){
+  //   super(props),
+  //   this.state = {
+  //     isLoading: false,
+  //     backgorundColor: "#FFFFFF",
+  //     latitude: '37',
+  //     longitude: '-122',
+  //     var dataSource = new ListView.DataSource({
+  //       rowHasChanged: (r1, r2) => r1.dt !== r2.dt
+  //     })
       // getWeather(latitude, longitude);
       // getForecast(latitude, longitude);
-    };
-  },
+    // };
+  // },
   //  getInitialState: function() {
   //   return {
    //
@@ -111,7 +111,7 @@ class Weather extends React.Component ({
       </View>
       <View style={styles.forecastWrapper}>
         <Text> Hourly Forecast </Text>
-        <ListView style={styles.listContainer} dataSource={this.state.dataSource} renderRow={this.renderRow}/>
+        // <ListView style={styles.listContainer} dataSource={this.state.dataSource} renderRow={this.renderRow}/>
       </View>
     </View>
   );
