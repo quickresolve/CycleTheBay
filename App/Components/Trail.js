@@ -10,6 +10,8 @@ import {
   View
 } from 'react-native';
 
+import getSpecificTrail from '../Api/railsapi'
+
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
@@ -68,6 +70,30 @@ const styles = StyleSheet.create({
 
 class Trail extends Component {
 
+	getInitialState: function() {
+		return: {
+      title: '',
+      description: '',
+      image_url: '',
+      start_lat: 0,
+      start_long: 0,
+      end_lat: 0,
+      end_long: 0,
+      distance: 0,
+      elevation_up: 0,
+      elevation_down: 0,
+      terrain: ''
+		}
+	}
+
+	getTrail() {
+		getSpecificTrail(1)
+			.then((data) => {
+				console.log(data)
+				this.setState(data);
+			});
+	}
+
 	onLinkPressed() {
 		console.log('pressed');
 	}
@@ -86,7 +112,7 @@ class Trail extends Component {
 					<View style={styles.infoWrapper}>
 						<View style={styles.measurementContainer}>							
 							<Text style={styles.labels}>
-								5 feet
+								{this.state.elevation_up} feet
 							</Text>
 							<Text style={styles.measurements}>
 								Elevation
@@ -95,7 +121,7 @@ class Trail extends Component {
 
 						<View style={styles.measurementContainer}>
 							<Text style={styles.labels}>
-								20 miles
+								{this.state.distance} 
 							</Text>
 							<Text style={styles.measurements}>
 								Distance
@@ -111,7 +137,7 @@ class Trail extends Component {
 
 					<View style={styles.description}>
 						<Text>
-							"Lorem ipsum dolor sit amet, detraxit inimicus ut usu, utamur ponderum ex mea, vel soleat consequuntur ad. Usu omnis quodsi ad, vix te error mundi philosophia, cu utamur deserunt aliquando eos. Homero scaevola praesent an has. No timeam nonumes qualisque vim, qui denique senserit scriptorem cu. Eu pro sonet liberavisse, mea debet dolorum ne. In regione liberavisse reprehendunt eam, in aperiri euripidis mei. Iriure appareat mea in, vidit causae hendrerit eam ne. Aperiri malorum ne ius, ipsum prodesset ex eos, sit id ipsum habemus democritum. Ea vix omittam indoctum, ut mel nibh mazim qualisque, at his possit scaevola. Ex vis electram omittantur appellantur, id sit dicta scaevola lobortis. Sea ex habemus docendi."
+							{this.state.description}
 						</Text>
 					</View>
 					
