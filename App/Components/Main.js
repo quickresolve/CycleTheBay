@@ -13,6 +13,7 @@ import Trail from './Trail'
 import Tabs from './Tabs'
 
 class Main extends React.Component{
+
   render() {
     return(
       <View style ={styles.mainContainer}>
@@ -35,7 +36,7 @@ class Main extends React.Component{
   _onCycleButton(){
     this.props.navigator.push({
       component: Tabs,
-      title: "Trail Listing"
+      title: "Trail Listing",
     });
   }
 
@@ -73,7 +74,10 @@ var styles = StyleSheet.create({
     justifyContent: 'center'
   },
   buttonText:{
-    color: '#658D9F'
+    color: '#658D9F',
+    fontSize: 20,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
