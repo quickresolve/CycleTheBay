@@ -27,7 +27,7 @@ class CycleTheBay extends Component {
       < NavigatorIOS
         style={styles.container}
         initialRoute={{
-          title: 'Cycle The Bay',
+          title: 'Home',
           component: Main
         }}/>
     );
