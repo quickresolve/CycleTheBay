@@ -12,6 +12,7 @@ import Weather from "./Weather"
 import Trail from './Trail'
 import TrailList from './TrailList'
 
+
 class Main extends React.Component{
 
   render() {
@@ -30,6 +31,12 @@ class Main extends React.Component{
           underlayColor="gray">
             <Text style={styles.buttonText}>Weather</Text>
         </TouchableHighlight>
+        <TouchableHighlight
+        onPress={this._onLocalButton.bind(this)}
+        style={styles.button}
+        underlayColor="gray">
+          <Text style={styles.buttonText}>Local</Text>
+        </TouchableHighlight>
       </View>
     )
   }
@@ -42,7 +49,15 @@ class Main extends React.Component{
 
   _onWeatherButton() {
     this.props.navigator.push({
-      component: Weather
+      component: Weather,
+      title: "Weather"
+    })
+  }
+
+  _onLocalButton(){
+    this.props.navigator.push({
+      component: Local,
+      title: "Local Attractions"
     })
   }
 };
