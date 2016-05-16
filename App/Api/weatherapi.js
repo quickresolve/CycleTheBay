@@ -64,5 +64,7 @@ export default function forecast(latitude, longitude) {
     //   });
     // })
 
-  })
+  }).catch ((error)=> {
+      console.warn(error);
+  });
 }

@@ -56,7 +56,7 @@ var Weather = React.createClass ({
   },
 
   componentDidMount: function(){
-    // this.getWeather();
+    this.getWeather();
     this.getForecast();
   },
 
@@ -65,8 +65,10 @@ var Weather = React.createClass ({
   },
 
   getWeather() {
-    currentWeather(this.state.latitude, this.state.longitude).then((data) => {
-      this.setState(data);
+    currentWeather(this.state.latitude, this.state.longitude).then((currentdata) => {
+      debugger;
+      console.log('currentdata: ' + currentdata)
+      this.setState(currentdata);
     });
   },
 
