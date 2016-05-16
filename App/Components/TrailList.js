@@ -66,10 +66,16 @@ class TrailList extends React.Component{
     fetch('http://pacific-meadow-80820.herokuapp.com/api/locations/'+trail.id)
       .then((response) => response.json())
       .then(responseData => {
+        console.log(this.props.title)
         this.props.navigator.push({
           title: trail.title,
           component: Trail,
-          passProps: {trail: responseData}
+          passProps: {
+            title: this.props.title,
+            distance: this.props.distance,
+            // elevation_up: this.state.elevation_up,
+            desc: this.props.desc
+          },
         });
       }).done();
   }

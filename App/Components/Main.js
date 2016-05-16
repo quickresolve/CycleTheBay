@@ -10,7 +10,6 @@ var {
 
 import Weather from "./Weather"
 import Trail from './Trail'
-import Tabs from './Tabs'
 import TrailList from './TrailList'
 
 class Main extends React.Component{

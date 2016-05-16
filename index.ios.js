@@ -21,20 +21,21 @@ import weatherIcon from "./App/Utils/icons"
 
 var Main = require('./App/Components/Main');
 
-class CycleTheBay extends Component {
+class CycleTheBay extends React.Component {
   render() {
     return (
-      < NavigatorIOS
+      <Navigator
+      initialRoute={{
+        title: 'Home',
+        component: Main,
         style={styles.container}
-        initialRoute={{
-          title: 'Home',
-          component: Main
+          // passProps: {myProps: 'foo'},
         }}/>
     );
   }
 };
 
-const styles = StyleSheet.create({
+var styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffff'

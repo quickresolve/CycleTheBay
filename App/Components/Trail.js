@@ -12,6 +12,8 @@ import {
   View
 } from 'react-native';
 
+import TrailList from './TrailList'
+
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
@@ -70,29 +72,12 @@ const styles = StyleSheet.create({
 
 var Trail = React.createClass ({
 
-  componentDidMount(){
-    fetch("http://pacific-meadow-80820.herokuapp.com/api/locations/5", {method: "GET"})
-    .then((response) => response.json())
-    .then((responseData) => {
-      this.setState(responseData)
-    })
-    .done();
-  },
-
 	getInitialState: function() {
 		return {
-			id: 0,
-      title: '',
-      desc: '',
-      // image_url: '',
-      start_lat: 0,
-      start_long: 0,
-      end_lat: 0,
-      end_long: 0,
-      distance: 0,
-      elevation_up: 0,
-      elevation_down: 0,
-      terrain: ''
+      title: this.props.title,
+      elevation_up: this.props.elevation_up,
+      desc: this.props.desc,
+      distance: this.props.distance
 		};
 	},
 
@@ -137,7 +122,7 @@ var Trail = React.createClass ({
 
 					<View style={styles.description}>
 						<Text>
-							{this.state.description}
+							{this.state.desc}
 						</Text>
 					</View>
 
