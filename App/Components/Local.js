@@ -6,25 +6,24 @@ import {
   MapView,
   ScrollView,
   TabBarIOS,
+  navigator,
   TouchableOpacity,
   View
 } from 'react-native';
 
+import Weather from "./Weather"
+import Trail from './Trail'
+import TrailList from './TrailList'
+import Main from "./Main"
+
 
 var Local = React.createClass ({
-  // watchID: (null: ?number),
-
   getInitialState: function() {
     return {
-      // initialPosition: 'unknown',
-      // lastPosition: 'unknown',
       pin: {
         latitude: 37,
         longitude: -122
       },
-      // isFirstLoad: true,
-      // mapRegion: undefined,
-      // mapRegionInput: undefined,
       region: {
         latitude: 37,
         longitude: -122,
@@ -33,29 +32,6 @@ var Local = React.createClass ({
       }
     };
   },
-
-  componentDidMount: function() {
-    // navigator.geolocation.getCurrentPosition(
-    //   (position) => {
-    //     var initialPosition = JSON.stringify(position);
-    //     this.setState({initialPosition});
-    //   },
-    //   (error) => alert(error.message),
-    //   {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    // );
-    // this.watchID = navigator.geolocation.watchPosition((position) => {
-    //   var lastPosition = JSON.stringify(position);
-    //   this.setState({lastPosition});
-    // });
-    // this.setState({
-    //   pin: {
-    //     longitude: this.state.region.latitude,
-    //     latitude: this.state.region.longitude
-    //   }
-    // });
-  },
-
-
 
   render() {
     return(
@@ -67,41 +43,76 @@ var Local = React.createClass ({
           mapType={'hybrid'}
           followUserLocation={true}>
         </MapView>
+        <View style={styles.footerNav}>
+          <TouchableHighlight
+            onPress={this._onHomeButton}
+            style={styles.button}
+            underlayColor="gray">
+              <Text style={styles.buttonText}>Home</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={this._onMapsButton}
+            style={styles.button}
+            underlayColor="gray">
+              <Text style={styles.buttonText}>Maps</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+          onPress={this._onTrailsButton}
+          style={styles.button}
+          underlayColor="gray">
+            <Text style={styles.buttonText}>Trails</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={this._onWeatherButton}
+            style={styles.button}
+            underlayColor="gray">
+              <Text style={styles.buttonText}>Weather</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+          onPress={this._onLocalButton}
+          style={styles.button}
+          underlayColor="gray">
+            <Text style={styles.buttonText}>Local</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     )
+  },
+
+  _onHomeButton(){
+    this.props.navigator.push({
+      component: Main,
+      name: "Main"
+    })
+  },
+
+  _onTrailsButton(){
+    this.props.navigator.push({
+      component: TrailList,
+      name: "Trails",
+    });
+  },
+
+  _onMapsButton(){
+    this.props.navigator.push({
+      component: Maps,
+      name: "Map"
+    })
+  },
+
+  _onWeatherButton() {
+    this.props.navigator.push({
+      component: 'Weather',
+      name: "Weather"
+    })
+  },
+
+  _onLocalButton(){
+    this.props.navigator.push({
+      component: 'Local',
+      name: "Local"
+    })
   }
-
-  // _getAnnotations(region) {
-  //   return [{
-  //     longitude: region.longitude,
-  //     latitude: region.latitude
-  //   }]
-  // },
-  //
-  // _onRegionChange(region) {
-  //   this.setState({
-  //     mapRegionInput: region
-  //   });
-  // },
-  //
-  // _onRegionChangeComplete(region) {
-  //   if (this.state.isFirstLoad) {
-  //     this.setState({
-  //       mapRegionInput: region,
-  //       annotations: this._getAnnotations(region),
-  //       isFirstLoad: false,
-  //     });
-  //   }
-  // },
-  //
-  // _onRegionInputChanged(region) {
-  //   this.setState({
-  //     mapRegion: region,
-  //     mapRegionInput: region,
-  //     annotations: this._getAnnotations(region)
-  //   });
-  // }
-
 });
 
 
@@ -117,6 +128,34 @@ var styles = StyleSheet.create({
   map: {
     flex:2,
     marginTop: 30
+  },
+  title: {
+    marginBottom: 10,
+    fontSize: 25,
+    textAlign: 'center',
+    color: 'white'
+  },
+  button: {
+    backgroundColor: 'white',
+    borderColor: 'white',
+    borderWidth: 3,
+    borderRadius: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+  buttonText:{
+    color: '#658D9F',
+    fontSize: 15,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  footerNav: {
+    flex: 0,
+    flexDirection: 'row',
+    borderTopWidth: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'space-between',
+    paddingTop: 10
   }
 });
 
