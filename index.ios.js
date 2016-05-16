@@ -20,6 +20,8 @@ import fetchWeather from "./App/Api/weatherapi"
 import TrailList from "./App/Components/TrailList"
 import weatherIcon from "./App/Utils/icons"
 import Trail from './App/Components/Trail'
+import Weather from './App/Components/Weather'
+import Local from './App/Components/Local'
 
 var Main = require('./App/Components/Main');
 
@@ -34,6 +36,12 @@ class CycleTheBay extends React.Component {
     }
     if (route.name == 'Trail') {
       return <Trail navigator={navigator} {...route.passProps} />
+    }
+    if (route.name == 'Weather') {
+      return <Weather navigator={navigator} />
+    }
+    if (route.name == 'Local') {
+      return <Local navigator={navigator} />
     }
   }
 

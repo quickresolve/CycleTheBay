@@ -1,6 +1,7 @@
 package com.cyclethebay;
 
 import com.facebook.react.ReactActivity;
+import com.smixx.reactnativeicons.ReactNativeIcons;
 import com.AirMaps.AirPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactPackage;
@@ -37,6 +38,7 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new ReactNativeIcons(),
             new AirPackage(),
             new VectorIconsPackage()
         );
