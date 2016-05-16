@@ -9,6 +9,7 @@ import {
   Image,
   TabBarIOS,
   AlertIOS,
+  navigator,
   View
 } from 'react-native';
 
@@ -154,31 +155,31 @@ var Trail = React.createClass ({
 				</View>
         <View style={styles.footerNav}>
           <TouchableHighlight
-            onPress={this._onHomeButton}
+            onPress={this._onHomeButton.bind(this)}
             style={styles.button}
             underlayColor="gray">
               <Text style={styles.buttonText}>Home</Text>
           </TouchableHighlight>
           <TouchableHighlight
-            onPress={this._onMapsButton}
+            onPress={this._onMapsButton.bind(this)}
             style={styles.button}
             underlayColor="gray">
               <Text style={styles.buttonText}>Maps</Text>
           </TouchableHighlight>
           <TouchableHighlight
-          onPress={this._onTrailsButton}
+          onPress={this._onTrailsButton.bind(this)}
           style={styles.button}
           underlayColor="gray">
             <Text style={styles.buttonText}>Trails</Text>
           </TouchableHighlight>
           <TouchableHighlight
-            onPress={this._onWeatherButton}
+            onPress={this._onWeatherButton.bind(this)}
             style={styles.button}
             underlayColor="gray">
               <Text style={styles.buttonText}>Weather</Text>
           </TouchableHighlight>
           <TouchableHighlight
-          onPress={this._onLocalButton}
+          onPress={this._onLocalButton.bind(this)}
           style={styles.button}
           underlayColor="gray">
             <Text style={styles.buttonText}>Local</Text>
