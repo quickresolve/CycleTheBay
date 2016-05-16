@@ -9,7 +9,7 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  NavigatorIOS,
+  Navigator,
   TextInput,
   TouchableHighlight,
   ActivityIndicatorIOS,
@@ -17,24 +17,38 @@ import {
 } from 'react-native';
 
 import fetchWeather from "./App/Api/weatherapi"
+import TrailList from "./App/Components/TrailList"
 import weatherIcon from "./App/Utils/icons"
+import Trail from './App/Components/Trail'
 
 var Main = require('./App/Components/Main');
 
-class CycleTheBay extends Component {
+class CycleTheBay extends React.Component {
+
+  renderScene(route,navigator) {
+    if (route.name == 'Main') {
+      return <Main navigator={navigator} />
+    }
+    if (route.name == 'Trails') {
+      return <TrailList navigator={navigator} />
+    }
+    if (route.name == 'Trail') {
+      return <Trail navigator={navigator} {...route.passProps} />
+    }
+  }
+
   render() {
     return (
-      < NavigatorIOS
-        style={styles.container}
-        initialRoute={{
-          title: 'Home',
-          component: Main
-        }}/>
+      <Navigator
+        style={{ flex: 1 }}
+        initialRoute={{ name: 'Main' }}
+        renderScene={ this.renderScene }
+      />
     );
   }
 };
 
-const styles = StyleSheet.create({
+var styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffff'

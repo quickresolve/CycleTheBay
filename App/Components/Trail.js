@@ -12,6 +12,8 @@ import {
   View
 } from 'react-native';
 
+import TrailList from './TrailList'
+
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
@@ -70,31 +72,14 @@ const styles = StyleSheet.create({
 
 var Trail = React.createClass ({
 
-  componentDidMount(){
-    fetch("http://pacific-meadow-80820.herokuapp.com/api/locations/5", {method: "GET"})
-    .then((response) => response.json())
-    .then((responseData) => {
-      this.setState(responseData)
-    })
-    .done();
-  },
-
-	getInitialState: function() {
-		return {
-			id: 0,
-      title: '',
-      desc: '',
-      // image_url: '',
-      start_lat: 0,
-      start_long: 0,
-      end_lat: 0,
-      end_long: 0,
-      distance: 0,
-      elevation_up: 0,
-      elevation_down: 0,
-      terrain: ''
-		};
-	},
+	// getInitialState: function() {
+	// 	return {
+  //     title: this.props.title,
+  //     elevation_up: this.props.elevation_up,
+  //     desc: this.props.desc,
+  //     distance: this.props.distance
+	// 	};
+	// },
 
 	onLinkPressed() {
 		console.log('pressed');
@@ -112,7 +97,7 @@ var Trail = React.createClass ({
 					<View style={styles.infoWrapper}>
 						<View style={styles.measurementContainer}>
 							<Text style={styles.labels}>
-								{this.state.elevation_up} feet
+								{this.props.elevation_up} feet
 							</Text>
 							<Text style={styles.measurements}>
 								Elevation
@@ -121,7 +106,7 @@ var Trail = React.createClass ({
 
 						<View style={styles.measurementContainer}>
 							<Text style={styles.labels}>
-								{this.state.distance} miles
+								{this.props.distance} miles
 							</Text>
 							<Text style={styles.measurements}>
 								Distance
@@ -129,7 +114,7 @@ var Trail = React.createClass ({
 						</View>
 					</View>
 
-					<TouchableHighlight style={styles.navButton} underlayColor='#99d9f4' onPress={this.onLinkPressed}>
+					<TouchableHighlight style={styles.navButton} underlayColor="transparent" onPress={this.onLinkPressed}>
 						<Text style={styles.navText}>
 							Click for Navigation
 						</Text>
@@ -137,7 +122,7 @@ var Trail = React.createClass ({
 
 					<View style={styles.description}>
 						<Text>
-							{this.state.description}
+							{this.props.desc}
 						</Text>
 					</View>
 
