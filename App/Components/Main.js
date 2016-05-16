@@ -4,7 +4,7 @@ var {
   View,
   Text,
   TouchableHighlight,
-  navigator,
+  Navigator,
   StyleSheet
 } = React;
 

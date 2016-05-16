@@ -22,13 +22,7 @@ var styles = StyleSheet.create({
     flex: 1,
     alignItems: 'stretch'
   },
-  navBar: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#658D9F',
-    justifyContent: 'space-around',
-  },
+
   navButton: {
     flex: 1,
   },
@@ -42,7 +36,11 @@ var styles = StyleSheet.create({
     flex: 10,
     marginTop: 20
   },
-
+  row: {
+    flex: 1,
+    alignItems: 'stretch',
+    padding: 20
+  }
 });
 
 class TrailList extends React.Component{
@@ -85,7 +83,7 @@ class TrailList extends React.Component{
             title: responseData.title,
             distance: responseData.distance,
             elevation_up: responseData.elevation_up,
-            desc: responseData.title
+            desc: responseData.desc
           },
         });
       }).done();
@@ -102,16 +100,6 @@ class TrailList extends React.Component{
 
     return(
       <View style={styles.container}>
-        <View style={styles.navBar}>
-          <TouchableHighlight
-            style={styles.navButton}
-            underlayColor="transparent"
-            onPress={() => this.props.navigator.pop()}>
-            <Text>
-              Return Home
-            </Text>
-          </TouchableHighlight>
-        </View>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderTrail.bind(this)}
@@ -134,7 +122,7 @@ class TrailList extends React.Component{
   renderTrail(trail) {
     return (
       <TouchableHighlight
-        style={styles.container}
+        style={styles.row}
         onPress={(this._handleTrailSelection.bind(this, trail))}
         underlayColor="transparent">
         <Text style={styles.title}>

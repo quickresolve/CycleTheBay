@@ -71,16 +71,7 @@ const styles = StyleSheet.create({
 });
 
 var Trail = React.createClass ({
-
-	// getInitialState: function() {
-	// 	return {
-  //     title: this.props.title,
-  //     elevation_up: this.props.elevation_up,
-  //     desc: this.props.desc,
-  //     distance: this.props.distance
-	// 	};
-	// },
-
+  
 	onLinkPressed() {
 		console.log('pressed');
 	},
