@@ -43,7 +43,7 @@ class Main extends React.Component{
   _onCycleButton(){
     this.props.navigator.push({
       component: TrailList,
-      title: "Trails",
+      name: "Trails",
     });
   }
 
@@ -66,7 +66,6 @@ var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 30,
-    marginTop: 65,
     flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: '#658D9F'

@@ -72,14 +72,14 @@ const styles = StyleSheet.create({
 
 var Trail = React.createClass ({
 
-	getInitialState: function() {
-		return {
-      title: this.props.title,
-      elevation_up: this.props.elevation_up,
-      desc: this.props.desc,
-      distance: this.props.distance
-		};
-	},
+	// getInitialState: function() {
+	// 	return {
+  //     title: this.props.title,
+  //     elevation_up: this.props.elevation_up,
+  //     desc: this.props.desc,
+  //     distance: this.props.distance
+	// 	};
+	// },
 
 	onLinkPressed() {
 		console.log('pressed');
@@ -97,7 +97,7 @@ var Trail = React.createClass ({
 					<View style={styles.infoWrapper}>
 						<View style={styles.measurementContainer}>
 							<Text style={styles.labels}>
-								{this.state.elevation_up} feet
+								{this.props.elevation_up} feet
 							</Text>
 							<Text style={styles.measurements}>
 								Elevation
@@ -106,7 +106,7 @@ var Trail = React.createClass ({
 
 						<View style={styles.measurementContainer}>
 							<Text style={styles.labels}>
-								{this.state.distance} miles
+								{this.props.distance} miles
 							</Text>
 							<Text style={styles.measurements}>
 								Distance
@@ -114,7 +114,7 @@ var Trail = React.createClass ({
 						</View>
 					</View>
 
-					<TouchableHighlight style={styles.navButton} underlayColor='#99d9f4' onPress={this.onLinkPressed}>
+					<TouchableHighlight style={styles.navButton} underlayColor="transparent" onPress={this.onLinkPressed}>
 						<Text style={styles.navText}>
 							Click for Navigation
 						</Text>
@@ -122,7 +122,7 @@ var Trail = React.createClass ({
 
 					<View style={styles.description}>
 						<Text>
-							{this.state.desc}
+							{this.props.desc}
 						</Text>
 					</View>
 

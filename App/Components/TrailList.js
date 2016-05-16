@@ -10,27 +10,39 @@ import {
   TabBarIOS,
   AlertIOS,
   ListView,
-  View
+  View,
+  AppActions
 } from 'react-native';
 
 import Trail from './Trail'
+import Main from './Main'
 
 var styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'stretch'
+  },
+  navBar: {
+    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#658D9F',
+    justifyContent: 'space-around',
+  },
+  navButton: {
+    flex: 1,
   },
   title: {
     flex: 1,
     fontSize: 20,
     textAlign: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   listView: {
-    paddingTop: 20
-  }
+    flex: 10,
+    marginTop: 20
+  },
+
 });
 
 class TrailList extends React.Component{
@@ -66,18 +78,21 @@ class TrailList extends React.Component{
     fetch('http://pacific-meadow-80820.herokuapp.com/api/locations/'+trail.id)
       .then((response) => response.json())
       .then(responseData => {
-        console.log(this.props.title)
         this.props.navigator.push({
           title: trail.title,
-          component: Trail,
+          name: 'Trail',
           passProps: {
-            title: this.props.title,
-            distance: this.props.distance,
-            // elevation_up: this.state.elevation_up,
-            desc: this.props.desc
+            title: responseData.title,
+            distance: responseData.distance,
+            elevation_up: responseData.elevation_up,
+            desc: responseData.title
           },
         });
       }).done();
+  }
+
+  _pop() {
+    this.props.navigator.pop()
   }
 
   render() {
@@ -86,11 +101,23 @@ class TrailList extends React.Component{
     }
 
     return(
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderTrail.bind(this)}
-        style={styles.listView}
-      />
+      <View style={styles.container}>
+        <View style={styles.navBar}>
+          <TouchableHighlight
+            style={styles.navButton}
+            underlayColor="transparent"
+            onPress={() => this.props.navigator.pop()}>
+            <Text>
+              Return Home
+            </Text>
+          </TouchableHighlight>
+        </View>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this.renderTrail.bind(this)}
+          style={styles.listView}
+        />
+      </View>
     );
   }
 
@@ -108,7 +135,7 @@ class TrailList extends React.Component{
     return (
       <TouchableHighlight
         style={styles.container}
-        onPress={this._handleTrailSelection.bind(this, trail)}
+        onPress={(this._handleTrailSelection.bind(this, trail))}
         underlayColor="transparent">
         <Text style={styles.title}>
           {trail.title}
