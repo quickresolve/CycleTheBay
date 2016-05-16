@@ -82,9 +82,9 @@ var Weather = React.createClass ({
     // })
   },
 
-renderRow(rowData) {
+renderRow(weather) {
     return (
-      <WeatherCell weather={rowData}/>
+      <WeatherCell weather={weather}/>
   );
 },
   render() {
@@ -158,17 +158,37 @@ var WeatherCell = React.createClass({
     return (
       <View>
           <View style={styles.WeatherCell}>
-          
+
             <Text style={styles.icon}>
-              {this.state.icon}
+              // {this.state.icon}
+              {this.props.weather.icon}
             </Text>
             <View style={styles.tempContainer}>
-              <Text style={styles.darkText}>{rowData.temperature}</Text>
+              <Text style={styles.darkText}>
+              // {rowData.temperature}
+              {this.props.weather.temperature}
+              </Text>
             </View>
-            <Text style={styles.lightText}>Forecast: {rowData.description}</Text>
-            <Text style={styles.lightText}>Rain: {rowData.rain}</Text>
-            <Text style={styles.lightText}>Wind Speed: {rowData.wind_speed}</Text>
-            <Text style={styles.lightText}>Wind Direction: {rowData.wind_direction}</Text>
+            <Text style={styles.lightText}>
+            Forecast:
+              // {rowData.description}
+              {this.props.weather.description}
+            </Text>
+            <Text style={styles.lightText}>
+            Rain:
+              // {rowData.rain}
+              {this.props.weather.rain}
+            </Text>
+            <Text style={styles.lightText}>
+            Wind Speed:
+            // {rowData.wind_speed}
+            {this.props.weather.wind_speed}
+            </Text>
+            <Text style={styles.lightText}>
+            Wind Direction:
+            // {rowData.wind_direction}
+            {this.props.weather.wind_direction}
+            </Text>
         </View>
         <View style={styles.separator}/>
       </View>
