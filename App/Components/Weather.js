@@ -13,17 +13,55 @@ import forecast from "../Api/weatherapi"
 import weatherIcon from "../Utils/icons"
 //constants used for background colors
 
+var mockedCurrent = {
+  city: 'San Francisco',
+  temperature: '70˚F',
+  temp_min: '70˚F',
+  temp_max: '70˚F',
+  description: 'Sun with light overcast',
+  humidity: '40%',
+  icon: weatherIcon('01d'),
+  rain: '0%',
+  wind: '10mph'
+};
+
+var mockedForecast = [{
+  city: 'Oakland',
+  temperature: '70˚F',
+  description: 'Sun with light overcast',
+  icon: weatherIcon('01d'),
+  wind_speed: '10mph',
+  wind_direction: 'NW',
+  rain: '0%'
+  },
+  {
+    city: 'Oakland',
+    temperature: '70˚F',
+    description: 'Sun with light overcast',
+    icon: weatherIcon('01d'),
+    wind_speed: '10mph',
+    wind_direction: 'NW',
+    rain: '0%'
+  }
+];
 
 var Weather = React.createClass ({
    getInitialState: function() {
+    debugger;
     return {
       dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
     };
   },
+
   componentDidMount: function(){
     // this.getWeather();
     this.getForecast();
   },
+
+  componentWillUnmount: function(){
+
+  },
+
   getWeather() {
     currentWeather(this.state.latitude, this.state.longitude).then((data) => {
       this.setState(data);
@@ -50,32 +88,57 @@ renderRow(rowData) {
       <View style={styles.currentWrapper}>
         <Text>Current Weather</Text>
         <Text>
-          {this.state.city}
+          // {this.state.city}
+          {mockedCurrent.city}
         </Text>
         <View style={styles.horContainer1}>
           <Text style={styles.icon}>
-            {this.state.icon}
+            // {this.state.icon}
+            {mockedCurrent.icon}
           </Text>
           <View style={styles.vertContainer}>
             <View style={styles.horContainer2}>
-              <Text>Max: {this.state.temp_max}</Text>
+              <Text>
+                Max:
+                // {this.state.temp_max}
+                {mockedCurrent.temp_max}
+              </Text>
             </View>
             <View style={styles.horContainer2}>
-              <Text>Min: {this.state.temp_min}</Text>
+              <Text>
+                Min:
+                // {this.state.temp_min}
+                {mockedCurrent.temp_min}
+              </Text>
             </View>
-            <Text>Humidity: {this.state.humidity}</Text>
-            <Text>Rain: {this.state.rain}</Text>
-            <Text>Wind: {this.state.wind}</Text>
+            <Text>Humidity:
+            // {this.state.humidity}
+            {mockedCurrent.humidity}
+            </Text>
+            <Text>Rain:
+            // {this.state.rain}
+            {mockedCurrent.rain}
+            </Text>
+            <Text>Wind:
+            // {this.state.wind}
+            {mockedCurrent.wind}
+            </Text>
           </View>
       </View>
         <View style={styles.horContainer2}>
-          <Text>{this.state.temperature}</Text>
-          <Text>{this.state.description}</Text>
+          <Text>
+          // {this.state.temperature}
+          {mockedCurrent.temperature}
+          </Text>
+          <Text>
+          // {this.state.description}
+          {mockedCurrent.description}
+          </Text>
         </View>
       </View>
       <View style={styles.forecastWrapper}>
         <Text> Hourly Forecast </Text>
-        // <ListView style={styles.listContainer} dataSource={this.state.dataSource} renderRow={this.renderRow}/>
+        <ListView style={styles.listContainer} dataSource={this.state.dataSource} renderRow={this.renderRow}/>
       </View>
     </View>
   );
