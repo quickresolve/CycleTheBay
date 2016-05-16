@@ -4,7 +4,10 @@ var {
   View,
   Text,
   TouchableHighlight,
+  Image,
+  TouchableOpacity,
   navigator,
+  Icon,
   StyleSheet
 } = React;
 
@@ -15,33 +18,60 @@ import Local from './Local'
 import TrailList from './TrailList'
 
 
-class Main extends React.Component{
+var Main = React.createClass({
+  return (
+    <View style={styles.mainContainer}>
+      <SplashPageView />
+      <FooterNavView />
+    </View>
+  );
+});
 
+class SplashPageView extends React.Component {
   render() {
     return(
-      <View style ={styles.mainContainer}>
-        <Text style={styles.title}>Cycle the Bay</Text>
-        <TouchableHighlight
-          onPress={this._onCycleButton.bind(this)}
-          style={styles.button}
-          underlayColor="gray">
-            <Text style={styles.buttonText}>Trails</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          onPress={this._onWeatherButton.bind(this)}
-          style={styles.button}
-          underlayColor="gray">
-            <Text style={styles.buttonText}>Weather</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-        onPress={this._onLocalButton.bind(this)}
+      <Text style={styles.title}>Cycle the Bay</Text>
+    );
+  }
+};
+
+class FooterNavView extends React.Component {
+  render() {
+    return(
+      <View style={styles.footerNav}>
+      <TouchableHighlight
+        onPress={this._onCycleButton.bind(this)}
         style={styles.button}
         underlayColor="gray">
-          <Text style={styles.buttonText}>Local</Text>
-        </TouchableHighlight>
+        <Icon
+          name='ion|beer'
+          size={150}
+          color='#887700'
+          style={styles.beer}
+        />
+          // <Text style={styles.buttonText}>Trails</Text>
+      </TouchableHighlight>
+      <TouchableHighlight
+      onPress={this._onCycleButton.bind(this)}
+      style={styles.button}
+      underlayColor="gray">
+      </TouchableHighlight>
+      <TouchableHighlight
+        onPress={this._onWeatherButton.bind(this)}
+        style={styles.button}
+        underlayColor="gray">
+          // <Text style={styles.buttonText}>Weather</Text>
+      </TouchableHighlight>
+      <TouchableHighlight
+      onPress={this._onLocalButton.bind(this)}
+      style={styles.button}
+      underlayColor="gray">
+        // <Text style={styles.buttonText}>Local</Text>
+      </TouchableHighlight>
       </View>
-    )
+    );
   }
+
   _onCycleButton(){
     this.props.navigator.push({
       component: TrailList,
@@ -62,6 +92,7 @@ class Main extends React.Component{
       title: "Local Attractions"
     })
   }
+
 };
 
 var styles = StyleSheet.create({
@@ -73,6 +104,9 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#658D9F'
   },
+  splashPage: {
+    flex: 9
+  },
   title: {
     marginBottom: 10,
     fontSize: 25,
@@ -80,13 +114,10 @@ var styles = StyleSheet.create({
     color: 'white'
   },
   button: {
-    height: 45,
-    flexDirection: 'row',
     backgroundColor: 'white',
     borderColor: 'white',
     borderWidth: 1,
     borderRadius: 8,
-    marginBottom: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
@@ -95,6 +126,10 @@ var styles = StyleSheet.create({
     fontSize: 20,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  footerNav: {
+    flex: 0,
+    borderTopWidth: 1
   }
 });
 
