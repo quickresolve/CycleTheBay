@@ -71,10 +71,9 @@ const styles = StyleSheet.create({
 var Trail = React.createClass ({
 
   componentDidMount(){
-    fetch("http://pacific-meadow-80820.herokuapp.com/api/locations/1", {method: "GET"})
+    fetch("http://pacific-meadow-80820.herokuapp.com/api/locations/5", {method: "GET"})
     .then((response) => response.json())
     .then((responseData) => {
-      AlertIOS.alert(responseData.desc)
       this.setState(responseData)
     })
     .done();
