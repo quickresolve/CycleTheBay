@@ -16,6 +16,9 @@ import {
 
 import Trail from './Trail'
 import Main from './Main'
+import Weather from "./Weather"
+import Local from "./Local"
+
 
 var styles = StyleSheet.create({
   container: {
@@ -40,7 +43,30 @@ var styles = StyleSheet.create({
     flex: 1,
     alignItems: 'stretch',
     padding: 20
+  },
+  button: {
+    backgroundColor: 'white',
+    borderColor: 'white',
+    borderWidth: 3,
+    borderRadius: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+  buttonText:{
+    color: '#658D9F',
+    fontSize: 15,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  footerNav: {
+    flex: 0,
+    flexDirection: 'row',
+    borderTopWidth: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'space-between',
+    paddingTop: 10
   }
+
 });
 
 class TrailList extends React.Component{
@@ -105,6 +131,38 @@ class TrailList extends React.Component{
           renderRow={this.renderTrail.bind(this)}
           style={styles.listView}
         />
+        <View style={styles.footerNav}>
+          <TouchableHighlight
+            onPress={this._onHomeButton}
+            style={styles.button}
+            underlayColor="gray">
+              <Text style={styles.buttonText}>Home</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={this._onMapsButton}
+            style={styles.button}
+            underlayColor="gray">
+              <Text style={styles.buttonText}>Maps</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+          onPress={this._onTrailsButton}
+          style={styles.button}
+          underlayColor="gray">
+            <Text style={styles.buttonText}>Trails</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={this._onWeatherButton}
+            style={styles.button}
+            underlayColor="gray">
+              <Text style={styles.buttonText}>Weather</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+          onPress={this._onLocalButton}
+          style={styles.button}
+          underlayColor="gray">
+            <Text style={styles.buttonText}>Local</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }
@@ -130,6 +188,41 @@ class TrailList extends React.Component{
         </Text>
       </TouchableHighlight>
     );
+  }
+
+  _onHomeButton(){
+    this.props.navigator.push({
+      component: Main,
+      name: "Main"
+    })
+  }
+
+  _onTrailsButton(){
+    this.props.navigator.push({
+      component: TrailList,
+      name: "Trails",
+    });
+  }
+
+  _onMapsButton(){
+    this.props.navigator.push({
+      component: Maps,
+      name: "Map"
+    })
+  }
+
+  _onWeatherButton() {
+    this.props.navigator.push({
+      component: 'Weather',
+      name: "Weather"
+    })
+  }
+
+  _onLocalButton(){
+    this.props.navigator.push({
+      component: 'Local',
+      name: "Local"
+    })
   }
 }
 

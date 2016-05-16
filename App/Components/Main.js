@@ -5,62 +5,98 @@ var {
   Text,
   TouchableHighlight,
   Navigator,
+  Image,
+  TouchableOpacity,
+  navigator,
+  Icon,
   StyleSheet
 } = React;
 
 import Weather from "./Weather"
 import Trail from './Trail'
 import TrailList from './TrailList'
+import Local from './Local'
 
 
-class Main extends React.Component{
-
+class Main extends React.Component {
   render() {
     return(
-      <View style ={styles.mainContainer}>
-        <Text style={styles.title}>Cycle the Bay</Text>
+      <View style={styles.mainContainer}>
+        <View style={styles.splashPage}>
+          <Text style={styles.title}>Cycle the Bay</Text>
+        </View>
+        <View style={styles.footerNav}>
         <TouchableHighlight
-          onPress={this._onCycleButton.bind(this)}
+          onPress={this._onHomeButton.bind(this)}
+          style={styles.button}
+          underlayColor="gray">
+            <Text style={styles.buttonText}>Home</Text>
+        </TouchableHighlight>
+          <TouchableHighlight
+            onPress={this._onMapsButton.bind(this)}
+            style={styles.button}
+            underlayColor="gray">
+              <Text style={styles.buttonText}>Maps</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+          onPress={this._onTrailsButton.bind(this)}
           style={styles.button}
           underlayColor="gray">
             <Text style={styles.buttonText}>Trails</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          onPress={this._onWeatherButton.bind(this)}
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={this._onWeatherButton.bind(this)}
+            style={styles.button}
+            underlayColor="gray">
+              <Text style={styles.buttonText}>Weather</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+          onPress={this._onLocalButton.bind(this)}
           style={styles.button}
           underlayColor="gray">
-            <Text style={styles.buttonText}>Weather</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-        onPress={this._onLocalButton.bind(this)}
-        style={styles.button}
-        underlayColor="gray">
-          <Text style={styles.buttonText}>Local</Text>
-        </TouchableHighlight>
+            <Text style={styles.buttonText}>Local</Text>
+          </TouchableHighlight>
+        </View>
       </View>
-    )
+    );
   }
-  _onCycleButton(){
+
+  _onHomeButton(){
+    this.props.navigator.push({
+      component: Main,
+      name: "Main"
+    })
+  }
+
+  _onTrailsButton(){
     this.props.navigator.push({
       component: TrailList,
       name: "Trails",
     });
   }
 
+  _onMapsButton(){
+    this.props.navigator.push({
+      component: Maps,
+      name: "Map"
+    })
+  }
+
   _onWeatherButton() {
     this.props.navigator.push({
-      component: Weather,
-      title: "Weather"
+      component: 'Weather',
+      name: "Weather"
     })
   }
 
   _onLocalButton(){
     this.props.navigator.push({
-      component: Local,
-      title: "Local Attractions"
+      component: 'Local',
+      name: "Local"
     })
   }
 };
+
 
 var styles = StyleSheet.create({
   mainContainer: {
@@ -70,6 +106,9 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#658D9F'
   },
+  splashPage: {
+    flex: 9
+  },
   title: {
     marginBottom: 10,
     fontSize: 25,
@@ -77,21 +116,26 @@ var styles = StyleSheet.create({
     color: 'white'
   },
   button: {
-    height: 45,
-    flexDirection: 'row',
     backgroundColor: 'white',
     borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
+    borderWidth: 3,
+    borderRadius: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
   buttonText:{
     color: '#658D9F',
-    fontSize: 20,
+    fontSize: 15,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  footerNav: {
+    flex: 0,
+    flexDirection: 'row',
+    borderTopWidth: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'space-between',
+    paddingTop: 10
   }
 });
 
