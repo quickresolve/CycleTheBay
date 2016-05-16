@@ -16,8 +16,8 @@ import {
 
 import Trail from './Trail'
 import Main from './Main'
-import Weather from "./Weather"
-import Local from "./Local"
+import Weather from './Weather'
+import Local from './Local'
 
 
 var styles = StyleSheet.create({
@@ -31,8 +31,8 @@ var styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    fontSize: 20,
-    textAlign: 'center',
+    fontSize: 16,
+    color: 'white',
     justifyContent: 'center',
   },
   listView: {
@@ -42,7 +42,8 @@ var styles = StyleSheet.create({
   row: {
     flex: 1,
     alignItems: 'stretch',
-    padding: 20
+    margin: 20,
+    backgroundColor: 'blue'
   },
   button: {
     backgroundColor: 'white',
