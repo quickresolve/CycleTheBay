@@ -4,6 +4,8 @@ var {
   View,
   Text,
   ListView,
+  Image,
+  NavigatorIOS,
   StyleSheet
 } = React;
 
@@ -13,34 +15,78 @@ import forecast from "../Api/weatherapi"
 import weatherIcon from "../Utils/icons"
 //constants used for background colors
 
+var mockedCurrent = {
+  city: 'San Francisco',
+  temperature: '70˚F',
+  temp_min: '70˚F',
+  temp_max: '70˚F',
+  description: 'Sun with light overcast',
+  humidity: '40%',
+  icon: weatherIcon('01d'),
+  rain: '0%',
+  wind: '10mph'
+};
+
+var mockedForecast = [{
+  city: 'Oakland',
+  temperature: '70˚F',
+  description: 'Sun with light overcast',
+  icon: weatherIcon('01d'),
+  wind_speed: '10mph',
+  wind_direction: 'NW',
+  rain: '0%'
+  },
+  {
+    city: 'Oakland',
+    temperature: '70˚F',
+    description: 'Sun with light overcast',
+    icon: weatherIcon('01d'),
+    wind_speed: '10mph',
+    wind_direction: 'NW',
+    rain: '0%'
+  }
+];
+
 var Weather = React.createClass ({
    getInitialState: function() {
     return {
-      dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows(mockedForecast)
     };
   },
+
   componentDidMount: function(){
-    // this.getWeather();
+    this.getWeather();
     this.getForecast();
   },
+
+  componentWillUnmount: function(){
+
+  },
+
   getWeather() {
-    currentWeather(this.state.latitude, this.state.longitude).then((data) => {
-      this.setState(data);
+    currentWeather(this.state.latitude, this.state.longitude).then((currentdata) => {
+      debugger;
+      console.log('currentdata: ' + currentdata)
+      this.setState(currentdata);
     });
   },
 
   getForecast() {
-    forecast(37, -122).then((data) => {
-      console.log(data);
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(data.list)
-      })
-    })
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(mockedForecast)
+    });
+    // forecast(37, -122).then((data) => {
+    //   console.log(data);
+    //   this.setState({
+    //     dataSource: this.state.dataSource.cloneWithRows(data.list)
+    //   })
+    // })
   },
 
-renderRow(rowData) {
+renderRow(weather) {
     return (
-      <WeatherCell weather={rowData}/>
+      <WeatherCell weather={weather}/>
   );
 },
   render() {
@@ -49,32 +95,59 @@ renderRow(rowData) {
       <View style={styles.currentWrapper}>
         <Text>Current Weather</Text>
         <Text>
-          {this.state.city}
+          // {this.state.city}
+          {mockedCurrent.city}
         </Text>
         <View style={styles.horContainer1}>
           <Text style={styles.icon}>
-            {this.state.icon}
+            {mockedCurrent.icon}
           </Text>
           <View style={styles.vertContainer}>
             <View style={styles.horContainer2}>
-              <Text>Max: {this.state.temp_max}</Text>
+              <Text>
+                Max:
+                // {this.state.temp_max}
+                {mockedCurrent.temp_max}
+              </Text>
             </View>
             <View style={styles.horContainer2}>
-              <Text>Min: {this.state.temp_min}</Text>
+              <Text>
+                Min:
+                // {this.state.temp_min}
+                {mockedCurrent.temp_min}
+              </Text>
             </View>
-            <Text>Humidity: {this.state.humidity}</Text>
-            <Text>Rain: {this.state.rain}</Text>
-            <Text>Wind: {this.state.wind}</Text>
+            <Text>Humidity:
+            // {this.state.humidity}
+            {mockedCurrent.humidity}
+            </Text>
+            <Text>Rain:
+            // {this.state.rain}
+            {mockedCurrent.rain}
+            </Text>
+            <Text>Wind:
+            // {this.state.wind}
+            {mockedCurrent.wind}
+            </Text>
           </View>
       </View>
         <View style={styles.horContainer2}>
-          <Text>{this.state.temperature}</Text>
-          <Text>{this.state.description}</Text>
+          <Text>
+          // {this.state.temperature}
+          {mockedCurrent.temperature}
+          </Text>
+          <Text>
+          // {this.state.description}
+          {mockedCurrent.description}
+          </Text>
         </View>
       </View>
       <View style={styles.forecastWrapper}>
         <Text> Hourly Forecast </Text>
-        <ListView style={styles.listContainer} dataSource={this.state.dataSource} renderRow={this.renderRow}/>
+        <ListView
+          style={styles.listContainer}
+          dataSource={this.state.dataSource}
+          renderRow={this.renderRow}/>
       </View>
     </View>
   );
@@ -86,19 +159,31 @@ var WeatherCell = React.createClass({
     return (
       <View>
           <View style={styles.WeatherCell}>
-            // <View style={styles.timeContainer}>
-            //   <Text style={styles.darkText}>{formattedTime.time}</Text>
-            // </View>
+
             <Text style={styles.icon}>
-              {this.state.icon}
+              {this.props.weather.icon}
             </Text>
             <View style={styles.tempContainer}>
-              <Text style={styles.darkText}>{rowData.temperature}</Text>
+              <Text style={styles.darkText}>
+              {this.props.weather.temperature}
+              </Text>
             </View>
-            <Text style={styles.lightText}>Forecast: {rowData.description}</Text>
-            <Text style={styles.lightText}>Rain: {rowData.rain}</Text>
-            <Text style={styles.lightText}>Wind Speed: {rowData.wind_speed}</Text>
-            <Text style={styles.lightText}>Wind Direction: {rowData.wind_direction}</Text>
+            <Text style={styles.lightText}>
+            Forecast:
+              {this.props.weather.description}
+            </Text>
+            <Text style={styles.lightText}>
+            Rain:
+              {this.props.weather.rain}
+            </Text>
+            <Text style={styles.lightText}>
+            Wind Speed:
+            {this.props.weather.wind_speed}
+            </Text>
+            <Text style={styles.lightText}>
+            Wind Direction:
+            {this.props.weather.wind_direction}
+            </Text>
         </View>
         <View style={styles.separator}/>
       </View>
