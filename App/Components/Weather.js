@@ -4,6 +4,8 @@ var {
   View,
   Text,
   ListView,
+  Image,
+  NavigatorIOS,
   StyleSheet
 } = React;
 
@@ -47,9 +49,9 @@ var mockedForecast = [{
 
 var Weather = React.createClass ({
    getInitialState: function() {
-    debugger;
     return {
-      dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows(mockedForecast)
     };
   },
 
@@ -69,12 +71,15 @@ var Weather = React.createClass ({
   },
 
   getForecast() {
-    forecast(37, -122).then((data) => {
-      console.log(data);
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(data.list)
-      })
-    })
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(mockedForecast)
+    });
+    // forecast(37, -122).then((data) => {
+    //   console.log(data);
+    //   this.setState({
+    //     dataSource: this.state.dataSource.cloneWithRows(data.list)
+    //   })
+    // })
   },
 
 renderRow(rowData) {
@@ -138,7 +143,10 @@ renderRow(rowData) {
       </View>
       <View style={styles.forecastWrapper}>
         <Text> Hourly Forecast </Text>
-        <ListView style={styles.listContainer} dataSource={this.state.dataSource} renderRow={this.renderRow}/>
+        <ListView
+          style={styles.listContainer}
+          dataSource={this.state.dataSource}
+          renderRow={this.renderRow}/>
       </View>
     </View>
   );
@@ -150,9 +158,7 @@ var WeatherCell = React.createClass({
     return (
       <View>
           <View style={styles.WeatherCell}>
-            // <View style={styles.timeContainer}>
-            //   <Text style={styles.darkText}>{formattedTime.time}</Text>
-            // </View>
+          
             <Text style={styles.icon}>
               {this.state.icon}
             </Text>
