@@ -13,15 +13,23 @@ import {
   View
 } from 'react-native';
 
+import Trail from './Trail'
+
 var styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
   },
   title: {
+    flex: 1,
     fontSize: 20,
-    textAlign: 'center'
+    textAlign: 'center',
+    justifyContent: 'center'
+  },
+  listView: {
+    paddingTop: 20
   }
 });
 
@@ -54,16 +62,28 @@ class TrailList extends React.Component{
       .done();
   }
 
+  _handleTrailSelection(trail){
+    fetch('http://pacific-meadow-80820.herokuapp.com/api/locations/'+trail.id)
+      .then((response) => response.json())
+      .then(responseData => {
+        this.props.navigator.push({
+          title: trail.title,
+          component: Trail,
+          passProps: {trail: responseData}
+        });
+      }).done();
+  }
+
   render() {
     if (!this.state.loaded) {
-      return this.renderLoadingView();
+      this.renderLoadingView();
     }
 
     return(
       <ListView
         dataSource={this.state.dataSource}
-        renderRow={this.renderTrail}
-        style={styles.ListView}
+        renderRow={this.renderTrail.bind(this)}
+        style={styles.listView}
       />
     );
   }
@@ -80,11 +100,14 @@ class TrailList extends React.Component{
 
   renderTrail(trail) {
     return (
-      <View style={styles.container}>
+      <TouchableHighlight
+        style={styles.container}
+        onPress={this._handleTrailSelection.bind(this, trail)}
+        underlayColor="transparent">
         <Text style={styles.title}>
           {trail.title}
         </Text>
-      </View>
+      </TouchableHighlight>
     );
   }
 }
