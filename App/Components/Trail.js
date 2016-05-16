@@ -8,10 +8,9 @@ import {
   ScrollView,
   Image,
   TabBarIOS,
+  AlertIOS,
   View
 } from 'react-native';
-
-import getSpecificTrail from '../Api/railsapi'
 
 const styles = StyleSheet.create({
 	container: {
@@ -71,12 +70,21 @@ const styles = StyleSheet.create({
 
 var Trail = React.createClass ({
 
+  componentDidMount(){
+    fetch("http://pacific-meadow-80820.herokuapp.com/api/locations/5", {method: "GET"})
+    .then((response) => response.json())
+    .then((responseData) => {
+      this.setState(responseData)
+    })
+    .done();
+  },
+
 	getInitialState: function() {
 		return {
 			id: 0,
       title: '',
-      description: '',
-      image_url: '',
+      desc: '',
+      // image_url: '',
       start_lat: 0,
       start_long: 0,
       end_lat: 0,
@@ -88,14 +96,6 @@ var Trail = React.createClass ({
 		};
 	},
 
-	getTrail: function() {
-		getSpecificTrail(this.state.id)
-			.then((data) => {
-				console.log(data)
-				this.setState(data);
-			});
-	},
-
 	onLinkPressed() {
 		console.log('pressed');
 	},
@@ -105,9 +105,7 @@ var Trail = React.createClass ({
 			<View style={styles.container}>
 
 				<View style={styles.titleWrapper}>
-					<Image
-						source={this.state.map_url}
-						style={styles.image} />
+					<Image/>
 				</View>
 				<View style={styles.header}>
 
@@ -123,7 +121,7 @@ var Trail = React.createClass ({
 
 						<View style={styles.measurementContainer}>
 							<Text style={styles.labels}>
-								{this.state.distance}
+								{this.state.distance} miles
 							</Text>
 							<Text style={styles.measurements}>
 								Distance

@@ -16,8 +16,12 @@ export default function getTrails() {
 export default function getSpecificTrail(id) {
   var url = `${baseUrl}&${trails}&/${id}`
 
-  return fetch(url).then((response) => response.json())
-    .then((json) => {
+  return fetch(url)
+    .then(function(response) {
+      debugger;
+      return response.json()
+    })
+    .then(function(json) {
       return {
         id: json.id,
         title: json.title,
@@ -33,7 +37,9 @@ export default function getSpecificTrail(id) {
         elevation_down: json.elevation_down,
         terrain: json.terrain
       }
-    });
+    }).catch(function(err){
+      console.log(err)
+    })
 
 }
 

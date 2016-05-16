@@ -89,7 +89,7 @@ renderRow(rowData) {
 },
   render() {
     return (
-    <View style={[styles.container, {backgorundColor: this.state.backgorundColor}]}>
+    <View style={[styles.container, {backgroundColor: this.state.backgroundColor}]}>
       <View style={styles.currentWrapper}>
         <Text>Current Weather</Text>
         <Text>
@@ -170,7 +170,7 @@ var WeatherCell = React.createClass({
             <Text style={styles.lightText}>Wind Speed: {rowData.wind_speed}</Text>
             <Text style={styles.lightText}>Wind Direction: {rowData.wind_direction}</Text>
         </View>
-        <View style={styles.seperator}/>
+        <View style={styles.separator}/>
       </View>
     );
   }
