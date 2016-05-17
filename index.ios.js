@@ -1,8 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+"use strict";
 
 import React, { Component } from 'react';
 import {
@@ -22,6 +18,7 @@ import weatherIcon from "./App/Utils/icons"
 import Trail from './App/Components/Trail'
 import Weather from './App/Components/Weather'
 import Local from './App/Components/Local'
+import Map from './App/Components/Map'
 
 var Main = require('./App/Components/Main');
 
@@ -42,6 +39,9 @@ class CycleTheBay extends React.Component {
     }
     if (route.name == 'Local') {
       return <Local navigator={navigator} />
+    }
+    if (route.name == 'Map') {
+      return <Map navigator={navigator} />
     }
   }
 
