@@ -25,12 +25,12 @@ class Main extends Component {
       <View
         style={styles.container}>
         <Image
-          source={{uri: "http://i.imgur.com/WcH381M.jpg"}}
+          source={require('../../biking.gif')}
           style={styles.backgroundImage}>
-          <Text
+          <Image
+            source={require('../../Title.png')}
             style={styles.title}>
-            CycleTheBay
-          </Text>
+          </Image>
           <TouchableOpacity
             style={styles.navButton}
             underlayColor="transparent"
@@ -122,12 +122,10 @@ var styles = StyleSheet.create({
     alignItems: 'center'
   },
   title: {
-    fontSize: 50,
-    marginBottom: 65,
-    color: 'white',
+    marginBottom: 20
   },
   navButton: {
-    height: 40,
+    height: 70,
     width: 200,
     alignItems: 'center',
     justifyContent: 'center',

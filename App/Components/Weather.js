@@ -1,6 +1,7 @@
-var React = require('react-native');
+"use strict";
 
-var {
+import React, { Component } from 'react';
+import {
   View,
   Text,
   TouchableHighlight,
@@ -11,7 +12,7 @@ var {
   ScrollView,
   Image,
   StyleSheet
-} = React;
+} from 'react-native';
 
 
 // import currentWeather from "../Api/weatherapi"
@@ -21,6 +22,7 @@ import Trail from './Trail'
 import TrailList from './TrailList'
 import Local from './Local'
 import Main from './Main'
+import Map from './Map'
 
 var kelvinToF = (kelvin) => {
   return Math.round((kelvin - 273.15) * 1.8 + 32) + " ˚F"
@@ -107,32 +109,50 @@ var mockedForecast = [
     }
   ];
 
-var Weather = React.createClass({
-   getInitialState: function() {
-    return {
-       city: '',
-       temperature: '',
-       temp_min: '',
-       temp_max: '',
-       description: '',
-       humidity: 0,
-      //  icon: weatherIcon(json.weather[0].icon),
-       wind: 0,
-      dataSource: new ListView.DataSource({
-        rowHasChanged: (r1, r2) => r1 !== r2
-      }).cloneWithRows(mockedForecast)
-    };
-  },
+class Weather extends Component{
 
-  componentDidMount: function(){
+  constructor(props) {
+    super(props);
+    this.state = {
+      city: '',
+      temperature: '',
+      temp_min: '',
+      temp_max: '',
+      description: '',
+      humidity: 0,
+     //  icon: weatherIcon(json.weather[0].icon),
+      wind: 0,
+     dataSource: new ListView.DataSource({
+       rowHasChanged: (r1, r2) => r1 !== r2
+     }).cloneWithRows(mockedForecast)
+    }
+  }
+
+  //  getInitialState: function() {
+  //   return {
+  //      city: '',
+  //      temperature: '',
+  //      temp_min: '',
+  //      temp_max: '',
+  //      description: '',
+  //      humidity: 0,
+  //     //  icon: weatherIcon(json.weather[0].icon),
+  //      wind: 0,
+  //     dataSource: new ListView.DataSource({
+  //       rowHasChanged: (r1, r2) => r1 !== r2
+  //     }).cloneWithRows(mockedForecast)
+  //   };
+  // }
+
+  componentDidMount(){
     this.getForecast();
-  },
+  }
 
-  componentWillUnmount: function(){
+  componentWillUnmountfunction(){
 
-  },
+  }
 
-  getForecast: function(latitude, longitude) {
+  getForecast(latitude, longitude) {
     var url = 'http://api.openweathermap.org/data/2.5/forecast?&lat=37&lon=-122&APPID=4a55512194ca2751c9dec4fd1fa57028'
      console.log(url);
      fetch(url).then((response) => response.json())
@@ -152,148 +172,146 @@ var Weather = React.createClass({
           dataSource: this.state.dataSource.cloneWithRows(testdata)
         })
       })
-  },
+  }
 
-
-renderRow: function(weather) {
-    return (
-      <WeatherCell weather={weather}/>
-  );
-},
-  render: function() {
-    return (
-    <View style={[styles.container, {backgroundColor: this.state.backgroundColor}]}>
-      <View style={styles.currentWrapper}>
-        <Text>Current Weather</Text>
-        <Text>
-          {this.state.city}
-        </Text>
-        <View style={styles.horContainer1}>
-          <Text style={styles.icon}>
-            {mockedCurrent.icon}
+  renderRow(weather) {
+      return (
+        <WeatherCell weather={weather}/>
+    );
+  }
+    render() {
+      return (
+      <View style={[styles.container, {backgroundColor: this.state.backgroundColor}]}>
+        <View style={styles.currentWrapper}>
+          <Text>Current Weather</Text>
+          <Text>
+            {this.state.city}
           </Text>
-          <View style={styles.vertContainer}>
-            <View style={styles.horContainer2}>
-              <Text>
-                Max: {this.state.temp_max}
-              </Text>
-            </View>
-            <View style={styles.horContainer2}>
-              <Text>
-                Min: {this.state.temp_min}
-              </Text>
-            </View>
-            <Text>Humidity: {this.state.humidity} %
+          <View style={styles.horContainer1}>
+            <Text style={styles.icon}>
+              {mockedCurrent.icon}
             </Text>
-            <Text>Wind: {this.state.wind} m/s
+            <View style={styles.vertContainer}>
+              <View style={styles.horContainer2}>
+                <Text>
+                  Max: {this.state.temp_max}
+                </Text>
+              </View>
+              <View style={styles.horContainer2}>
+                <Text>
+                  Min: {this.state.temp_min}
+                </Text>
+              </View>
+              <Text>Humidity: {this.state.humidity} %
+              </Text>
+              <Text>Wind: {this.state.wind} m/s
+              </Text>
+            </View>
+        </View>
+          <View style={styles.horContainer2}>
+            <Text>
+            Temperature: {this.state.temperature}
+            </Text>
+            <Text style={styles.lightText}>
+            Forecast: {this.state.description}
             </Text>
           </View>
-      </View>
-        <View style={styles.horContainer2}>
-          <Text>
-          Temperature: {this.state.temperature}
-          </Text>
-          <Text style={styles.lightText}>
-          Forecast: {this.state.description}
-          </Text>
+        </View>
+        <View style={styles.forecastWrapper}>
+          <Text> Hourly Forecast </Text>
+          <ListView
+            style={styles.listContainer}
+            dataSource={this.state.dataSource}
+            renderRow={this.renderRow}/>
+        </View>
+        <View style={styles.footerNav}>
+          <TouchableHighlight
+            onPress={this._onHomeButton.bind(this)}
+            style={styles.button}
+            underlayColor="gray">
+              <Text style={styles.buttonText}>Home</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={this._onMapsButton.bind(this)}
+            style={styles.button}
+            underlayColor="gray">
+              <Text style={styles.buttonText}>Map</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+          onPress={this._onTrailsButton.bind(this)}
+          style={styles.button}
+          underlayColor="gray">
+            <Text style={styles.buttonText}>Trails</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={this._onWeatherButton.bind(this)}
+            style={styles.button}
+            underlayColor="gray">
+              <Text style={styles.buttonText}>Weather</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+          onPress={this._onLocalButton.bind(this)}
+          style={styles.button}
+          underlayColor="gray">
+            <Text style={styles.buttonText}>Local</Text>
+          </TouchableHighlight>
         </View>
       </View>
-      <View style={styles.forecastWrapper}>
-        <Text> Hourly Forecast </Text>
-        <ListView
-          style={styles.listContainer}
-          dataSource={this.state.dataSource}
-          renderRow={this.renderRow}/>
-      </View>
-      <View style={styles.footerNav}>
-        <TouchableHighlight
-          onPress={this._onHomeButton}
-          style={styles.button}
-          underlayColor="gray">
-            <Text style={styles.buttonText}>Home</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          onPress={this._onMapsButton}
-          style={styles.button}
-          underlayColor="gray">
-            <Text style={styles.buttonText}>Maps</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-        onPress={this._onTrailsButton}
-        style={styles.button}
-        underlayColor="gray">
-          <Text style={styles.buttonText}>Trails</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          onPress={this._onWeatherButton}
-          style={styles.button}
-          underlayColor="gray">
-            <Text style={styles.buttonText}>Weather</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-        onPress={this._onLocalButton}
-        style={styles.button}
-        underlayColor="gray">
-          <Text style={styles.buttonText}>Local</Text>
-        </TouchableHighlight>
-      </View>
-    </View>
-  );
-},
+    );
+  }
 
   _onHomeButton(){
     this.props.navigator.popToTop()
-  },
+  }
 
-
- _onTrailsButton(){
+  _onTrailsButton(){
    this.props.navigator.push({
      component: TrailList,
      name: "Trails",
    });
- },
+  }
 
- _onMapsButton(){
+  _onMapsButton(){
    this.props.navigator.push({
-     component: Maps,
+     component: Map,
      name: "Map"
    })
- },
+  }
 
- _onWeatherButton() {
+  _onWeatherButton() {
    this.props.navigator.push({
      component: 'Weather',
      name: "Weather"
    })
- },
+  }
 
- _onLocalButton(){
+  _onLocalButton(){
    this.props.navigator.push({
      component: 'Local',
      name: "Local"
    })
- }
+  }
 
-});
+};
 
 var WeatherCell = React.createClass({
   render() {
     return (
       <View>
-          <View style={styles.WeatherCell}>
-              <Text style={styles.darkText}>
-                Temp: {kelvinToF(this.props.weather.main.temp)}
-              </Text>
-              <Text style={styles.lightText}>
-                Forecast: {this.props.weather.weather[0].description}
-              </Text>
-              <Text style={styles.lightText}>
-                Wind: {this.props.weather.wind.speed} m/s
-              </Text>
-              <Text style={styles.lightText}>
-                Humidity: {this.props.weather.main.humidity} %
-              </Text>
-          </View>
+        <View style={styles.WeatherCell}>
+            <Text style={styles.darkText}>
+              Temp: {kelvinToF(this.props.weather.main.temp)}
+            </Text>
+            <Text style={styles.lightText}>
+              Forecast: {this.props.weather.weather[0].description}
+            </Text>
+            <Text style={styles.lightText}>
+              Wind: {this.props.weather.wind.speed} m/s
+            </Text>
+            <Text style={styles.lightText}>
+              Humidity: {this.props.weather.main.humidity} %
+            </Text>
+        </View>
         <View style={styles.separator}/>
       </View>
     );
@@ -372,7 +390,7 @@ var styles = StyleSheet.create({
   button: {
     alignSelf: 'stretch',
     justifyContent: 'center',
-    marginBottom: 10
+    marginBottom: 15
   },
   buttonText:{
     color: '#658D9F',
@@ -385,7 +403,7 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'stretch',
     justifyContent: 'space-between',
-    paddingTop: 10,
+    paddingTop: 20,
     backgroundColor: '#d9d9d9',
     paddingLeft: 20,
     paddingRight: 20

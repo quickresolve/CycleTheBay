@@ -15,6 +15,8 @@ var MapView = require('react-native-maps');
 var PriceMarker = require('./PriceMarker');
 var CustomCallout = require('./CustomCallout');
 
+import TrailList from './TrailList'
+
 
 var { width, height } = Dimensions.get('window');
 
@@ -125,7 +127,7 @@ var Map = React.createClass({
             longitude: -122.3247,
           },
         },
-        
+
         {
             coordinate: {
             latitude: 37.964,
@@ -614,9 +616,60 @@ var Map = React.createClass({
             <Text>Click Pins for Trail Info</Text>
           </View>
         </View>
+        <View style={styles.footerNav}>
+          <TouchableOpacity
+            onPress={this._onHomeButton}
+            style={styles.navButton}
+            underlayColor="gray">
+              <Text style={styles.buttonText}>Home</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+          onPress={this._onTrailsButton}
+          style={styles.navButton}
+          underlayColor="gray">
+            <Text style={styles.buttonText}>Trails</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={this._onWeatherButton}
+            style={styles.navButton}
+            underlayColor="gray">
+              <Text style={styles.buttonText}>Weather</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+          onPress={this._onLocalButton}
+          style={styles.navButton}
+          underlayColor="gray">
+            <Text style={styles.buttonText}>Local</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   },
+
+  _onHomeButton(){
+    this.props.navigator.popToTop()
+  },
+
+ _onTrailsButton(){
+   this.props.navigator.push({
+     component: TrailList,
+     name: "Trails",
+   });
+ },
+
+ _onWeatherButton() {
+   this.props.navigator.push({
+     component: 'Weather',
+     name: "Weather"
+   })
+ },
+
+ _onLocalButton(){
+   this.props.navigator.push({
+     component: 'Local',
+     name: "Local"
+   })
+ }
 });
 
 var styles = StyleSheet.create({
@@ -658,6 +711,27 @@ var styles = StyleSheet.create({
     marginVertical: 20,
     backgroundColor: 'transparent',
   },
+  navButton: {
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    marginBottom: 15
+  },
+  buttonText:{
+    color: '#658D9F',
+    fontSize: 15,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  footerNav: {
+    flex: 0,
+    flexDirection: 'row',
+    alignSelf: 'stretch',
+    justifyContent: 'space-between',
+    paddingTop: 20,
+    backgroundColor: '#d9d9d9',
+    paddingLeft: 20,
+    paddingRight: 20
+  }
 });
 
 module.exports = Map;
