@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   ScrollView,
   Image,
   TabBarIOS,
@@ -17,8 +17,9 @@ import {
 
 import Trail from './Trail'
 import Main from './Main'
-import Weather from "./Weather"
-import Local from "./Local"
+import Weather from './Weather'
+import Local from './Local'
+import navAnimations from '../Helper_Functions/navAnimations'
 
 
 var styles = StyleSheet.create({
@@ -26,33 +27,38 @@ var styles = StyleSheet.create({
     flex: 1,
     alignItems: 'stretch'
   },
-  navBar: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#658D9F',
-    justifyContent: 'space-around',
-  },
+
   navButton: {
     flex: 1,
   },
   title: {
     flex: 1,
     fontSize: 20,
-    textAlign: 'center',
+    color: 'white',
+    fontWeight: 'bold',
     justifyContent: 'center',
   },
   listView: {
     flex: 10,
     marginTop: 20
   },
+  row: {
+    flex: 1,
+    alignItems: 'stretch',
+    margin: 20
+  },
+  image: {
+    flex: 1,
+    alignItems: 'stretch',
+    marginBottom: 5,
+    padding: 20,
+    width: null,
+    height: null
+  },
   button: {
-    backgroundColor: 'white',
-    borderColor: 'white',
-    borderWidth: 3,
-    borderRadius: 10,
     alignSelf: 'stretch',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: 10
   },
   buttonText:{
     color: '#658D9F',
@@ -63,10 +69,12 @@ var styles = StyleSheet.create({
   footerNav: {
     flex: 0,
     flexDirection: 'row',
-    borderTopWidth: 1,
     alignSelf: 'stretch',
     justifyContent: 'space-between',
-    paddingTop: 10
+    paddingTop: 10,
+    backgroundColor: '#d9d9d9',
+    paddingLeft: 20,
+    paddingRight: 20
   }
 
 });
@@ -111,7 +119,7 @@ class TrailList extends React.Component{
             title: responseData.title,
             distance: responseData.distance,
             elevation_up: responseData.elevation_up,
-            desc: responseData.title
+            desc: responseData.desc
           },
         });
       }).done();
@@ -128,52 +136,36 @@ class TrailList extends React.Component{
 
     return(
       <View style={styles.container}>
-        <View style={styles.navBar}>
-          <TouchableHighlight
-            style={styles.navButton}
-            underlayColor="transparent"
-            onPress={() => this.props.navigator.pop()}>
-            <Text>
-              Return Home
-            </Text>
-          </TouchableHighlight>
-        </View>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderTrail.bind(this)}
           style={styles.listView}
         />
         <View style={styles.footerNav}>
-          <TouchableHighlight
+          <TouchableOpacity
             onPress={this._onHomeButton.bind(this)}
             style={styles.button}
             underlayColor="gray">
               <Text style={styles.buttonText}>Home</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={this._onMapsButton.bind(this)}
             style={styles.button}
             underlayColor="gray">
               <Text style={styles.buttonText}>Maps</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-          onPress={this._onTrailsButton.bind(this)}
-          style={styles.button}
-          underlayColor="gray">
-            <Text style={styles.buttonText}>Trails</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={this._onWeatherButton.bind(this)}
             style={styles.button}
             underlayColor="gray">
               <Text style={styles.buttonText}>Weather</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
+          </TouchableOpacity>
+          <TouchableOpacity
           onPress={this._onLocalButton.bind(this)}
           style={styles.button}
           underlayColor="gray">
             <Text style={styles.buttonText}>Local</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -191,22 +183,25 @@ class TrailList extends React.Component{
 
   renderTrail(trail) {
     return (
-      <TouchableHighlight
-        style={styles.container}
-        onPress={(this._handleTrailSelection.bind(this, trail))}
-        underlayColor="transparent">
-        <Text style={styles.title}>
-          {trail.title}
-        </Text>
-      </TouchableHighlight>
+      <View>
+        <Image
+          source={require('../../goldenGate.jpg')}
+          style={styles.image}>
+          <TouchableOpacity
+            style={styles.row}
+            onPress={(this._handleTrailSelection.bind(this, trail))}
+            underlayColor="white">
+            <Text style={styles.title}>
+              {trail.title}
+            </Text>
+          </TouchableOpacity>
+        </Image>
+      </View>
     );
   }
 
   _onHomeButton(){
-    this.props.navigator.push({
-      component: Main,
-      name: "Main"
-    })
+    this.props.navigator.popToTop()
   }
 
   _onTrailsButton(){

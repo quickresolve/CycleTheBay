@@ -3,7 +3,7 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   MapView,
   ScrollView,
   Image,
@@ -56,7 +56,8 @@ const styles = StyleSheet.create({
 	},
 	description: {
 		flex: 3,
-		backgroundColor: 'white'
+		backgroundColor: 'white',
+    margin: 15
 	},
 	image: {
 		width: 420,
@@ -73,12 +74,9 @@ const styles = StyleSheet.create({
 		fontSize: 12,
 	},
   button: {
-    backgroundColor: 'white',
-    borderColor: 'white',
-    borderWidth: 3,
-    borderRadius: 10,
     alignSelf: 'stretch',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: 10
   },
   buttonText:{
     color: '#658D9F',
@@ -89,23 +87,16 @@ const styles = StyleSheet.create({
   footerNav: {
     flex: 0,
     flexDirection: 'row',
-    borderTopWidth: 1,
     alignSelf: 'stretch',
     justifyContent: 'space-between',
-    paddingTop: 10
+    paddingTop: 10,
+    backgroundColor: '#d9d9d9',
+    paddingLeft: 20,
+    paddingRight: 20
   }
 });
 
 var Trail = React.createClass ({
-
-	// getInitialState: function() {
-	// 	return {
-  //     title: this.props.title,
-  //     elevation_up: this.props.elevation_up,
-  //     desc: this.props.desc,
-  //     distance: this.props.distance
-	// 	};
-	// },
 
 	onLinkPressed() {
 		console.log('pressed');
@@ -140,11 +131,11 @@ var Trail = React.createClass ({
 						</View>
 					</View>
 
-					<TouchableHighlight style={styles.navButton} underlayColor="transparent" onPress={this.onLinkPressed}>
+					<TouchableOpacity style={styles.navButton} underlayColor="transparent" onPress={this.onLinkPressed}>
 						<Text style={styles.navText}>
 							Click for Navigation
 						</Text>
-					</TouchableHighlight>
+					</TouchableOpacity>
 
 					<View style={styles.description}>
 						<Text>
@@ -154,46 +145,43 @@ var Trail = React.createClass ({
 
 				</View>
         <View style={styles.footerNav}>
-          <TouchableHighlight
+          <TouchableOpacity
             onPress={this._onHomeButton.bind(this)}
             style={styles.button}
             underlayColor="gray">
               <Text style={styles.buttonText}>Home</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={this._onMapsButton.bind(this)}
             style={styles.button}
             underlayColor="gray">
               <Text style={styles.buttonText}>Maps</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
+          </TouchableOpacity>
+          <TouchableOpacity
           onPress={this._onTrailsButton.bind(this)}
           style={styles.button}
           underlayColor="gray">
             <Text style={styles.buttonText}>Trails</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={this._onWeatherButton.bind(this)}
             style={styles.button}
             underlayColor="gray">
               <Text style={styles.buttonText}>Weather</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
+          </TouchableOpacity>
+          <TouchableOpacity
           onPress={this._onLocalButton.bind(this)}
           style={styles.button}
           underlayColor="gray">
             <Text style={styles.buttonText}>Local</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
 			</View>
 		);
 	},
 
   _onHomeButton(){
-    this.props.navigator.push({
-      component: Main,
-      name: "Main"
-    })
+    this.props.navigator.popToTop()
   },
 
 

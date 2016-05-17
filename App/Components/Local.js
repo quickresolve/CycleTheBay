@@ -57,22 +57,16 @@ var Local = React.createClass ({
               <Text style={styles.buttonText}>Maps</Text>
           </TouchableHighlight>
           <TouchableHighlight
-          onPress={this._onTrailsButton}
+          onPress={this._onTrailsButtonPop}
           style={styles.button}
           underlayColor="gray">
             <Text style={styles.buttonText}>Trails</Text>
           </TouchableHighlight>
           <TouchableHighlight
-            onPress={this._onWeatherButton}
+            onPress={this._onWeatherButtonPop}
             style={styles.button}
             underlayColor="gray">
               <Text style={styles.buttonText}>Weather</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-          onPress={this._onLocalButton}
-          style={styles.button}
-          underlayColor="gray">
-            <Text style={styles.buttonText}>Local</Text>
           </TouchableHighlight>
         </View>
       </View>
@@ -80,10 +74,7 @@ var Local = React.createClass ({
   },
 
   _onHomeButton(){
-    this.props.navigator.push({
-      component: Main,
-      name: "Main"
-    })
+    this.props.navigator.popToTop()
   },
 
   _onTrailsButton(){
@@ -102,21 +93,11 @@ var Local = React.createClass ({
 
   _onWeatherButton() {
     this.props.navigator.push({
-      component: 'Weather',
+      component: Weather,
       name: "Weather"
-    })
-  },
-
-  _onLocalButton(){
-    this.props.navigator.push({
-      component: 'Local',
-      name: "Local"
     })
   }
 });
-
-
-
 
 var styles = StyleSheet.create({
   container: {
@@ -136,12 +117,9 @@ var styles = StyleSheet.create({
     color: 'white'
   },
   button: {
-    backgroundColor: 'white',
-    borderColor: 'white',
-    borderWidth: 3,
-    borderRadius: 10,
     alignSelf: 'stretch',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: 10
   },
   buttonText:{
     color: '#658D9F',
@@ -152,10 +130,12 @@ var styles = StyleSheet.create({
   footerNav: {
     flex: 0,
     flexDirection: 'row',
-    borderTopWidth: 1,
     alignSelf: 'stretch',
     justifyContent: 'space-between',
-    paddingTop: 10
+    paddingTop: 10,
+    backgroundColor: '#d9d9d9',
+    paddingLeft: 20,
+    paddingRight: 20
   }
 });
 

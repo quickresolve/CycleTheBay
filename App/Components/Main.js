@@ -4,6 +4,7 @@ var {
   View,
   Text,
   TouchableHighlight,
+  Navigator,
   Image,
   TouchableOpacity,
   navigator,
@@ -20,42 +21,52 @@ import Local from './Local'
 class Main extends React.Component {
   render() {
     return(
-      <View style={styles.mainContainer}>
-        <View style={styles.splashPage}>
-          <Text style={styles.title}>Cycle the Bay</Text>
-        </View>
-        <View style={styles.footerNav}>
-        <TouchableHighlight
-          onPress={this._onHomeButton.bind(this)}
-          style={styles.button}
-          underlayColor="gray">
-            <Text style={styles.buttonText}>Home</Text>
-        </TouchableHighlight>
-          <TouchableHighlight
-            onPress={this._onMapsButton.bind(this)}
-            style={styles.button}
-            underlayColor="gray">
-              <Text style={styles.buttonText}>Maps</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-          onPress={this._onTrailsButton.bind(this)}
-          style={styles.button}
-          underlayColor="gray">
-            <Text style={styles.buttonText}>Trails</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={this._onWeatherButton.bind(this)}
-            style={styles.button}
-            underlayColor="gray">
-              <Text style={styles.buttonText}>Weather</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-          onPress={this._onLocalButton.bind(this)}
-          style={styles.button}
-          underlayColor="gray">
-            <Text style={styles.buttonText}>Local</Text>
-          </TouchableHighlight>
-        </View>
+      <View
+        style={styles.container}>
+        <Image
+          source={{uri: "http://i.imgur.com/WcH381M.jpg"}}
+          style={styles.backgroundImage}>
+          <Text
+            style={styles.title}>
+            CycleTheBay
+          </Text>
+          <TouchableOpacity
+            style={styles.navButton}
+            underlayColor="transparent"
+            onPress={this._onTrailsButton.bind(this)}>
+            <Text
+              style={styles.navText}>
+                Trail List
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.navButton}
+            underlayColor="transparent"
+            onPress={this._onMapsButton.bind(this)}>
+            <Text
+              style={styles.navText}>
+                Overhead Map
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.navButton}
+            underlayColor="transparent"
+            onPress={this._onWeatherButton.bind(this)}>
+            <Text
+              style={styles.navText}>
+                Live Weather
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.navButton}
+            underlayColor="transparent"
+            onPress={this._onLocalButton.bind(this)}>
+            <Text
+              style={styles.navText}>
+                Local Attractions
+            </Text>
+          </TouchableOpacity>
+        </Image>
       </View>
     );
   }
@@ -98,43 +109,35 @@ class Main extends React.Component {
 
 
 var styles = StyleSheet.create({
-  mainContainer: {
+  container: {
+    flex:1,
+    alignItems: 'stretch'
+  },
+  backgroundImage: {
     flex: 1,
-    padding: 30,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: '#658D9F'
-  },
-  splashPage: {
-    flex: 9
-  },
-  title: {
-    marginBottom: 10,
-    fontSize: 25,
-    textAlign: 'center',
-    color: 'white'
-  },
-  button: {
-    backgroundColor: 'white',
-    borderColor: 'white',
-    borderWidth: 3,
-    borderRadius: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  },
-  buttonText:{
-    color: '#658D9F',
-    fontSize: 15,
+    width: null,
+    height: null,
     justifyContent: 'center',
     alignItems: 'center'
   },
-  footerNav: {
-    flex: 0,
-    flexDirection: 'row',
-    borderTopWidth: 1,
-    alignSelf: 'stretch',
-    justifyContent: 'space-between',
-    paddingTop: 10
+  title: {
+    fontSize: 50,
+    marginBottom: 65,
+    color: 'white',
+  },
+  navButton: {
+    height: 40,
+    width: 200,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#cccccc',
+    borderRadius: 10,
+    marginBottom: 5,
+    opacity: 50
+  },
+  navText: {
+    fontSize: 20,
+    color: '#658D9F'
   }
 });
 
