@@ -17,7 +17,7 @@ import Weather from "./Weather"
 import Trail from './Trail'
 import TrailList from './TrailList'
 import Local from './Local'
-
+import Map from './Map'
 
 class Main extends Component {
   render() {
@@ -88,7 +88,7 @@ class Main extends Component {
 
   _onMapsButton(){
     this.props.navigator.push({
-      component: Maps,
+      component: Map,
       name: "Map"
     })
   }
