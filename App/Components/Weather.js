@@ -110,6 +110,14 @@ var mockedForecast = [
 var Weather = React.createClass({
    getInitialState: function() {
     return {
+       city: '',
+       temperature: '',
+       temp_min: '',
+       temp_max: '',
+       description: '',
+       humidity: 0,
+      //  icon: weatherIcon(json.weather[0].icon),
+       wind: 0,
       dataSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2
       }).cloneWithRows(mockedForecast)
@@ -133,10 +141,19 @@ var Weather = React.createClass({
         console.log(responseData.list)
         var testdata = responseData.list
         this.setState({
+          city: responseData.city.name,
+          temperature: kelvinToF(responseData.list[0].main.temp),
+          temp_min: kelvinToF(responseData.list[0].main.temp_min),
+          temp_max: kelvinToF(responseData.list[0].main.temp_max),
+          description: responseData.list[0].weather[0].description,
+          humidity: responseData.list[0].main.humidity,
+          // icon: weatherIcon(responseData.weather[0].icon),
+          wind: responseData.list[0].wind.speed,
           dataSource: this.state.dataSource.cloneWithRows(testdata)
         })
       })
   },
+
 
 renderRow: function(weather) {
     return (
@@ -149,8 +166,7 @@ renderRow: function(weather) {
       <View style={styles.currentWrapper}>
         <Text>Current Weather</Text>
         <Text>
-          // {this.state.city}
-          {mockedCurrent.city}
+          {this.state.city}
         </Text>
         <View style={styles.horContainer1}>
           <Text style={styles.icon}>
@@ -159,40 +175,26 @@ renderRow: function(weather) {
           <View style={styles.vertContainer}>
             <View style={styles.horContainer2}>
               <Text>
-                Max:
-                // {this.state.temp_max}
-                {mockedCurrent.temp_max}
+                Max: {this.state.temp_max}
               </Text>
             </View>
             <View style={styles.horContainer2}>
               <Text>
-                Min:
-                // {this.state.temp_min}
-                {mockedCurrent.temp_min}
+                Min: {this.state.temp_min}
               </Text>
             </View>
-            <Text>Humidity:
-            // {this.state.humidity}
-            {mockedCurrent.humidity}
+            <Text>Humidity: {this.state.humidity} %
             </Text>
-            <Text>Rain:
-            // {this.state.rain}
-            {mockedCurrent.rain}
-            </Text>
-            <Text>Wind:
-            // {this.state.wind}
-            {mockedCurrent.wind}
+            <Text>Wind: {this.state.wind} m/s
             </Text>
           </View>
       </View>
         <View style={styles.horContainer2}>
           <Text>
-          // {this.state.temperature}
-          {mockedCurrent.temperature}
+          Temperature: {this.state.temperature}
           </Text>
-          <Text>
-          // {this.state.description}
-          {mockedCurrent.description}
+          <Text style={styles.lightText}>
+          Forecast: {this.state.description}
           </Text>
         </View>
       </View>
