@@ -142,7 +142,7 @@ class TrailList extends React.Component{
         />
         <View style={styles.footerNav}>
           <TouchableHighlight
-            onPress={this._onHomeButtonPop.bind(this)}
+            onPress={this._onHomeButton.bind(this)}
             style={styles.button}
             underlayColor="gray">
               <Text style={styles.buttonText}>Home</Text>
@@ -199,11 +199,8 @@ class TrailList extends React.Component{
     );
   }
 
-  _onHomeButtonPop(){
-    this.props.navigator.pop({
-      component: Main,
-      name: "Main"
-    })
+  _onHomeButton(){
+    this.props.navigator.popToTop()
   }
 
   _onTrailsButton(){
@@ -214,7 +211,7 @@ class TrailList extends React.Component{
   }
 
   _onMapsButton(){
-    this.props.navigator.pop({
+    this.props.navigator.push({
       component: Maps,
       name: "Map"
     })

@@ -192,10 +192,7 @@ renderRow(weather) {
 },
 
   _onHomeButton(){
-    this.props.navigator.push({
-      component: Main,
-      name: "Main"
-    })
+    this.props.navigator.popToTop()
   },
 
 
