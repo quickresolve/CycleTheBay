@@ -30,7 +30,7 @@ class Main extends React.Component {
             style={styles.title}>
             CycleTheBay
           </Text>
-          <TouchableHighlight
+          <TouchableOpacity
             style={styles.navButton}
             underlayColor="transparent"
             onPress={this._onTrailsButton.bind(this)}>
@@ -38,8 +38,8 @@ class Main extends React.Component {
               style={styles.navText}>
                 Trail List
             </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
+          </TouchableOpacity>
+          <TouchableOpacity
             style={styles.navButton}
             underlayColor="transparent"
             onPress={this._onMapsButton.bind(this)}>
@@ -47,8 +47,8 @@ class Main extends React.Component {
               style={styles.navText}>
                 Overhead Map
             </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
+          </TouchableOpacity>
+          <TouchableOpacity
             style={styles.navButton}
             underlayColor="transparent"
             onPress={this._onWeatherButton.bind(this)}>
@@ -56,8 +56,8 @@ class Main extends React.Component {
               style={styles.navText}>
                 Live Weather
             </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
+          </TouchableOpacity>
+          <TouchableOpacity
             style={styles.navButton}
             underlayColor="transparent"
             onPress={this._onLocalButton.bind(this)}>
@@ -65,7 +65,7 @@ class Main extends React.Component {
               style={styles.navText}>
                 Local Attractions
             </Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </Image>
       </View>
     );
@@ -127,58 +127,18 @@ var styles = StyleSheet.create({
   },
   navButton: {
     height: 40,
-    width: 250,
+    width: 200,
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor: '#d9d9d9',
-    backgroundColor: '#9f6565',
+    backgroundColor: '#cccccc',
     borderRadius: 10,
-    marginBottom: 5
+    marginBottom: 5,
+    opacity: 50
   },
   navText: {
     fontSize: 20,
-    color: 'white'
+    color: '#658D9F'
   }
-
-  // mainContainer: {
-  //   flex: 1,
-  //   padding: 30,
-  //   flexDirection: 'column',
-  //   justifyContent: 'center',
-  //   backgroundColor: '#658D9F'
-  // },
-  // title: {
-  //   marginBottom: 10,
-  //   fontSize: 25,
-  //   textAlign: 'center',
-  //   color: 'white'
-  // },
-  // backgroundImg: {
-  //   flex: 1,
-  //   resizeMode: 'cover'
-  // },
-  // button: {
-  //   backgroundColor: 'white',
-  //   borderColor: 'white',
-  //   borderWidth: 3,
-  //   borderRadius: 10,
-  //   alignSelf: 'stretch',
-  //   justifyContent: 'center'
-  // },
-  // buttonText:{
-  //   color: '#658D9F',
-  //   fontSize: 15,
-  //   justifyContent: 'center',
-  //   alignItems: 'center'
-  // },
-  // footerNav: {
-  //   flex: 0,
-  //   flexDirection: 'row',
-  //   borderTopWidth: 1,
-  //   alignSelf: 'stretch',
-  //   justifyContent: 'space-between',
-  //   paddingTop: 10
-  // }
 });
 
 module.exports = Main;

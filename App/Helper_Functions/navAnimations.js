@@ -7,49 +7,49 @@ var navAnimations = (function() {
     });
   };
 
-  var _onTrailsButtonPush() {
+  var _onTrailsButtonPush = function() {
     this.props.navigator.push({
       component: TrailList,
       name: "Trails",
     });
   };
 
-  var _onTrailsButtonPop() {
+  var _onTrailsButtonPop = function() {
     this.props.navigator.pop({
       component: TrailList,
       name: "Trails",
     });
   };
 
-  var _onMapsButtonPush() {
+  var _onMapsButtonPush = function() {
     this.props.navigator.push({
       component: Maps,
       name: "Map",
     });
   };
 
-  var _onMapsButtonPop() {
+  var _onMapsButtonPop = function() {
     this.props.navigator.pop({
       component: Maps,
       name: "Map",
     });
   };
 
-  var _onWeatherButtonPush() {
+  var _onWeatherButtonPush = function() {
     this.props.navigator.push({
       component: Weather,
       name: "Weather",
     });
   };
 
-  var _onWeatherButtonPop() {
+  var _onWeatherButtonPop = function() {
     this.props.navigator.pop({
       component: Weather,
       name: "Weather",
     });
   };
 
-  var _onLocalButton() {
+  var _onLocalButton = function() {
     this.props.navigator.pop({
       component: Local,
       name: "Local",

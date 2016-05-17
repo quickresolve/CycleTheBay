@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   ScrollView,
   Image,
   TabBarIOS,
@@ -19,6 +19,7 @@ import Trail from './Trail'
 import Main from './Main'
 import Weather from './Weather'
 import Local from './Local'
+import navAnimations from '../Helper_Functions/navAnimations'
 
 
 var styles = StyleSheet.create({
@@ -141,30 +142,30 @@ class TrailList extends React.Component{
           style={styles.listView}
         />
         <View style={styles.footerNav}>
-          <TouchableHighlight
+          <TouchableOpacity
             onPress={this._onHomeButton.bind(this)}
             style={styles.button}
             underlayColor="gray">
               <Text style={styles.buttonText}>Home</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={this._onMapsButton.bind(this)}
             style={styles.button}
             underlayColor="gray">
               <Text style={styles.buttonText}>Maps</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={this._onWeatherButton.bind(this)}
             style={styles.button}
             underlayColor="gray">
               <Text style={styles.buttonText}>Weather</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
+          </TouchableOpacity>
+          <TouchableOpacity
           onPress={this._onLocalButton.bind(this)}
           style={styles.button}
           underlayColor="gray">
             <Text style={styles.buttonText}>Local</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -186,14 +187,14 @@ class TrailList extends React.Component{
         <Image
           source={require('../../goldenGate.jpg')}
           style={styles.image}>
-          <TouchableHighlight
+          <TouchableOpacity
             style={styles.row}
             onPress={(this._handleTrailSelection.bind(this, trail))}
             underlayColor="white">
             <Text style={styles.title}>
               {trail.title}
             </Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </Image>
       </View>
     );

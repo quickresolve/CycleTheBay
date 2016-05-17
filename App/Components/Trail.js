@@ -3,7 +3,7 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   MapView,
   ScrollView,
   Image,
@@ -56,7 +56,8 @@ const styles = StyleSheet.create({
 	},
 	description: {
 		flex: 3,
-		backgroundColor: 'white'
+		backgroundColor: 'white',
+    margin: 15
 	},
 	image: {
 		width: 420,
@@ -130,11 +131,11 @@ var Trail = React.createClass ({
 						</View>
 					</View>
 
-					<TouchableHighlight style={styles.navButton} underlayColor="transparent" onPress={this.onLinkPressed}>
+					<TouchableOpacity style={styles.navButton} underlayColor="transparent" onPress={this.onLinkPressed}>
 						<Text style={styles.navText}>
 							Click for Navigation
 						</Text>
-					</TouchableHighlight>
+					</TouchableOpacity>
 
 					<View style={styles.description}>
 						<Text>
@@ -144,36 +145,36 @@ var Trail = React.createClass ({
 
 				</View>
         <View style={styles.footerNav}>
-          <TouchableHighlight
+          <TouchableOpacity
             onPress={this._onHomeButton.bind(this)}
             style={styles.button}
             underlayColor="gray">
               <Text style={styles.buttonText}>Home</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={this._onMapsButton.bind(this)}
             style={styles.button}
             underlayColor="gray">
               <Text style={styles.buttonText}>Maps</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
+          </TouchableOpacity>
+          <TouchableOpacity
           onPress={this._onTrailsButton.bind(this)}
           style={styles.button}
           underlayColor="gray">
             <Text style={styles.buttonText}>Trails</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={this._onWeatherButton.bind(this)}
             style={styles.button}
             underlayColor="gray">
               <Text style={styles.buttonText}>Weather</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
+          </TouchableOpacity>
+          <TouchableOpacity
           onPress={this._onLocalButton.bind(this)}
           style={styles.button}
           underlayColor="gray">
             <Text style={styles.buttonText}>Local</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
 			</View>
 		);
