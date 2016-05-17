@@ -293,7 +293,7 @@ var WeatherCell = React.createClass({
                   {kelvinToF(this.props.weather.main.temp)}
                   </Text>
                   <Text style={styles.lightText}>
-                    {moment(this.props.weather.dt_txt).format('LT')}
+                    {moment(this.props.weather.dt_txt).format('MMM Do, h:mm a')}
                   </Text>
                 </View>
                 <View style={styles.descContainer}>
