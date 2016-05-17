@@ -128,7 +128,8 @@ class TrailList extends Component{
             distance: responseData.distance,
             elevation_up: responseData.elevation_up,
             desc: responseData.desc,
-            map_url: responseData.map_url
+            map_url: responseData.map_url,
+            gmaps: responseData.gmaps
           },
         });
       }).done();

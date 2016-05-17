@@ -12,6 +12,7 @@ import {
   TabBarIOS,
   AlertIOS,
   navigator,
+  LinkingIOS,
   View
 } from 'react-native';
 
@@ -119,10 +120,6 @@ const styles = StyleSheet.create({
 
 class Trail extends Component{
 
-	onLinkPressed() {
-		console.log('pressed');
-	}
-
 	render() {
 		return(
 			<View style={styles.container}>
@@ -154,7 +151,7 @@ class Trail extends Component{
 						</View>
 					</View>
 
-					<TouchableOpacity style={styles.navButton} underlayColor="transparent" onPress={this.onLinkPressed}>
+					<TouchableOpacity style={styles.navButton} underlayColor="transparent" onPress={() => LinkingIOS.openURL(this.props.gmaps)}>
 						<Text style={styles.navText}>
 							Click for Navigation
 						</Text>

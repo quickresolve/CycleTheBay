@@ -25,7 +25,7 @@ class Main extends Component {
       <View
         style={styles.container}>
         <Image
-          source={require('../../biking.gif')}
+          source={require('../../friendlyBiker.gif')}
           style={styles.backgroundImage}>
           <Image
             source={require('../../Title.png')}
@@ -125,13 +125,13 @@ var styles = StyleSheet.create({
     marginBottom: 20
   },
   navButton: {
-    height: 70,
-    width: 200,
+    height: 60,
+    width: 170,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#cccccc',
+    backgroundColor: '#d9d9d9',
     borderRadius: 10,
-    marginBottom: 5,
+    marginBottom: 10,
     opacity: 50
   },
   navText: {
