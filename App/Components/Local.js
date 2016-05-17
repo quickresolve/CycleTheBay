@@ -57,13 +57,13 @@ var Local = React.createClass ({
               <Text style={styles.buttonText}>Maps</Text>
           </TouchableHighlight>
           <TouchableHighlight
-          onPress={this._onTrailsButtonPop}
+          onPress={this._onTrailsButton}
           style={styles.button}
           underlayColor="gray">
             <Text style={styles.buttonText}>Trails</Text>
           </TouchableHighlight>
           <TouchableHighlight
-            onPress={this._onWeatherButtonPop}
+            onPress={this._onWeatherButton}
             style={styles.button}
             underlayColor="gray">
               <Text style={styles.buttonText}>Weather</Text>

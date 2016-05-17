@@ -69,6 +69,7 @@ var mockedForecast = [
 var Weather = React.createClass({
    getInitialState: function() {
     return {
+       initialPosition: 'unknown',
        city: '',
        temperature: '',
        temp_min: '',
@@ -84,7 +85,19 @@ var Weather = React.createClass({
   },
 
   componentDidMount: function(){
-    this.getForecast();
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        var initialPosition = JSON.stringify(position);
+        var lon = initialPosition.coords.longitude;
+        var lat = initialPosition.coords.latitude;
+        debugger;
+        console.log(initialPosition)
+        this.setState.position;
+        this.getForecast(lat, lon);
+      },
+      (error) => alert(error.message),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    );
   },
 
   componentWillUnmount: function(){
@@ -92,7 +105,7 @@ var Weather = React.createClass({
   },
 
   getForecast: function(latitude, longitude) {
-    var url = 'http://api.openweathermap.org/data/2.5/forecast?&lat=37&lon=-122&APPID=4a55512194ca2751c9dec4fd1fa57028'
+    var url = `http://api.openweathermap.org/data/2.5/forecast?&lat=${latitude}&lon=${longitude}&APPID=4a55512194ca2751c9dec4fd1fa57028`
      console.log(url);
      fetch(url).then((response) => response.json())
       .then((responseData) => {
