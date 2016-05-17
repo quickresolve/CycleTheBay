@@ -24,21 +24,24 @@ var kelvinToF = (kelvin) => {
 
 
 export default function currentWeather(latitude, longitude) {
-  var url = `${baseUrl}&${currentWeatherUrl}&lat=${latitude}&lon=${longitude}&${API_KEY}`;
-
+  var url = `${baseUrl}${currentWeatherUrl}&lat=${latitude}&lon=${longitude}&${API_KEY}`;
+  console.log(url)
   return fetch(url).then((response) => response.json())
     .then((response) => {
-      return {
-        city: json.name,
-        temperature: kelvinToF(json.main.temp),
-        temp_min: kelvinToF(json.main.temp_min),
-        temp_max: kelvinToF(json.main.temp_max),
-        description: json.weather[0].description,
-        humidity: json.main.humidity,
-        icon: weatherIcon(json.weather[0].icon),
-        rain: json.rain,
-        wind: json.wind.speed
-      }
+      console.log('current weather: ')
+      console.log(response)
+      return (response)
+      // return {
+      //   city: json.name,
+      //   temperature: kelvinToF(json.main.temp),
+      //   temp_min: kelvinToF(json.main.temp_min),
+      //   temp_max: kelvinToF(json.main.temp_max),
+      //   description: json.weather[0].description,
+      //   humidity: json.main.humidity,
+      //   icon: weatherIcon(json.weather[0].icon),
+      //   rain: json.rain,
+      //   wind: json.wind.speed
+      // }
     });
 }
 
@@ -47,6 +50,7 @@ export default function forecast(latitude, longitude) {
    console.log(url);
    return fetch(url).then((response) => response.json())
     .then((response) => {
+      console.log('forecast: ')
       console.log(response)
       return (response)
 
