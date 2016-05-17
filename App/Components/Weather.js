@@ -5,7 +5,7 @@ var {
   Text,
   TouchableHighlight,
   TouchableOpacity,
-  navigator,
+  // navigator,
   Icon,
   ListView,
   ScrollView,
@@ -87,11 +87,9 @@ var Weather = React.createClass({
   componentDidMount: function(){
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        var initialPosition = JSON.stringify(position);
-        var lon = initialPosition.coords.longitude;
-        var lat = initialPosition.coords.latitude;
-        debugger;
-        console.log(initialPosition)
+        console.log(position)
+        var lon = position.coords.longitude;
+        var lat = position.coords.latitude;
         this.setState.position;
         this.getForecast(lat, lon);
       },
