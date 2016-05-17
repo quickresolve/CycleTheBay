@@ -1,6 +1,7 @@
-var React = require('react-native');
+"use strict";
 
-var {
+import React, { Component } from 'react';
+import {
   View,
   Text,
   TouchableHighlight,
@@ -10,7 +11,7 @@ var {
   navigator,
   Icon,
   StyleSheet
-} = React;
+} from 'react-native';
 
 import Weather from "./Weather"
 import Trail from './Trail'
@@ -18,7 +19,7 @@ import TrailList from './TrailList'
 import Local from './Local'
 
 
-class Main extends React.Component {
+class Main extends Component {
   render() {
     return(
       <View
@@ -94,14 +95,14 @@ class Main extends React.Component {
 
   _onWeatherButton() {
     this.props.navigator.push({
-      component: 'Weather',
+      component: Weather,
       name: "Weather"
     })
   }
 
   _onLocalButton(){
     this.props.navigator.push({
-      component: 'Local',
+      component: Local,
       name: "Local"
     })
   }
