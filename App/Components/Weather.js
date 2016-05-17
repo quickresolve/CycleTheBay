@@ -22,21 +22,12 @@ import TrailList from './TrailList'
 import Local from './Local'
 import Main from './Main'
 
+var moment = require('moment');
+
 var kelvinToF = (kelvin) => {
   return Math.round((kelvin - 273.15) * 1.8 + 32) + " ˚F"
 };
 
-var mockedCurrent = {
-  city: 'San Francisco',
-  temperature: '70˚F',
-  temp_min: '70˚F',
-  temp_max: '70˚F',
-  description: 'Sun with light overcast',
-  humidity: '40%',
-  icon: weatherIcon('01d'),
-  rain: '0%',
-  wind: '10mph'
-};
 
 var mockedForecast = [
     {
@@ -71,39 +62,6 @@ var mockedForecast = [
       pod: "n"
     },
       dt_txt: "2016-05-17 00:00:00"
-    },
-    {
-      dt: 1463454000,
-      main: {
-        temp: 290.09,
-        temp_min: 290.09,
-        temp_max: 290.093,
-        pressure: 987.66,
-        sea_level: 1025.69,
-        grnd_level: 987.66,
-        humidity: 66,
-        temp_kf: 0
-      },
-      weather: [
-      {
-        id: 800,
-        main: "Clear",
-        description: "clear sky",
-        icon: "01n"
-      }
-      ],
-      clouds: {
-        all: 0
-      },
-      wind: {
-        speed: 1.52,
-        deg: 284.502
-      },
-      rain: { },
-      sys: {
-        pod: "n"
-      },
-      dt_txt: "2016-05-17 03:00:00"
     }
   ];
 
@@ -162,44 +120,44 @@ renderRow: function(weather) {
 },
   render: function() {
     return (
-    <View style={[styles.container, {backgroundColor: this.state.backgroundColor}]}>
+    <View style={styles.container}>
+      <View style={styles.titleWrapper}>
+        <Text style={styles.title}>Current Weather</Text>
+      </View>
       <View style={styles.currentWrapper}>
-        <Text>Current Weather</Text>
-        <Text>
+        <Text style={styles.whiteText}>
           {this.state.city}
         </Text>
         <View style={styles.horContainer1}>
-          <Text style={styles.icon}>
-            {mockedCurrent.icon}
-          </Text>
+            <Image
+            style={styles.icon}
+            source={require('../Utils/img/sun_clouds.png')} />
           <View style={styles.vertContainer}>
             <View style={styles.horContainer2}>
-              <Text>
+              <Text style={styles.sideText}>
                 Max: {this.state.temp_max}
               </Text>
-            </View>
-            <View style={styles.horContainer2}>
-              <Text>
+              <Text style={styles.sideText}>
                 Min: {this.state.temp_min}
               </Text>
+              <Text style={styles.sideText}>Humidity: {this.state.humidity} %
+              </Text>
+              <Text style={styles.sideText}>Wind: {this.state.wind} m/s
+              </Text>
             </View>
-            <Text>Humidity: {this.state.humidity} %
-            </Text>
-            <Text>Wind: {this.state.wind} m/s
-            </Text>
           </View>
       </View>
-        <View style={styles.horContainer2}>
-          <Text>
-          Temperature: {this.state.temperature}
+        <View style={styles.horContainer3}>
+          <Text style={styles.whiteText}>
+           {this.state.temperature}
           </Text>
           <Text style={styles.lightText}>
-          Forecast: {this.state.description}
+           {this.state.description.toUpperCase()}
           </Text>
         </View>
       </View>
       <View style={styles.forecastWrapper}>
-        <Text> Hourly Forecast </Text>
+        <Text style={styles.title}> Hourly Forecast </Text>
         <ListView
           style={styles.listContainer}
           dataSource={this.state.dataSource}
@@ -281,18 +239,30 @@ var WeatherCell = React.createClass({
     return (
       <View>
           <View style={styles.WeatherCell}>
-              <Text style={styles.darkText}>
-                Temp: {kelvinToF(this.props.weather.main.temp)}
-              </Text>
-              <Text style={styles.lightText}>
-                Forecast: {this.props.weather.weather[0].description}
-              </Text>
-              <Text style={styles.lightText}>
-                Wind: {this.props.weather.wind.speed} m/s
-              </Text>
-              <Text style={styles.lightText}>
-                Humidity: {this.props.weather.main.humidity} %
-              </Text>
+              <Image
+              style={styles.icon2}
+              source={require('../Utils/img/sun_clouds.png')} />
+              <View style={styles.rightContainer}>
+                <View>
+                  <Text style={styles.whiteText}>
+                  {kelvinToF(this.props.weather.main.temp)}
+                  </Text>
+                  <Text style={styles.lightText}>
+                    {moment(this.props.weather.dt_txt).format('LT')}
+                  </Text>
+                </View>
+                <View style={styles.descContainer}>
+                <Text style={styles.lightText}>
+                  Forecast: {this.props.weather.weather[0].description}
+                </Text>
+                <Text style={styles.lightText}>
+                  Wind: {this.props.weather.wind.speed} m/s
+                </Text>
+                <Text style={styles.lightText}>
+                  Humidity: {this.props.weather.main.humidity} %
+                </Text>
+                </View>
+              </View>
           </View>
         <View style={styles.separator}/>
       </View>
@@ -322,38 +292,77 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end'
   },
-  darkText: {
-    fontSize: 18
+  whiteText: {
+    fontSize: 18,
+    color: 'white'
   },
   lightText: {
-    color: '#9A9A9A'
+    color: '#cccccc'
+  },
+  titleWrapper: {
+    justifyContent: 'center',
+    marginTop: 20,
+    backgroundColor: '#cccccc',
+    flexDirection: 'row'
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: 18,
+    color: 'black'
+  },
+  rightContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  descContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
   horContainer1: {
     flexDirection: 'row',
-    marginBottom: 20
+    marginBottom: 5
   },
   horContainer2: {
-    flexDirection: 'row',
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
+    justifyContent: 'space-between'
+  },
+  horContainer3: {
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    marginLeft: 30
   },
   vertContainer: {
     flex: 1,
     marginBottom: 10,
     marginTop: 10,
-    backgroundColor: '#CCCCCC',
-    padding: 15
+    backgroundColor: '#cccccc',
+    padding: 15,
+    shadowColor: 'black',
+    shadowOpacity: 0.8,
+    justifyContent: 'space-between'
+  },
+  sideText: {
+    color: '#658D9F'
   },
   currentWrapper: {
     flex: 3,
     padding: 20,
-    marginTop: 65,
-    backgroundColor: '#F2F2F2'
+    backgroundColor: '#658D9F'
   },
   forecastWrapper: {
-    flex: 5
+    flex: 5,
+    backgroundColor: '#cccccc'
   },
   icon: {
     // fontFamily: 'WeatherIcons-Regular',
+    padding: 0,
+    width: 125,
+    height: 125,
+    marginRight: 20
+  },
+  icon2: {
     padding: 0,
     width: 75,
     height: 75,
@@ -363,11 +372,10 @@ var styles = StyleSheet.create({
     flex:1,
     flexDirection: 'row',
     justifyContent: 'center',
-    marginLeft: 4,
-    marginRight: 4,
     padding: 4,
     borderBottomWidth: .5,
-    borderColor: 'lightgray'
+    borderColor: 'lightgray',
+    backgroundColor: '#658D9F'
   },
   button: {
     alignSelf: 'stretch',
