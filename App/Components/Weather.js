@@ -5,7 +5,6 @@ var {
   Text,
   TouchableHighlight,
   TouchableOpacity,
-  // navigator,
   Icon,
   ListView,
   ScrollView,
@@ -16,7 +15,6 @@ var {
 
 // import currentWeather from "../Api/weatherapi"
 // import forecast from "../Api/weatherapi"
-import weatherIcon from "../Utils/icons"
 import Trail from './Trail'
 import TrailList from './TrailList'
 import Local from './Local'
@@ -27,6 +25,41 @@ var moment = require('moment');
 
 var kelvinToF = (kelvin) => {
   return Math.round((kelvin - 273.15) * 1.8 + 32) + " ˚F"
+};
+
+var weatherIcon = (iconCode) => {
+  icon_src = ''
+  if (iconCode === 800 || iconCode === 904 || iconCode === 951) {
+    icon_src = require('../Utils/img/sun.png')
+  }
+  else if (iconCode >= 801 && iconCode <= 804 || iconCode >= 952 && iconCode <= 959 ) {
+    icon_src = require('../Utils/img/NA_clouds.png')
+  }
+  else if (iconCode >= 960 && iconCode <= 962 || iconCode >= 500 && iconCode <= 531) {
+    icon_src = require('../Utils/img/NA_rain.png')
+  }
+  else if (iconCode === 906 || iconCode === 611 || iconCode === 612) {
+    icon_src = require('../Utils/img/NA_rain_snow.png')
+  }
+  else if (iconCode === 905 || iconCode === 751 || iconCode === 741 || iconCode === 731) {
+    icon_src = require('../Utils/img/NA_fog.png')
+  }
+  else if (iconCode === 903 || iconCode >= 600 && iconCode <= 602) {
+    icon_src = require('../Utils/img/NA_blizzard.png')
+  }
+  else if (iconCode >=  900 && iconCode <= 902 || iconCode === 781 || iconCode >= 200 && iconCode <= 232) {
+    icon_src = require('../Utils/img/NA_lighting.png')
+  }
+  else if (iconCode === 771 || iconCode === 721) {
+    icon_src = require('../Utils/img/sun_fog.png')
+  }
+  else if (iconCode >= 615 && iconCode <= 701 || iconCode >= 300 && iconCode <= 321) {
+    icon_src = require('../Utils/img/sun_rain.png')
+  }
+  else {
+    icon_src = require('../Utils/img/sun_lighting.png')
+  }
+  return icon_src
 };
 
 
@@ -76,7 +109,7 @@ var Weather = React.createClass({
        temp_max: '',
        description: '',
        humidity: 0,
-      //  icon: weatherIcon(json.weather[0].icon),
+       icon: '',
        wind: 0,
       dataSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2
@@ -117,7 +150,7 @@ var Weather = React.createClass({
           temp_max: kelvinToF(responseData.list[0].main.temp_max),
           description: responseData.list[0].weather[0].description,
           humidity: responseData.list[0].main.humidity,
-          // icon: weatherIcon(responseData.weather[0].icon),
+          icon: weatherIcon(responseData.list[0].weather[0].id),
           wind: responseData.list[0].wind.speed,
           dataSource: this.state.dataSource.cloneWithRows(testdata)
         })
@@ -143,7 +176,7 @@ renderRow: function(weather) {
         <View style={styles.horContainer1}>
             <Image
             style={styles.icon}
-            source={require('../Utils/img/sun_clouds.png')} />
+            source={this.state.icon} />
           <View style={styles.vertContainer}>
             <View style={styles.horContainer2}>
               <Text style={styles.sideText}>
@@ -253,7 +286,7 @@ var WeatherCell = React.createClass({
           <View style={styles.WeatherCell}>
               <Image
               style={styles.icon2}
-              source={require('../Utils/img/sun_clouds.png')} />
+              source={weatherIcon(this.props.weather.weather[0].id)} />
               <View style={styles.rightContainer}>
                 <View>
                   <Text style={styles.whiteText}>
@@ -368,7 +401,6 @@ var styles = StyleSheet.create({
     backgroundColor: '#cccccc'
   },
   icon: {
-    // fontFamily: 'WeatherIcons-Regular',
     padding: 0,
     width: 125,
     height: 125,
