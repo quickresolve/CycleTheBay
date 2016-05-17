@@ -125,7 +125,7 @@ var Map = React.createClass({
             longitude: -122.3247,
           },
         },
-        
+
         {
             coordinate: {
             latitude: 37.964,
@@ -223,6 +223,7 @@ var Map = React.createClass({
         <MapView
           style={styles.map}
           initialRegion={region}
+          mapType={'hybrid'}
         >
           <MapView.Marker
             ref="m1"

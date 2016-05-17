@@ -15,6 +15,7 @@ import Weather from "./Weather"
 import Trail from './Trail'
 import TrailList from './TrailList'
 import Main from "./Main"
+import Map from "./Map"
 
 
 var Local = React.createClass ({
@@ -37,7 +38,6 @@ var Local = React.createClass ({
     return(
       <View style={styles.container}>
         <MapView style={styles.map}
-          // annotations={this.state.pin}
           showsUserLocation={true}
           region={this.state.region}
           mapType={'hybrid'}
@@ -86,7 +86,7 @@ var Local = React.createClass ({
 
   _onMapsButton(){
     this.props.navigator.push({
-      component: Maps,
+      component: Map,
       name: "Map"
     })
   },

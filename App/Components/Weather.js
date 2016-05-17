@@ -21,6 +21,7 @@ import Trail from './Trail'
 import TrailList from './TrailList'
 import Local from './Local'
 import Main from './Main'
+import Map from './Map'
 
 var moment = require('moment');
 
@@ -213,7 +214,7 @@ renderRow: function(weather) {
 
  _onMapsButton(){
    this.props.navigator.push({
-     component: Maps,
+     component: Map,
      name: "Map"
    })
  },
