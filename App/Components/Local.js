@@ -136,12 +136,9 @@ var styles = StyleSheet.create({
     color: 'white'
   },
   button: {
-    backgroundColor: 'white',
-    borderColor: 'white',
-    borderWidth: 3,
-    borderRadius: 10,
     alignSelf: 'stretch',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: 10
   },
   buttonText:{
     color: '#658D9F',
@@ -152,10 +149,12 @@ var styles = StyleSheet.create({
   footerNav: {
     flex: 0,
     flexDirection: 'row',
-    borderTopWidth: 1,
     alignSelf: 'stretch',
     justifyContent: 'space-between',
-    paddingTop: 10
+    paddingTop: 10,
+    backgroundColor: '#d9d9d9',
+    paddingLeft: 20,
+    paddingRight: 20
   }
 });
 

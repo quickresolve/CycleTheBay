@@ -32,8 +32,9 @@ var styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 20,
     color: 'white',
+    fontWeight: 'bold',
     justifyContent: 'center',
   },
   listView: {
@@ -43,16 +44,20 @@ var styles = StyleSheet.create({
   row: {
     flex: 1,
     alignItems: 'stretch',
-    margin: 20,
-    backgroundColor: 'blue'
+    margin: 20
+  },
+  image: {
+    flex: 1,
+    alignItems: 'stretch',
+    marginBottom: 5,
+    padding: 20,
+    width: null,
+    height: null
   },
   button: {
-    backgroundColor: 'white',
-    borderColor: 'white',
-    borderWidth: 3,
-    borderRadius: 10,
     alignSelf: 'stretch',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: 10
   },
   buttonText:{
     color: '#658D9F',
@@ -63,10 +68,12 @@ var styles = StyleSheet.create({
   footerNav: {
     flex: 0,
     flexDirection: 'row',
-    borderTopWidth: 1,
     alignSelf: 'stretch',
     justifyContent: 'space-between',
-    paddingTop: 10
+    paddingTop: 10,
+    backgroundColor: '#d9d9d9',
+    paddingLeft: 20,
+    paddingRight: 20
   }
 
 });
@@ -135,7 +142,7 @@ class TrailList extends React.Component{
         />
         <View style={styles.footerNav}>
           <TouchableHighlight
-            onPress={this._onHomeButton.bind(this)}
+            onPress={this._onHomeButtonPop.bind(this)}
             style={styles.button}
             underlayColor="gray">
               <Text style={styles.buttonText}>Home</Text>
@@ -145,12 +152,6 @@ class TrailList extends React.Component{
             style={styles.button}
             underlayColor="gray">
               <Text style={styles.buttonText}>Maps</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-          onPress={this._onTrailsButton.bind(this)}
-          style={styles.button}
-          underlayColor="gray">
-            <Text style={styles.buttonText}>Trails</Text>
           </TouchableHighlight>
           <TouchableHighlight
             onPress={this._onWeatherButton.bind(this)}
@@ -181,19 +182,25 @@ class TrailList extends React.Component{
 
   renderTrail(trail) {
     return (
-      <TouchableHighlight
-        style={styles.row}
-        onPress={(this._handleTrailSelection.bind(this, trail))}
-        underlayColor="transparent">
-        <Text style={styles.title}>
-          {trail.title}
-        </Text>
-      </TouchableHighlight>
+      <View>
+        <Image
+          source={require('../../goldenGate.jpg')}
+          style={styles.image}>
+          <TouchableHighlight
+            style={styles.row}
+            onPress={(this._handleTrailSelection.bind(this, trail))}
+            underlayColor="white">
+            <Text style={styles.title}>
+              {trail.title}
+            </Text>
+          </TouchableHighlight>
+        </Image>
+      </View>
     );
   }
 
-  _onHomeButton(){
-    this.props.navigator.push({
+  _onHomeButtonPop(){
+    this.props.navigator.pop({
       component: Main,
       name: "Main"
     })
@@ -207,7 +214,7 @@ class TrailList extends React.Component{
   }
 
   _onMapsButton(){
-    this.props.navigator.push({
+    this.props.navigator.pop({
       component: Maps,
       name: "Map"
     })
