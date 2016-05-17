@@ -1,3 +1,5 @@
+"use strict";
+
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -96,11 +98,11 @@ const styles = StyleSheet.create({
   }
 });
 
-var Trail = React.createClass ({
+class Trail extends Component{
 
 	onLinkPressed() {
 		console.log('pressed');
-	},
+	}
 
 	render() {
 		return(
@@ -178,33 +180,32 @@ var Trail = React.createClass ({
         </View>
 			</View>
 		);
-	},
+	}
 
   _onHomeButton(){
     this.props.navigator.popToTop()
-  },
-
+  }
 
  _onTrailsButton(){
    this.props.navigator.push({
      component: TrailList,
      name: "Trails",
    });
- },
+ }
 
  _onMapsButton(){
    this.props.navigator.push({
      component: Maps,
      name: "Map"
    })
- },
+ }
 
  _onWeatherButton() {
    this.props.navigator.push({
      component: 'Weather',
      name: "Weather"
    })
- },
+ }
 
  _onLocalButton(){
    this.props.navigator.push({
@@ -212,6 +213,6 @@ var Trail = React.createClass ({
      name: "Local"
    })
  }
-});
+}
 
 module.exports = Trail;
