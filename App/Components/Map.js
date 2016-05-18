@@ -225,6 +225,7 @@ var Map = React.createClass({
         <MapView
           style={styles.map}
           initialRegion={region}
+          mapType={'hybrid'}
         >
           <MapView.Marker
             ref="m1"
