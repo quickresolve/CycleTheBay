@@ -128,7 +128,7 @@ var styles = StyleSheet.create({
     alignItems: 'center'
   },
   title: {
-    marginBottom: 400
+    marginBottom: 450
   },
   navArea: {
     flexDirection: 'row'
