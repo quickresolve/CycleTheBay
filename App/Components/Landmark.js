@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center',
-		backgroundColor: '#4d94ff'
+		backgroundColor: '#00bfff'
 	},
 	imageWrapper: {
 		flex: 0.70,

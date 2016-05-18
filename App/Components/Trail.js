@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center',
-		backgroundColor: '#4d94ff'
+		backgroundColor: '#17aacf'
 	},
 	imageWrapper: {
 		flex: 0.70,
@@ -259,7 +259,7 @@ class Trail extends Component{
 
  _onMapsButton(){
    this.props.navigator.push({
-     component: Maps,
+     component: Map,
      name: "Map"
    })
  }
