@@ -27,11 +27,19 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'stretch'
   },
-
+  header: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  title: {
+    fontSize: 20,
+    marginTop: 25
+  },
   navButton: {
     flex: 1,
   },
-  title: {
+  trail: {
     flex: 1,
     fontSize: 20,
     color: 'white',
@@ -58,7 +66,7 @@ const styles = StyleSheet.create({
   button: {
     alignSelf: 'stretch',
     justifyContent: 'center',
-    marginBottom: 10
+    marginBottom: 15
   },
   buttonText:{
     color: '#658D9F',
@@ -71,7 +79,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'stretch',
     justifyContent: 'space-between',
-    paddingTop: 10,
+    paddingTop: 20,
     backgroundColor: '#d9d9d9',
     paddingLeft: 20,
     paddingRight: 20
@@ -119,7 +127,9 @@ class TrailList extends Component{
             title: responseData.title,
             distance: responseData.distance,
             elevation_up: responseData.elevation_up,
-            desc: responseData.desc
+            desc: responseData.desc,
+            map_url: responseData.map_url,
+            gmaps: responseData.gmaps
           },
         });
       }).done();
@@ -136,6 +146,11 @@ class TrailList extends Component{
 
     return(
       <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.title}>
+            Trail List
+          </Text>
+        </View>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderTrail.bind(this)}
@@ -191,7 +206,7 @@ class TrailList extends Component{
             style={styles.row}
             onPress={(this._handleTrailSelection.bind(this, trail))}
             underlayColor="white">
-            <Text style={styles.title}>
+            <Text style={styles.trail}>
               {trail.title}
             </Text>
           </TouchableOpacity>

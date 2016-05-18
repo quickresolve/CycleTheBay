@@ -119,7 +119,7 @@ var styles = StyleSheet.create({
   button: {
     alignSelf: 'stretch',
     justifyContent: 'center',
-    marginBottom: 10
+    marginBottom: 15
   },
   buttonText:{
     color: '#658D9F',
@@ -132,7 +132,7 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'stretch',
     justifyContent: 'space-between',
-    paddingTop: 10,
+    paddingTop: 20,
     backgroundColor: '#d9d9d9',
     paddingLeft: 20,
     paddingRight: 20

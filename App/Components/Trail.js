@@ -12,6 +12,7 @@ import {
   TabBarIOS,
   AlertIOS,
   navigator,
+  LinkingIOS,
   View
 } from 'react-native';
 
@@ -24,6 +25,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
  		alignItems: 'stretch',
+    backgroundColor: '#9f6565'
 	},
 	header: {
 		flex: 1,
@@ -34,33 +36,51 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	infoWrapper: {
-		flex: 1,
+		flex: 0.25,
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center',
 		backgroundColor: '#658D9F'
 	},
-	titleWrapper: {
-		flex: 1,
+	imageWrapper: {
+		flex: 0.70,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
+  coverPhoto: {
+    flex: 1,
+    alignItems: 'stretch'
+  },
 	navButton: {
-		flex: 1,
+		flex: 0.25,
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: '#9f6565'
+		backgroundColor: '#cccccc'
 	},
 	navText: {
 		fontSize: 20,
-		color: 'white'
+		color: '#658D9F'
 	},
 	description: {
 		flex: 3,
-		backgroundColor: 'white',
-    margin: 15
+		backgroundColor: '#9f6565',
+    padding: 15,
 	},
+  titleWrapper: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 15
+  },
+  title: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: 'bold'
+  },
+  descriptionText: {
+    color: 'white',
+    fontSize: 16
+  },
 	image: {
 		width: 420,
 		height: 350
@@ -78,7 +98,7 @@ const styles = StyleSheet.create({
   button: {
     alignSelf: 'stretch',
     justifyContent: 'center',
-    marginBottom: 10
+    marginBottom: 15
   },
   buttonText:{
     color: '#658D9F',
@@ -91,7 +111,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'stretch',
     justifyContent: 'space-between',
-    paddingTop: 10,
+    paddingTop: 20,
     backgroundColor: '#d9d9d9',
     paddingLeft: 20,
     paddingRight: 20
@@ -100,16 +120,14 @@ const styles = StyleSheet.create({
 
 class Trail extends Component{
 
-	onLinkPressed() {
-		console.log('pressed');
-	}
-
 	render() {
 		return(
 			<View style={styles.container}>
 
-				<View style={styles.titleWrapper}>
-					<Image/>
+				<View style={styles.imageWrapper}>
+          <Image
+            source={{uri: this.props.map_url}}
+            style={{height: 300, width: 400}} />
 				</View>
 				<View style={styles.header}>
 
@@ -133,17 +151,24 @@ class Trail extends Component{
 						</View>
 					</View>
 
-					<TouchableOpacity style={styles.navButton} underlayColor="transparent" onPress={this.onLinkPressed}>
+					<TouchableOpacity style={styles.navButton} underlayColor="transparent" onPress={() => LinkingIOS.openURL(this.props.gmaps)}>
 						<Text style={styles.navText}>
 							Click for Navigation
 						</Text>
 					</TouchableOpacity>
 
+          <ScrollView>
 					<View style={styles.description}>
-						<Text>
+            <View style={styles.titleWrapper}>
+              <Text style={styles.title}>
+                {this.props.title}
+              </Text>
+            </View>
+						<Text style={styles.descriptionText}>
 							{this.props.desc}
 						</Text>
 					</View>
+          </ScrollView>
 
 				</View>
         <View style={styles.footerNav}>

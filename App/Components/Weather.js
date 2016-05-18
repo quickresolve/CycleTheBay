@@ -1,6 +1,7 @@
-var React = require('react-native');
+"use strict";
 
-var {
+import React, { Component } from 'react';
+import {
   View,
   Text,
   TouchableHighlight,
@@ -10,7 +11,7 @@ var {
   ScrollView,
   Image,
   StyleSheet
-} = React;
+} from 'react-native';
 
 
 // import currentWeather from "../Api/weatherapi"
@@ -22,13 +23,12 @@ import Main from './Main'
 import Map from './Map'
 
 var moment = require('moment');
-
 var kelvinToF = (kelvin) => {
   return Math.round((kelvin - 273.15) * 1.8 + 32) + " ˚F"
 };
 
 var weatherIcon = (iconCode) => {
-  icon_src = ''
+  var icon_src = ''
   if (iconCode === 800 || iconCode === 904 || iconCode === 951) {
     icon_src = require('../Utils/img/sun.png')
   }
@@ -131,7 +131,7 @@ var Weather = React.createClass({
     );
   },
 
-  componentWillUnmount: function(){
+  componentWillUnmountfunction(){
 
   },
 
@@ -156,7 +156,6 @@ var Weather = React.createClass({
         })
       })
   },
-
 
 renderRow: function(weather) {
     return (
@@ -219,58 +218,51 @@ renderRow: function(weather) {
           onPress={this._onMapsButton}
           style={styles.button}
           underlayColor="gray">
-            <Text style={styles.buttonText}>Maps</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-        onPress={this._onTrailsButton}
-        style={styles.button}
-        underlayColor="gray">
-          <Text style={styles.buttonText}>Trails</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          onPress={this._onWeatherButton}
+            <Text style={styles.buttonText}>Trails</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={this._onWeatherButton.bind(this)}
+            style={styles.button}
+            underlayColor="gray">
+              <Text style={styles.buttonText}>Weather</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+          onPress={this._onLocalButton.bind(this)}
           style={styles.button}
           underlayColor="gray">
-            <Text style={styles.buttonText}>Weather</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-        onPress={this._onLocalButton}
-        style={styles.button}
-        underlayColor="gray">
-          <Text style={styles.buttonText}>Local</Text>
-        </TouchableHighlight>
+            <Text style={styles.buttonText}>Local</Text>
+          </TouchableHighlight>
+        </View>
       </View>
-    </View>
-  );
-},
+    );
+  },
 
   _onHomeButton(){
     this.props.navigator.popToTop()
   },
 
-
- _onTrailsButton(){
+  _onTrailsButton(){
    this.props.navigator.push({
      component: TrailList,
      name: "Trails",
    });
  },
 
- _onMapsButton(){
+  _onMapsButton(){
    this.props.navigator.push({
      component: Map,
      name: "Map"
    })
  },
 
- _onWeatherButton() {
+  _onWeatherButton() {
    this.props.navigator.push({
      component: 'Weather',
      name: "Weather"
    })
  },
 
- _onLocalButton(){
+  _onLocalButton(){
    this.props.navigator.push({
      component: 'Local',
      name: "Local"
@@ -424,7 +416,7 @@ var styles = StyleSheet.create({
   button: {
     alignSelf: 'stretch',
     justifyContent: 'center',
-    marginBottom: 10
+    marginBottom: 15
   },
   buttonText:{
     color: '#658D9F',
@@ -437,7 +429,7 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'stretch',
     justifyContent: 'space-between',
-    paddingTop: 10,
+    paddingTop: 20,
     backgroundColor: '#d9d9d9',
     paddingLeft: 20,
     paddingRight: 20

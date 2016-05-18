@@ -25,48 +25,54 @@ class Main extends Component {
       <View
         style={styles.container}>
         <Image
-          source={{uri: "http://i.imgur.com/WcH381M.jpg"}}
+          source={require('../../friendlyBiker.gif')}
           style={styles.backgroundImage}>
-          <Text
+          <Image
+            source={require('../../Title.png')}
             style={styles.title}>
-            CycleTheBay
-          </Text>
-          <TouchableOpacity
-            style={styles.navButton}
-            underlayColor="transparent"
-            onPress={this._onTrailsButton.bind(this)}>
-            <Text
-              style={styles.navText}>
-                Trail List
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.navButton}
-            underlayColor="transparent"
-            onPress={this._onMapsButton.bind(this)}>
-            <Text
-              style={styles.navText}>
-                Overhead Map
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.navButton}
-            underlayColor="transparent"
-            onPress={this._onWeatherButton.bind(this)}>
-            <Text
-              style={styles.navText}>
-                Live Weather
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.navButton}
-            underlayColor="transparent"
-            onPress={this._onLocalButton.bind(this)}>
-            <Text
-              style={styles.navText}>
-                Local Attractions
-            </Text>
-          </TouchableOpacity>
+          </Image>
+          <View style={styles.navArea}>
+            <View style={styles.pullLeft}>
+              <TouchableOpacity
+                style={styles.navButton}
+                underlayColor="transparent"
+                onPress={this._onTrailsButton.bind(this)}>
+                <Text
+                  style={styles.navText}>
+                    Trail List
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.navButton}
+                underlayColor="transparent"
+                onPress={this._onMapsButton.bind(this)}>
+                <Text
+                  style={styles.navText}>
+                    Overhead Map
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.pullRight}>
+              <TouchableOpacity
+                style={styles.navButton}
+                underlayColor="transparent"
+                onPress={this._onWeatherButton.bind(this)}>
+                <Text
+                  style={styles.navText}>
+                    Live Weather
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.navButton}
+                underlayColor="transparent"
+                onPress={this._onLocalButton.bind(this)}>
+                <Text
+                  style={styles.navText}>
+                    Local Attractions
+                </Text>
+            </TouchableOpacity>
+            </View>
+          </View>
         </Image>
       </View>
     );
@@ -122,23 +128,29 @@ var styles = StyleSheet.create({
     alignItems: 'center'
   },
   title: {
-    fontSize: 50,
-    marginBottom: 65,
-    color: 'white',
+    marginBottom: 450
+  },
+  navArea: {
+    flexDirection: 'row'
+  },
+  pullLeft: {
+    marginRight: 10
   },
   navButton: {
-    height: 40,
-    width: 200,
+    height: 60,
+    width: 150,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#cccccc',
+    // backgroundColor: 'white',
+    borderWidth: 2,
+    borderColor: 'white',
     borderRadius: 10,
-    marginBottom: 5,
+    marginBottom: 10,
     opacity: 50
   },
   navText: {
-    fontSize: 20,
-    color: '#658D9F'
+    fontSize: 18,
+    color: 'white'
   }
 });
 
