@@ -24,6 +24,22 @@ import LandmarkList from './App/Components/LandmarkList'
 
 var Main = require('./App/Components/Main');
 
+const SCREEN_WIDTH = require('Dimensions').get('window').width;
+
+/**
+ * Overwrite the default navigator scene config.
+ * to use a wider area for back swiping.
+ */
+const FloatFromRight = {
+  ...Navigator.SceneConfigs.FloatFromRight,
+  gestures: {
+    pop: {
+      ...Navigator.SceneConfigs.FloatFromRight.gestures.pop,
+      edgeHitWidth: SCREEN_WIDTH / 2,
+    },
+  },
+};
+
 class CycleTheBay extends React.Component {
 
   renderScene(route,navigator) {
@@ -53,12 +69,15 @@ class CycleTheBay extends React.Component {
     }
   }
 
+
+
   render() {
     return (
       <Navigator
         style={{ flex: 1 }}
         initialRoute={{ name: 'Main' }}
         renderScene={ this.renderScene }
+        configureScene={ () => FloatFromRight }
       />
     );
   }
