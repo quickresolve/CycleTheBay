@@ -311,10 +311,9 @@ var WeatherCell = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'stretch'
+    alignItems: 'stretch',
   },
   listContainer: {
-    backgroundColor: '#F2F2F2'
   },
   timeContainer: {
     alignItems: 'center',
@@ -345,8 +344,8 @@ var styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     fontSize: 18,
-    color: 'black',
-    padding: 10
+    color: '#658D9F',
+    padding: 15
   },
   rightContainer: {
     flex: 1,
@@ -385,7 +384,7 @@ var styles = StyleSheet.create({
   currentWrapper: {
     flex: 3,
     padding: 20,
-    backgroundColor: '#658D9F'
+    backgroundColor: '#17aacf'
   },
   forecastWrapper: {
     flex: 5,
@@ -410,7 +409,7 @@ var styles = StyleSheet.create({
     padding: 4,
     borderBottomWidth: .5,
     borderColor: 'lightgray',
-    backgroundColor: '#658D9F'
+    backgroundColor: '#17aacf'
   },
   button: {
     alignSelf: 'stretch',

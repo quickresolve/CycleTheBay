@@ -23,118 +23,6 @@ import Local from './Local'
 import Main from './Main'
 
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
- 		alignItems: 'stretch',
-    backgroundColor: 'white'
-	},
-	header: {
-		flex: 1,
-	},
-	map: {
-		flex: 2,
-		justifyContent: 'center',
-		alignItems: 'center'
-	},
-	infoWrapper: {
-		flex: 0.25,
-		flexDirection: 'row',
-		justifyContent: 'space-around',
-		alignItems: 'center',
-		backgroundColor: '#17aacf'
-	},
-	imageWrapper: {
-		flex: 0.70,
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-  coverPhoto: {
-    flex: 1,
-    alignItems: 'stretch'
-  },
-	leftNavButton: {
-		flex: 0.25,
-		flexDirection: 'row',
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: '#73cf17',
-    padding: 15,
-    borderWidth: 1,
-    borderColor: 'white'
-	},
-  rightNavButton: {
-    flex: 0.25,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#cfa117',
-    padding: 15,
-    borderWidth: 1,
-    borderColor: 'white'
-  },
-  navLandWrapper: {
-    flexDirection: 'row',
-  },
-	navText: {
-		fontSize: 20,
-		color: 'white'
-	},
-	description: {
-		flex: 3,
-    padding: 15,
-    margin: 10
-	},
-  titleWrapper: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 15
-  },
-  title: {
-    fontSize: 20,
-    color: '#658D9F',
-    fontWeight: 'bold'
-  },
-  descriptionText: {
-    color: '#658D9F',
-    fontSize: 16
-  },
-	image: {
-		width: 420,
-		height: 350
-	},
-	labels: {
-		fontSize: 20,
-		color: 'white'
-	},
-	measurementContainer: {
-		alignItems: 'center'
-	},
-	measurements: {
-		fontSize: 12,
-	},
-  button: {
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    marginBottom: 20
-  },
-  buttonText:{
-    color: '#658D9F',
-    fontSize: 18,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  footerNav: {
-    flex: 0,
-    flexDirection: 'row',
-    alignSelf: 'stretch',
-    justifyContent: 'space-between',
-    paddingTop: 15,
-    backgroundColor: '#d9d9d9',
-    paddingLeft: 20,
-    paddingRight: 20
-  }
-});
 
 class Trail extends Component{
 
@@ -187,16 +75,16 @@ class Trail extends Component{
           </View>
 
           <ScrollView>
-					<View style={styles.description}>
-            <View style={styles.titleWrapper}>
-              <Text style={styles.title}>
-                {this.props.title}
-              </Text>
-            </View>
-						<Text style={styles.descriptionText}>
-							{this.props.desc}
-						</Text>
-					</View>
+  					<View style={styles.description}>
+              <View style={styles.titleWrapper}>
+                <Text style={styles.title}>
+                  {this.props.title}
+                </Text>
+              </View>
+  						<Text style={styles.descriptionText}>
+  							{this.props.desc}
+  						</Text>
+  					</View>
           </ScrollView>
 
 				</View>
@@ -278,5 +166,118 @@ class Trail extends Component{
    })
  }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'stretch',
+    backgroundColor: 'white'
+  },
+  header: {
+    flex: 1,
+  },
+  map: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  infoWrapper: {
+    flex: 0.25,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: '#17aacf'
+  },
+  imageWrapper: {
+    flex: 0.70,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  coverPhoto: {
+    flex: 1,
+    alignItems: 'stretch'
+  },
+  leftNavButton: {
+    flex: 0.25,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#73cf17',
+    padding: 15,
+    borderWidth: 1,
+    borderColor: 'white'
+  },
+  rightNavButton: {
+    flex: 0.25,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#cfa117',
+    padding: 15,
+    borderWidth: 1,
+    borderColor: 'white'
+  },
+  navLandWrapper: {
+    flexDirection: 'row',
+  },
+  navText: {
+    fontSize: 20,
+    color: 'white'
+  },
+  description: {
+    flex: 3,
+    padding: 15,
+    margin: 10
+  },
+  titleWrapper: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 15
+  },
+  title: {
+    fontSize: 20,
+    color: '#658D9F',
+    fontWeight: 'bold'
+  },
+  descriptionText: {
+    color: '#658D9F',
+    fontSize: 16
+  },
+  image: {
+    width: 420,
+    height: 350
+  },
+  labels: {
+    fontSize: 20,
+    color: 'white'
+  },
+  measurementContainer: {
+    alignItems: 'center'
+  },
+  measurements: {
+    fontSize: 12,
+  },
+  button: {
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    marginBottom: 20
+  },
+  buttonText:{
+    color: '#658D9F',
+    fontSize: 18,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  footerNav: {
+    flex: 0,
+    flexDirection: 'row',
+    alignSelf: 'stretch',
+    justifyContent: 'space-between',
+    paddingTop: 15,
+    backgroundColor: '#d9d9d9',
+    paddingLeft: 20,
+    paddingRight: 20
+  }
+});
 
 module.exports = Trail;

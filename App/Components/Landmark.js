@@ -34,7 +34,7 @@ class Landmark extends Component{
         <View style={styles.header}>
           <View style={styles.imageWrapper}>
             <Image
-              source={{uri: this.props.image_url}}
+              source={{uri: this.props.img_url}}
               style={{height: 300, width: 400}} />
           </View>
           <View style={styles.titleWrapper}>
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white'
   },
   header: {
-    flex: 1,
+    flex: 1.5,
   },
   image: {
     flex: 2,
