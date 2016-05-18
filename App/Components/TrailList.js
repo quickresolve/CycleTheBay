@@ -201,7 +201,7 @@ class TrailList extends Component{
     return (
       <View>
         <Image
-          source={require('../../goldenGate.jpg')}
+          source={{uri: trail.image_url}}
           style={styles.image}>
           <TouchableOpacity
             style={styles.row}
