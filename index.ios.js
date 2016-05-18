@@ -19,6 +19,8 @@ import Trail from './App/Components/Trail'
 import Weather from './App/Components/Weather'
 import Local from './App/Components/Local'
 import Map from './App/Components/Map'
+import Landmark from './App/Components/Landmark'
+import LandmarkList from './App/Components/LandmarkList'
 
 var Main = require('./App/Components/Main');
 
@@ -42,6 +44,12 @@ class CycleTheBay extends React.Component {
     }
     if (route.name == 'Map') {
       return <Map navigator={navigator} />
+    }
+    if (route.name == 'Landmarks') {
+      return <LandmarkList navigator={navigator} {...route.passProps} />
+    }
+    if (route.name == 'Landmark') {
+      return <Landmark navigator={navigator} {...route.passProps} />
     }
   }
 
