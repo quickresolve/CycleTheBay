@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
  		alignItems: 'stretch',
-    backgroundColor: '#a1a5aa'
+    backgroundColor: 'white'
 	},
 	header: {
 		flex: 1,
@@ -53,15 +53,28 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'stretch'
   },
-	navButton: {
+	leftNavButton: {
 		flex: 0.25,
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: 'white'
+		backgroundColor: '#d9d9d9',
+    padding: 15,
+    borderWidth: 1,
+    borderColor: 'white'
 	},
+  rightNavButton: {
+    flex: 0.25,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#d9d9d9',
+    padding: 15,
+    borderWidth: 1,
+    borderColor: 'white'
+  },
   navLandWrapper: {
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
 	navText: {
 		fontSize: 20,
@@ -78,12 +91,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    color: 'white',
+    color: '#658D9F',
     fontWeight: 'bold'
   },
   descriptionText: {
-    color: 'white',
-    fontSize: 16
+    color: '#658D9F',
+    fontSize: 16,
+    margin: 10
   },
 	image: {
 		width: 420,
@@ -102,11 +116,11 @@ const styles = StyleSheet.create({
   button: {
     alignSelf: 'stretch',
     justifyContent: 'center',
-    marginBottom: 15
+    marginBottom: 20
   },
   buttonText:{
     color: '#658D9F',
-    fontSize: 15,
+    fontSize: 18,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -115,7 +129,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'stretch',
     justifyContent: 'space-between',
-    paddingTop: 20,
+    paddingTop: 15,
     backgroundColor: '#d9d9d9',
     paddingLeft: 20,
     paddingRight: 20
@@ -156,12 +170,16 @@ class Trail extends Component{
 					</View>
 
           <View style={styles.navLandWrapper}>
-  					<TouchableOpacity style={styles.navButton} underlayColor="transparent" onPress={() => LinkingIOS.openURL(this.props.gmaps)}>
+  					<TouchableOpacity style={styles.leftNavButton}
+              underlayColor="transparent"
+              onPress={() => LinkingIOS.openURL(this.props.gmaps)}>
               <Text style={styles.navText}>
   							Navigation
   						</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.navButton} underlayColor="transparent" onPress={() => this._onLandmarksButton(this.props.id)}>
+            <TouchableOpacity style={styles.rightNavButton}
+              underlayColor="transparent"
+              onPress={() => this._onLandmarksButton(this.props.id)}>
               <Text style={styles.navText}>
                 Landmarks
               </Text>

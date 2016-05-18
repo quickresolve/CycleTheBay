@@ -49,8 +49,6 @@ class LandmarkList extends Component {
     fetch(url, {method: "GET"})
       .then((response) => response.json())
       .then((responseData) => {
-        console.log('RESPONSE:')
-        console.log(responseData);
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(responseData),
           loaded: true,
@@ -61,7 +59,9 @@ class LandmarkList extends Component {
 
   _handleLandmarkSelection(landmark){
     var trail_id = this.state.trail_id
-    fetch('http://pacific-meadow-80820.herokuapp.com/api/locations/'+trail_id+'/landmarks/'+this.state.landmark_id)
+    console.log(trail_id)
+    console.log(landmark.id)
+    fetch('http://pacific-meadow-80820.herokuapp.com/api/locations/'+trail_id+'/landmarks/'+landmark.id)
       .then((response) => response.json())
       .then(responseData => {
         this.props.navigator.push({
@@ -227,11 +227,11 @@ const styles = StyleSheet.create({
   button: {
     alignSelf: 'stretch',
     justifyContent: 'center',
-    marginBottom: 15
+    marginBottom: 20
   },
   buttonText:{
     color: '#658D9F',
-    fontSize: 15,
+    fontSize: 18,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'stretch',
     justifyContent: 'space-between',
-    paddingTop: 20,
+    paddingTop: 15,
     backgroundColor: '#d9d9d9',
     paddingLeft: 20,
     paddingRight: 20
