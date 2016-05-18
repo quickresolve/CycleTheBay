@@ -22,122 +22,58 @@ import Local from './Local'
 import navAnimations from '../Helper_Functions/navAnimations'
 
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'stretch'
-  },
-  header: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  title: {
-    fontSize: 20,
-    marginTop: 25
-  },
-  navButton: {
-    flex: 1,
-  },
-  trail: {
-    flex: 1,
-    fontSize: 20,
-    color: 'white',
-    fontWeight: 'bold',
-    justifyContent: 'center',
-  },
-  listView: {
-    flex: 10,
-    marginTop: 20
-  },
-  row: {
-    flex: 1,
-    alignItems: 'stretch',
-    margin: 20
-  },
-  image: {
-    flex: 1,
-    alignItems: 'stretch',
-    marginBottom: 5,
-    padding: 20,
-    width: null,
-    height: null
-  },
-  button: {
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    marginBottom: 15
-  },
-  buttonText:{
-    color: '#658D9F',
-    fontSize: 15,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  footerNav: {
-    flex: 0,
-    flexDirection: 'row',
-    alignSelf: 'stretch',
-    justifyContent: 'space-between',
-    paddingTop: 20,
-    backgroundColor: '#d9d9d9',
-    paddingLeft: 20,
-    paddingRight: 20
-  }
+class LandmarkList extends Component {
 
-});
-
-class TrailList extends Component{
-
-  constructor(props) {
+  constructor(props){
     super(props);
     this.state = {
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
       loaded: false,
+      trail_id: this.props.trail_id,
+      landmark_id: '',
+      title: '',
+      desc: '',
+      img_url: ''
     };
   }
 
   componentDidMount() {
-    this.fetchData();
+    console.log(this.state.trail_id)
+    var url = `http://pacific-meadow-80820.herokuapp.com/api/locations/${this.state.trail_id}/landmarks`
+    this.fetchData(url);
   }
 
-  fetchData() {
-    fetch("http://pacific-meadow-80820.herokuapp.com/api/locations", {method: "GET"})
+  fetchData(url) {
+    fetch(url, {method: "GET"})
       .then((response) => response.json())
       .then((responseData) => {
-        // AlertIOS.alert(responseData[1].title)
+        console.log('RESPONSE:')
+        console.log(responseData);
         this.setState({
-          dataSource:this.state.dataSource.cloneWithRows(responseData),
+          dataSource: this.state.dataSource.cloneWithRows(responseData),
           loaded: true,
         });
       })
       .done();
   }
 
-  _handleTrailSelection(trail){
-    fetch('http://pacific-meadow-80820.herokuapp.com/api/locations/'+trail.id)
+  _handleLandmarkSelection(landmark){
+    var trail_id = this.state.trail_id
+    fetch('http://pacific-meadow-80820.herokuapp.com/api/locations/'+trail_id+'/landmarks/'+this.state.landmark_id)
       .then((response) => response.json())
       .then(responseData => {
         this.props.navigator.push({
-          title: trail.title,
-          name: 'Trail',
+          title: landmark.title,
+          name: 'Landmark',
           passProps: {
             title: responseData.title,
-            distance: responseData.distance,
-            elevation_up: responseData.elevation_up,
             desc: responseData.desc,
-            map_url: responseData.map_url,
-            gmaps: responseData.gmaps,
-            id: responseData.id
+            img_url: responseData.image_url
           },
         });
       }).done();
-  }
-
-  _pop() {
-    this.props.navigator.pop()
   }
 
   render() {
@@ -149,12 +85,12 @@ class TrailList extends Component{
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.title}>
-            Trail List
+            Landmarks List
           </Text>
         </View>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={this.renderTrail.bind(this)}
+          renderRow={this.renderLandmark.bind(this)}
           style={styles.listView}
         />
         <View style={styles.footerNav}>
@@ -191,24 +127,24 @@ class TrailList extends Component{
     return (
       <View style={styles.container}>
         <Text>
-          Loading trails...
+          Loading landmarks...
         </Text>
       </View>
     )
   }
 
-  renderTrail(trail) {
+  renderLandmark(landmark) {
     return (
       <View>
         <Image
-          source={{uri: trail.image_url}}
+          source={{uri: landmark.image_url}}
           style={styles.image}>
           <TouchableOpacity
             style={styles.row}
-            onPress={(this._handleTrailSelection.bind(this, trail))}
+            onPress={(this._handleLandmarkSelection.bind(this, landmark))}
             underlayColor="white">
-            <Text style={styles.trail}>
-              {trail.title}
+            <Text style={styles.landmark}>
+              {landmark.title}
             </Text>
           </TouchableOpacity>
         </Image>
@@ -220,33 +156,95 @@ class TrailList extends Component{
     this.props.navigator.popToTop()
   }
 
-  _onTrailsButton(){
-    this.props.navigator.push({
-      component: TrailList,
-      name: "Trails",
-    });
-  }
+ _onTrailsButton(){
+   this.props.navigator.push({
+     component: TrailList,
+     name: "Trails",
+   });
+ }
 
-  _onMapsButton(){
-    this.props.navigator.push({
-      component: Maps,
-      name: "Map"
-    })
-  }
+ _onMapsButton(){
+   this.props.navigator.push({
+     component: Maps,
+     name: "Map"
+   })
+ }
 
-  _onWeatherButton() {
-    this.props.navigator.push({
-      component: 'Weather',
-      name: "Weather"
-    })
-  }
+ _onWeatherButton() {
+   this.props.navigator.push({
+     component: 'Weather',
+     name: "Weather"
+   })
+ }
 
-  _onLocalButton(){
-    this.props.navigator.push({
-      component: 'Local',
-      name: "Local"
-    })
-  }
+ _onLocalButton(){
+   this.props.navigator.push({
+     component: 'Local',
+     name: "Local"
+   })
+ }
+
 }
 
-module.exports = TrailList;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'stretch'
+  },
+  header: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  title: {
+    fontSize: 20,
+    marginTop: 25,
+  },
+  landmark: {
+    flex: 1,
+    fontSize: 20,
+    color: 'white',
+    fontWeight: 'bold',
+    justifyContent: 'center',
+  },
+  listView: {
+    flex: 10,
+    marginTop: 20
+  },
+  row: {
+    flex: 1,
+    alignItems: 'stretch',
+    margin: 20
+  },
+  image: {
+    flex: 1,
+    alignItems: 'stretch',
+    marginBottom: 5,
+    padding: 20,
+    width: null,
+    height: 175
+  },
+  button: {
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    marginBottom: 15
+  },
+  buttonText:{
+    color: '#658D9F',
+    fontSize: 15,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  footerNav: {
+    flex: 0,
+    flexDirection: 'row',
+    alignSelf: 'stretch',
+    justifyContent: 'space-between',
+    paddingTop: 20,
+    backgroundColor: '#d9d9d9',
+    paddingLeft: 20,
+    paddingRight: 20
+  }
+});
+
+module.exports = LandmarkList;

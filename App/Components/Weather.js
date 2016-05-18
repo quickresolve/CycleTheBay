@@ -221,13 +221,13 @@ renderRow: function(weather) {
             <Text style={styles.buttonText}>Trails</Text>
           </TouchableHighlight>
           <TouchableHighlight
-            onPress={this._onWeatherButton.bind(this)}
+            onPress={this._onMapsButton}
             style={styles.button}
             underlayColor="gray">
-              <Text style={styles.buttonText}>Weather</Text>
+              <Text style={styles.buttonText}>Maps</Text>
           </TouchableHighlight>
           <TouchableHighlight
-          onPress={this._onLocalButton.bind(this)}
+          onPress={this._onLocalButton}
           style={styles.button}
           underlayColor="gray">
             <Text style={styles.buttonText}>Local</Text>

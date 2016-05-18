@@ -16,10 +16,12 @@ import {
   View
 } from 'react-native';
 
+import LandmarkList from './LandmarkList'
 import TrailList from './TrailList'
 import Weather from './Weather'
 import Local from './Local'
 import Main from './Main'
+
 
 const styles = StyleSheet.create({
 	container: {
@@ -58,6 +60,9 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		backgroundColor: 'white'
 	},
+  navLandWrapper: {
+    flexDirection: 'row'
+  },
 	navText: {
 		fontSize: 20,
 		color: '#658D9F'
@@ -150,11 +155,18 @@ class Trail extends Component{
 						</View>
 					</View>
 
-					<TouchableOpacity style={styles.navButton} underlayColor="transparent" onPress={() => LinkingIOS.openURL(this.props.gmaps)}>
-						<Text style={styles.navText}>
-							Click for Navigation
-						</Text>
-					</TouchableOpacity>
+          <View style={styles.navLandWrapper}>
+  					<TouchableOpacity style={styles.navButton} underlayColor="transparent" onPress={() => LinkingIOS.openURL(this.props.gmaps)}>
+              <Text style={styles.navText}>
+  							Navigation
+  						</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.navButton} underlayColor="transparent" onPress={() => this._onLandmarksButton(this.props.id)}>
+              <Text style={styles.navText}>
+                Landmarks
+              </Text>
+  					</TouchableOpacity>
+          </View>
 
           <ScrollView>
 					<View style={styles.description}>
@@ -205,6 +217,16 @@ class Trail extends Component{
 			</View>
 		);
 	}
+
+  _onLandmarksButton(trail_id){
+    this.props.navigator.push({
+      component:LandmarkList,
+      name: "Landmarks",
+      passProps:{
+        trail_id: trail_id
+      }
+    });
+  }
 
   _onHomeButton(){
     this.props.navigator.popToTop()
