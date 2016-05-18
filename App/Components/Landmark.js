@@ -111,7 +111,7 @@ class Landmark extends Component{
 
  _onMapsButton(){
    this.props.navigator.push({
-     component: Maps,
+     component: Map,
      name: "Map"
    })
  }
