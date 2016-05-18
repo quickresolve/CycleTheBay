@@ -23,105 +23,6 @@ import Local from './Local'
 import Main from './Main'
 
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
- 		alignItems: 'stretch',
-    backgroundColor: '#a1a5aa'
-	},
-	header: {
-		flex: 1,
-	},
-	image: {
-		flex: 2,
-		justifyContent: 'center',
-		alignItems: 'center'
-	},
-	infoWrapper: {
-		flex: 0.25,
-		flexDirection: 'row',
-		justifyContent: 'space-around',
-		alignItems: 'center',
-		backgroundColor: '#00bfff'
-	},
-	imageWrapper: {
-		flex: 0.70,
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-  coverPhoto: {
-    flex: 1,
-    alignItems: 'stretch'
-  },
-	navButton: {
-		flex: 0.25,
-		flexDirection: 'row',
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: 'white'
-	},
-  navLandWrapper: {
-    flexDirection: 'row'
-  },
-	navText: {
-		fontSize: 20,
-		color: '#658D9F'
-	},
-	description: {
-		flex: 3,
-    padding: 15,
-    margin: 10
-	},
-  titleWrapper: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 15
-  },
-  title: {
-    fontSize: 20,
-    color: 'white',
-    fontWeight: 'bold'
-  },
-  descriptionText: {
-    color: 'white',
-    fontSize: 16
-  },
-	image: {
-		width: 420,
-		height: 350
-	},
-	labels: {
-		fontSize: 20,
-		color: 'white'
-	},
-	measurementContainer: {
-		alignItems: 'center'
-	},
-	measurements: {
-		fontSize: 12,
-	},
-  button: {
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    marginBottom: 20
-  },
-  buttonText:{
-    color: '#658D9F',
-    fontSize: 18,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  footerNav: {
-    flex: 0,
-    flexDirection: 'row',
-    alignSelf: 'stretch',
-    justifyContent: 'space-between',
-    paddingTop: 15,
-    backgroundColor: '#d9d9d9',
-    paddingLeft: 20,
-    paddingRight: 20
-  }
-});
 
 class Landmark extends Component{
 
@@ -130,32 +31,27 @@ class Landmark extends Component{
 		return(
 			<View style={styles.container}>
 
-				<View style={styles.imageWrapper}>
-          <Image
-            source={{uri: this.props.image_url}}
-            style={{height: 300, width: 400}} />
-				</View>
-				<View style={styles.header}>
+        <View style={styles.header}>
+          <View style={styles.imageWrapper}>
+            <Image
+              source={{uri: this.props.image_url}}
+              style={{height: 300, width: 400}} />
+          </View>
+          <View style={styles.titleWrapper}>
+            <Text style={styles.title}>
+              {this.props.title}
+            </Text>
+          </View>
+        </View>
 
-					<View style={styles.infoWrapper}>
-						<View style={styles.measurementContainer}>
-							<Text style={styles.labels}>
-								{this.props.title}
-							</Text>
-							<Text style={styles.measurements}>
-							</Text>
-						</View>
-					</View>
-
-          <ScrollView>
-  					<View style={styles.description}>
-  						<Text style={styles.descriptionText}>
-  							{this.props.desc}
-  						</Text>
-  					</View>
+        <View style={styles.body}>
+          <ScrollView style={styles.description}>
+						<Text style={styles.descriptionText}>
+							{this.props.desc}
+						</Text>
           </ScrollView>
+        </View>
 
-				</View>
         <View style={styles.footerNav}>
           <TouchableOpacity
             onPress={this._onHomeButton.bind(this)}
@@ -234,5 +130,95 @@ class Landmark extends Component{
    })
  }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'stretch',
+    backgroundColor: 'white'
+  },
+  header: {
+    flex: 1,
+  },
+  image: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  infoWrapper: {
+    flex: 0.25,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: '#17aacf'
+  },
+  imageWrapper: {
+    flex: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  coverPhoto: {
+    flex: 1,
+    alignItems: 'stretch'
+  },
+  titleWrapper: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#17aacf'
+  },
+  title: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: 'bold',
+    alignSelf: 'center'
+  },
+  body: {
+    flex: 1
+  },
+  navText: {
+    fontSize: 50,
+    marginTop: 10,
+    color: '#658D9F'
+  },
+  description: {
+    flex: 3,
+    padding: 15,
+    margin: 10
+  },
+  descriptionText: {
+    color: '#658D9F',
+    fontSize: 16
+  },
+  image: {
+    width: 420,
+    height: 350
+  },
+  labels: {
+    fontSize: 25,
+    color: 'white'
+  },
+  button: {
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    marginBottom: 20
+  },
+  buttonText:{
+    color: '#658D9F',
+    fontSize: 18,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  footerNav: {
+    flex: 0,
+    flexDirection: 'row',
+    alignSelf: 'stretch',
+    justifyContent: 'space-between',
+    paddingTop: 15,
+    backgroundColor: '#d9d9d9',
+    paddingLeft: 20,
+    paddingRight: 20
+  }
+});
 
 module.exports = Landmark;

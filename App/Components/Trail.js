@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: '#d9d9d9',
+		backgroundColor: '#73cf17',
     padding: 15,
     borderWidth: 1,
     borderColor: 'white'
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#d9d9d9',
+    backgroundColor: '#cfa117',
     padding: 15,
     borderWidth: 1,
     borderColor: 'white'
@@ -78,11 +78,12 @@ const styles = StyleSheet.create({
   },
 	navText: {
 		fontSize: 20,
-		color: '#658D9F'
+		color: 'white'
 	},
 	description: {
 		flex: 3,
-    padding: 15
+    padding: 15,
+    margin: 10
 	},
   titleWrapper: {
     alignItems: 'center',
@@ -96,8 +97,7 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     color: '#658D9F',
-    fontSize: 16,
-    margin: 10
+    fontSize: 16
   },
 	image: {
 		width: 420,
