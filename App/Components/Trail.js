@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
  		alignItems: 'stretch',
-    backgroundColor: '#9f6565'
+    backgroundColor: '#a1a5aa'
 	},
 	header: {
 		flex: 1,
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center',
-		backgroundColor: '#658D9F'
+		backgroundColor: '#4d94ff'
 	},
 	imageWrapper: {
 		flex: 0.70,
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: '#cccccc'
+		backgroundColor: 'white'
 	},
 	navText: {
 		fontSize: 20,
@@ -64,8 +64,7 @@ const styles = StyleSheet.create({
 	},
 	description: {
 		flex: 3,
-		backgroundColor: '#9f6565',
-    padding: 15,
+    padding: 15
 	},
   titleWrapper: {
     alignItems: 'center',
