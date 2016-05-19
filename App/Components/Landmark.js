@@ -60,28 +60,15 @@ class Landmark extends Component{
               <Text style={styles.buttonText}>Home</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={this._onMapsButton.bind(this)}
+            onPress={this._onBackButton.bind(this)}
             style={styles.button}
             underlayColor="gray">
-              <Text style={styles.buttonText}>Maps</Text>
+              <Text style={styles.buttonText}>Back to List</Text>
           </TouchableOpacity>
           <TouchableOpacity
-          onPress={this._onTrailsButton.bind(this)}
           style={styles.button}
           underlayColor="gray">
-            <Text style={styles.buttonText}>Trails</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={this._onWeatherButton.bind(this)}
-            style={styles.button}
-            underlayColor="gray">
-              <Text style={styles.buttonText}>Weather</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-          onPress={this._onLocalButton.bind(this)}
-          style={styles.button}
-          underlayColor="gray">
-            <Text style={styles.buttonText}>Local</Text>
+            <Text style={styles.blankButton}>Blank</Text>
           </TouchableOpacity>
         </View>
 			</View>
@@ -102,33 +89,10 @@ class Landmark extends Component{
     this.props.navigator.popToTop()
   }
 
- _onTrailsButton(){
-   this.props.navigator.push({
-     component: TrailList,
-     name: "Trails",
-   });
- }
+  _onBackButton() {
+    this.props.navigator.pop()
+  }
 
- _onMapsButton(){
-   this.props.navigator.push({
-     component: Map,
-     name: "Map"
-   })
- }
-
- _onWeatherButton() {
-   this.props.navigator.push({
-     component: 'Weather',
-     name: "Weather"
-   })
- }
-
- _onLocalButton(){
-   this.props.navigator.push({
-     component: 'Local',
-     name: "Local"
-   })
- }
 }
 
 const styles = StyleSheet.create({
@@ -205,6 +169,12 @@ const styles = StyleSheet.create({
   },
   buttonText:{
     color: '#658D9F',
+    fontSize: 18,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  blankButton:{
+    color: '#d9d9d9',
     fontSize: 18,
     justifyContent: 'center',
     alignItems: 'center'

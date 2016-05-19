@@ -101,22 +101,15 @@ class LandmarkList extends Component {
               <Text style={styles.buttonText}>Home</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={this._onMapsButton.bind(this)}
+            onPress={this._onBackButton.bind(this)}
             style={styles.button}
             underlayColor="gray">
-              <Text style={styles.buttonText}>Maps</Text>
+              <Text style={styles.buttonText}>Back to Overview</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={this._onWeatherButton.bind(this)}
             style={styles.button}
             underlayColor="gray">
-              <Text style={styles.buttonText}>Weather</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-          onPress={this._onLocalButton.bind(this)}
-          style={styles.button}
-          underlayColor="gray">
-            <Text style={styles.buttonText}>Local</Text>
+              <Text style={styles.blankButton}>blank</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -156,33 +149,9 @@ class LandmarkList extends Component {
     this.props.navigator.popToTop()
   }
 
- _onTrailsButton(){
-   this.props.navigator.push({
-     component: TrailList,
-     name: "Trails",
-   });
- }
-
- _onMapsButton(){
-   this.props.navigator.push({
-     component: Maps,
-     name: "Map"
-   })
- }
-
- _onWeatherButton() {
-   this.props.navigator.push({
-     component: 'Weather',
-     name: "Weather"
-   })
- }
-
- _onLocalButton(){
-   this.props.navigator.push({
-     component: 'Local',
-     name: "Local"
-   })
- }
+  _onBackButton(){
+    this.props.navigator.pop()
+  }
 
 }
 
@@ -231,6 +200,12 @@ const styles = StyleSheet.create({
   },
   buttonText:{
     color: '#658D9F',
+    fontSize: 18,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  blankButton:{
+    color: '#d9d9d9',
     fontSize: 18,
     justifyContent: 'center',
     alignItems: 'center'
