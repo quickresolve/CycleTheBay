@@ -244,10 +244,10 @@ const styles = StyleSheet.create({
     color: '#658D9F',
     fontSize: 16
   },
-  image: {
-    width: 420,
-    height: 350
-  },
+  // image: {
+  //   width: 420,
+  //   height: 350
+  // },
   labels: {
     fontSize: 20,
     color: 'white'
