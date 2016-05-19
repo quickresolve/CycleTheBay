@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
   description: {
     flex: 3,
     padding: 15,
-    margin: 10
+    margin: 10,
   },
   titleWrapper: {
     alignItems: 'center',
@@ -237,7 +237,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     color: '#658D9F',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    alignSelf: 'center'
   },
   descriptionText: {
     color: '#658D9F',
