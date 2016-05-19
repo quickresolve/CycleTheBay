@@ -311,18 +311,17 @@ var WeatherCell = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'stretch'
+    alignItems: 'stretch',
   },
   listContainer: {
-    backgroundColor: '#F2F2F2'
   },
   timeContainer: {
     alignItems: 'center',
-    marginRight: 20
+    marginRight: 20,
   },
   seperator: {
     height: 1,
-    backgroundColor: '#DDDDDD'
+    backgroundColor: 'white'
   },
   tempContainer: {
     flexDirection: 'row',
@@ -334,18 +333,19 @@ var styles = StyleSheet.create({
     color: 'white'
   },
   lightText: {
-    color: '#cccccc'
+    color: 'white'
   },
   titleWrapper: {
     justifyContent: 'center',
     marginTop: 20,
-    backgroundColor: '#cccccc',
+    backgroundColor: 'white',
     flexDirection: 'row'
   },
   title: {
     textAlign: 'center',
     fontSize: 18,
-    color: 'black'
+    color: '#658D9F',
+    padding: 15
   },
   rightContainer: {
     flex: 1,
@@ -363,22 +363,20 @@ var styles = StyleSheet.create({
   },
   horContainer2: {
     alignItems: 'flex-start',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   horContainer3: {
     alignItems: 'flex-start',
     justifyContent: 'space-between',
-    marginLeft: 30
+    marginLeft: 30,
   },
   vertContainer: {
     flex: 1,
-    marginBottom: 10,
-    marginTop: 10,
-    backgroundColor: '#cccccc',
+    marginTop: 30,
+    backgroundColor: 'white',
     padding: 15,
-    shadowColor: 'black',
-    shadowOpacity: 0.8,
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    borderRadius: 10
   },
   sideText: {
     color: '#658D9F'
@@ -386,11 +384,11 @@ var styles = StyleSheet.create({
   currentWrapper: {
     flex: 3,
     padding: 20,
-    backgroundColor: '#658D9F'
+    backgroundColor: '#17aacf'
   },
   forecastWrapper: {
     flex: 5,
-    backgroundColor: '#cccccc'
+    backgroundColor: 'white'
   },
   icon: {
     padding: 0,
@@ -411,16 +409,16 @@ var styles = StyleSheet.create({
     padding: 4,
     borderBottomWidth: .5,
     borderColor: 'lightgray',
-    backgroundColor: '#658D9F'
+    backgroundColor: '#17aacf'
   },
   button: {
     alignSelf: 'stretch',
     justifyContent: 'center',
-    marginBottom: 15
+    marginBottom: 20
   },
   buttonText:{
     color: '#658D9F',
-    fontSize: 15,
+    fontSize: 18,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -429,7 +427,7 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'stretch',
     justifyContent: 'space-between',
-    paddingTop: 20,
+    paddingTop: 15,
     backgroundColor: '#d9d9d9',
     paddingLeft: 20,
     paddingRight: 20
