@@ -118,7 +118,8 @@ class Main extends Component {
 var styles = StyleSheet.create({
   container: {
     flex:1,
-    alignItems: 'stretch'
+    alignItems: 'stretch',
+    backgroundColor: '#17aacf'
   },
   backgroundImage: {
     flex: 1,

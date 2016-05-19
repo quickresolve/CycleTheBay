@@ -15,11 +15,12 @@ import {
   navigator
 } from 'react-native';
 
-import Trail from './Trail'
-import Main from './Main'
-import Weather from './Weather'
-import Local from './Local'
-import navAnimations from '../Helper_Functions/navAnimations'
+import Trail from './Trail';
+import Main from './Main';
+import Weather from './Weather';
+import Local from './Local';
+import navAnimations from '../Helper_Functions/navAnimations';
+import TimerMixin from 'react-timer-mixin';
 
 
 const styles = StyleSheet.create({
@@ -66,11 +67,11 @@ const styles = StyleSheet.create({
   button: {
     alignSelf: 'stretch',
     justifyContent: 'center',
-    marginBottom: 15
+    marginBottom: 20
   },
   buttonText:{
     color: '#658D9F',
-    fontSize: 15,
+    fontSize: 18,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'stretch',
     justifyContent: 'space-between',
-    paddingTop: 20,
+    paddingTop: 15,
     backgroundColor: '#d9d9d9',
     paddingLeft: 20,
     paddingRight: 20
@@ -141,7 +142,7 @@ class TrailList extends Component{
   }
 
   render() {
-    if (!this.state.loaded) {
+    if (this.state.loaded == false) {
       this.renderLoadingView();
     }
 
@@ -229,7 +230,7 @@ class TrailList extends Component{
 
   _onMapsButton(){
     this.props.navigator.push({
-      component: Maps,
+      component: Map,
       name: "Map"
     })
   }
