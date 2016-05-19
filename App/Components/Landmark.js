@@ -104,11 +104,11 @@ const styles = StyleSheet.create({
   header: {
     flex: 1.5,
   },
-  image: {
-    flex: 2,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
+  // image: {
+  //   flex: 2,
+  //   justifyContent: 'center',
+  //   alignItems: 'center'
+  // },
   infoWrapper: {
     flex: 0.25,
     flexDirection: 'row',
@@ -154,10 +154,10 @@ const styles = StyleSheet.create({
     color: '#658D9F',
     fontSize: 16
   },
-  image: {
-    width: 420,
-    height: 350
-  },
+  // image: {
+  //   width: 420,
+  //   height: 350
+  // },
   labels: {
     fontSize: 25,
     color: 'white'
