@@ -35,7 +35,7 @@ class Landmark extends Component{
           <View style={styles.imageWrapper}>
             <Image
               source={{uri: this.props.img_url}}
-              style={{height: 300, width: 400}} />
+              style={{height: 400, width: 500}} />
           </View>
           <View style={styles.titleWrapper}>
             <Text style={styles.title}>
