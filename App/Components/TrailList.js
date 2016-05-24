@@ -20,7 +20,6 @@ import Main from './Main';
 import Weather from './Weather';
 import Local from './Local';
 import navAnimations from '../Helper_Functions/navAnimations';
-import TimerMixin from 'react-timer-mixin';
 
 
 const styles = StyleSheet.create({
