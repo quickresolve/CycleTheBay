@@ -3,6 +3,8 @@ React Native Cycle App for iOS with an Android version currently in production a
 
 This app was engineered utilizing decoupled architecture, we designed and deployed our own Rails API ([source found here](https://github.com/psiclops/cycle-api)) which returns data as json that is fetched and displayed in a responsive and native mobile environment. The front end of the app developed using React Native, a brand new framework released by Facebook for developing native applications for iOS and Android devices based on JavaScript and React.  
 
+[Watch the Demo!](https://youtu.be/OI2wkQTdCrg)
+
 ##Inspiration
 
 We searched for a mobile app that would enable full exploration of your surroundings, including satellite maps, guided navigation, local attractions, weather forecast, and descriptions of landmarks or places of interests you could encounter along the way. Nothing of this kind exists on the market that we could find, with apps like MapMyRide focusing on fitness tracking and Point providing recordings of tourist information. The Bay Trail Organization, likely comes closest to meeting the needs of cyclists, with their physical [Map by Number Card Deck](http://baytrail.org/get-on-the-trail/map-by-number/), but it may prove cumbersome to carry along while riding due to their size and weight.
@@ -31,7 +33,7 @@ We utilized a combination of agile and scrum development techniques to maintain 
 ##License
 MIT
 
-##Demo & Images
+##Images
 
 ![Splash Page](/imgs/splash.png) ![Overhead Map](/imgs/overhead-map.png) ![Trails List](/imgs/trails-list.png)
 ![Trail View](/imgs/trail-view.png) ![Landmarks List](/imgs/landmarks-list.png) ![Local Attractions](/imgs/local.png)
