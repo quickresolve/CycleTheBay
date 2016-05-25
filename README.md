@@ -17,15 +17,17 @@ The full tech stack for our application includes React Native, Javascript ECMS 6
 ##Teams Organization & Values
 
 ###Local, Weather, Landmarks
-Laura Montoya - Lead | Full Stack Developer | Head Dreamer 
+Laura Montoya - Lead | Full Stack Developer | Head Dreamer
+
 Betty Assefa - Full Stack Developer | API Wizard
 
 ###Navigation & Trails
 Dan Shapiro - Project Manager | Full Stack Developer | UI Perfectionist
-Danny Hwang - Full Stack Developer | Mother of Drawings
+
+Danny Hwang - Full Stack Developer | Master of Drawings
 
 ###Backend
-Nick Russo - Full Stack Developer | Sourcerer of Serverside
+Nick Russo - Full Stack Developer | Sorcerer of Serverside
 
 ###Values
 We utilized a combination of agile and scrum development techniques to maintain proper git workflow, daily sprints, standups 3x per day, slack for communication, and meister task for project management.
