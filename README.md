@@ -33,7 +33,7 @@ We utilized a combination of agile and scrum development techniques to maintain 
 ##License
 MIT
 
-##Demo & Images
+##Images
 
 ![Splash Page](/imgs/splash.png) ![Overhead Map](/imgs/overhead-map.png) ![Trails List](/imgs/trails-list.png)
 ![Trail View](/imgs/trail-view.png) ![Landmarks List](/imgs/landmarks-list.png) ![Local Attractions](/imgs/local.png)
