@@ -54,8 +54,17 @@ MIT
 
 ##Images
 
-![Splash Page](/imgs/splash.png) ![Overhead Map](/imgs/overhead-map.png) ![Trails List](/imgs/trails-list.png)
-![Trail View](/imgs/trail-view.png) ![Landmarks List](/imgs/landmarks-list.png) ![Local Attractions](/imgs/local.png)
-![Weather](/imgs/weather.png)
+##Welcome to CycleTheBay!
+![Splash Page](/imgs/splash.png) 
+
+##Map & Realtime Weather Forecast!
+![Overhead Map](/imgs/overhead-map.png) ![Weather](/imgs/weather.png)
+
+##Trails & Navigation!
+![Trails List](/imgs/trails-list.png) ![Trail View](/imgs/trail-view.png) 
+
+##Landmarks & Local Attractions!
+![Landmarks List](/imgs/landmarks-list.png) ![Local Attractions](/imgs/local.png)
+
 
 
