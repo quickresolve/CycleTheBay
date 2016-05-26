@@ -1,4 +1,4 @@
-![Splash Page](/imgs/icon.png)
+![Splash Page](/imgs/icon.png =250x250)
 
 ![Splash Page](/imgs/Logo.png)
 
