@@ -1,6 +1,6 @@
 ![Splash Page](/imgs/icon.png)
 
-![Splash Page](/imgs/Logo.png)
+ ![Splash Page](/imgs/Logo.png)
 
 #How to Run
 
