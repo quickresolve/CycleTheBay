@@ -5,6 +5,8 @@ React Native Cycle App for iOS with an Android version currently in production a
 
 This app was engineered utilizing decoupled architecture, we designed and deployed our own Rails API ([source found here](https://github.com/psiclops/cycle-api)) which returns data as json that is fetched and displayed in a responsive and native mobile environment. The front end of the app developed using React Native, a brand new framework released by Facebook for developing native applications for iOS and Android devices based on JavaScript and React.  
 
+[![IMAGE ALT TEXT HERE](/imgs/video-picture.png)](https://youtu.be/OI2wkQTdCrg)
+
 [Watch the Demo!](https://youtu.be/OI2wkQTdCrg)
 
 ##Inspiration
